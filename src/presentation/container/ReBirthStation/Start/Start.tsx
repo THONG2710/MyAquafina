@@ -8,17 +8,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { colors } from '../../resource/values/color';
-import { fonts } from '../../resource/values/fonts';
+import { colors } from '../../../resource/values/color';
+import { fonts } from '../../../resource/values/fonts';
+import { ScreenProp } from './type';
 
-const Start = () => {
+const Start = ({navigation}: ScreenProp) => {
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={require('../../../resource/images/logoAquafina.png')}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           HÃY CHO CHAI RỖNG VÀO MÁY
@@ -46,7 +47,7 @@ const Start = () => {
         <View style={styles.imgContainer}>
           <Image
             style={styles.imgMain}
-            source={require('../../resource/images/frame1.png')}
+            source={require('../../../resource/images/frame1.png')}
           />
         </View>
         <View style={styles.body_contentContainer}>
@@ -62,10 +63,10 @@ const Start = () => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Loading')}>
           <Image
             style={styles.footer_btnEnd}
-            source={require('../../resource/images/btnEnd.png')}
+            source={require('../../../resource/images/btnEnd.png')}
           />
         </TouchableOpacity>
       </View>

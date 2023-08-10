@@ -24,12 +24,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HomePage from './src/presentation/container/RVM/HomePage';
-import Instructions from './src/presentation/container/RVM/Instructions';
-import Loading from './src/presentation/container/RVM/Loading';
-import QRCode from './src/presentation/container/RVM/QRCode';
-import Start from './src/presentation/container/RVM/Start';
+import HomePage from './src/presentation/container/ReBirthStation/HomePage/HomePage';
+import Instructions from './src/presentation/container/ReBirthStation/Instructions/Instructions';
+import Loading from './src/presentation/container/ReBirthStation/Loading/Loading';
+import QRCode from './src/presentation/container/ReBirthStation/QRCode/QRCode';
+import Start from './src/presentation/container/ReBirthStation/Start/Start';
 import RebirthStationStack from './src/presentation/navigation/RebirthStationStack';
+import PopupThanks from './src/presentation/component/Popup/PopupThanks';
 
 
 function App(): JSX.Element {
@@ -40,6 +41,8 @@ function App(): JSX.Element {
     // <QRCode/>
     // <Start/>
     <RebirthStationStack/>
+    // <PopupThanks/>
+    // <PopupThanks/>
   );
 }
 

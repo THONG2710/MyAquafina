@@ -9,17 +9,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {colors} from '../../resource/values/color';
-import {fonts} from '../../resource/values/fonts';
+import {colors} from '../../../resource/values/color';
+import {fonts} from '../../../resource/values/fonts';
+import { ScreenProp } from './type';
 
-const HomePage = () => {
+const HomePage = ({navigation}: ScreenProp) => {
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={require('../../../resource/images/logoAquafina.png')}
         />
         <Text style={[styles.text, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
@@ -39,10 +40,10 @@ const HomePage = () => {
       <View style={styles.body}>
         <ImageBackground
           style={styles.body_bgImage}
-          source={require('../../resource/images/adv.png')}
+          source={require('../../../resource/images/adv.png')}
         />
-        <TouchableOpacity style={styles.body_btnStart}>
-          <Image style={styles.body_btnStart} source={require('../../resource/images/btnStart.png')} />
+        <TouchableOpacity style={styles.body_btnStart} onPress={()=>navigation.navigate('Instructions')}>
+          <Image style={styles.body_btnStart} source={require('../../../resource/images/btnStart.png')} />
         </TouchableOpacity>
         <Text style={[styles.text, styles.body_txtLine1]}>*Hoạt động nằm trong Chiến dịch</Text>
         <Text style={[styles.text, styles.body_txtLine2]}>
@@ -50,7 +51,7 @@ const HomePage = () => {
         </Text>
 
         <View style={styles.body_moreInfo}>
-          <Image style={styles.body_QA} source={require('../../resource/images/QRcode.png')} />
+          <Image style={styles.body_QA} source={require('../../../resource/images/QRcode.png')} />
           <Text style={[styles.text, styles.body_txtMore]}>Xem thêm</Text>
         </View>
       </View>
@@ -58,7 +59,7 @@ const HomePage = () => {
       {/* footer */}
       <View style={styles.footer}>
         <View style={styles.footer_LeftView}>
-          <Image style={styles.footer_facebook} source={require('../../resource/images/facebook.png')} />
+          <Image style={styles.footer_facebook} source={require('../../../resource/images/facebook.png')} />
           <Text style={[styles.text, styles.footerText]}>Aquafina Vietnam</Text>
         </View>
         <Text style={[styles.text, styles.footerText, {marginRight: 10,}]}>Aquafina.pepsishop.vn</Text>

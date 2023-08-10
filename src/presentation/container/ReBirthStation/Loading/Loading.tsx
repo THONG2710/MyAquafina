@@ -8,17 +8,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { colors } from '../../resource/values/color';
-import { fonts } from '../../resource/values/fonts';
+import { colors } from '../../../resource/values/color';
+import { fonts } from '../../../resource/values/fonts';
+import { ScreenProp } from './type';
 
-const Loading = () => {
+const Loading = ({navigation}: ScreenProp) => {
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={require('../../../resource/images/logoAquafina.png')}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           CHAI NHỰA ĐANG ĐƯỢC XỬ LÝ...
@@ -30,7 +31,7 @@ const Loading = () => {
         <View style={styles.body_navigation}>
           <Image
             style={styles.body_btnBack}
-            source={require('../../resource/images/iconBack.png')}
+            source={require('../../../resource/images/iconBack.png')}
           />
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
@@ -57,7 +58,7 @@ const Loading = () => {
               <View style={styles.body_imgDetailContainer}>
                 <Image
                   style={styles.body_imgDetail}
-                  source={require('../../resource/images/bottle.png')}
+                  source={require('../../../resource/images/bottle.png')}
                 />
               </View>
               <View style={styles.body_inforContainer}>
@@ -71,7 +72,7 @@ const Loading = () => {
               <View style={styles.body_imgDetailContainer}>
                 <Image
                   style={styles.body_imgDetail}
-                  source={require('../../resource/images/bottleOther.png')}
+                  source={require('../../../resource/images/bottleOther.png')}
                 />
               </View>
               <View style={styles.body_inforContainer}>
@@ -90,10 +91,10 @@ const Loading = () => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
           <Image
             style={styles.footer_btnEnd}
-            source={require('../../resource/images/btnComplete.png')}
+            source={require('../../../resource/images/btnComplete.png')}
           />
         </TouchableOpacity>
       </View>

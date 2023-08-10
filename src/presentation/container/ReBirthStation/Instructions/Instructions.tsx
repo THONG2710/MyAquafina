@@ -1,17 +1,18 @@
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { colors } from '../../resource/values/color';
-import { fonts } from '../../resource/values/fonts';
+import { colors } from '../../../resource/values/color';
+import { fonts } from '../../../resource/values/fonts';
+import { ScreenProp } from './type';
 
-const Instructions = () => {
+const Instructions = ({navigation}: ScreenProp) => {
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={require('../../../resource/images/logoAquafina.png')}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           HƯỚNG DẪN THAM GIA
@@ -22,7 +23,7 @@ const Instructions = () => {
         <View style={styles.body_navigation}>
           <Image
             style={styles.body_btnBack}
-            source={require('../../resource/images/iconBack.png')}
+            source={require('../../../resource/images/iconBack.png')}
           />
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
@@ -39,7 +40,7 @@ const Instructions = () => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../resource/images/frame1.png')}
+              source={require('../../../resource/images/frame1.png')}
             />
           </View>
           <View style={styles.contentStepContainer}>
@@ -56,7 +57,7 @@ const Instructions = () => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../resource/images/frame2.png')}
+              source={require('../../../resource/images/frame2.png')}
             />
           </View>
           <View style={styles.contentStepContainer}>
@@ -76,7 +77,7 @@ const Instructions = () => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../resource/images/frame3.png')}
+              source={require('../../../resource/images/frame3.png')}
             />
           </View>
           <View style={styles.contentStepContainer}>
@@ -99,8 +100,8 @@ const Instructions = () => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity>
-          <Image style={styles.footer_imgButtonConfirm} source={require('../../resource/images/btnConfirm.png')}/>
+        <TouchableOpacity onPress={() => navigation.navigate('Start')}>
+          <Image style={styles.footer_imgButtonConfirm} source={require('../../../resource/images/btnConfirm.png')}/>
         </TouchableOpacity>
       </View>
     </View>

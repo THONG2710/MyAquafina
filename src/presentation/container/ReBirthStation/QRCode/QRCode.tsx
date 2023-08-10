@@ -1,16 +1,24 @@
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
-import {fonts} from '../../resource/values/fonts';
-import {colors} from '../../resource/values/color';
+import React, {useState} from 'react';
+import {fonts} from '../../../resource/values/fonts';
+import {colors} from '../../../resource/values/color';
+import Modal from 'react-native-modal';
+import PopupThanks from '../../../component/Popup/PopupThanks';
 
 const QRCode = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={require('../../../resource/images/logoAquafina.png')}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           TRẠM TÁI SINH CỦA AQUAFINA
@@ -31,7 +39,7 @@ const QRCode = () => {
         <View style={styles.body_titleContainer}>
           <Image
             style={styles.body_btnBack}
-            source={require('../../resource/images/iconBack.png')}
+            source={require('../../../resource/images/iconBack.png')}
           />
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
@@ -53,7 +61,7 @@ const QRCode = () => {
           </Text>
           <Image
             style={styles.body_imgQRcode}
-            source={require('../../resource/images/QRCodeBig.png')}
+            source={require('../../../resource/images/QRCodeBig.png')}
           />
           <Text style={styles.body_txtNotice}>
             Thời gian quét QR còn:{' '}
@@ -62,10 +70,14 @@ const QRCode = () => {
         </View>
       </View>
 
+      <Modal isVisible={isModalVisible}>
+        <PopupThanks/>
+      </Modal>
+
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity>
-          <Image style={styles.footer_btnConfirm} source={require('../../resource/images/btnConfirm.png')}/>
+        <TouchableOpacity onPress={toggleModal}>
+          <Image style={styles.footer_btnConfirm} source={require('../../../resource/images/btnConfirm.png')}/>
         </TouchableOpacity>
       </View>
     </View>
