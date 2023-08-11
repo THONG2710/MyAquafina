@@ -2,6 +2,8 @@ import {Dimensions, Image, StyleSheet, Text, TextProps, TouchableOpacity, View} 
 import React from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import Background from '../Background/Background';
+import CircleButton from '../Button/CircleButton';
 
 export interface ModalThanksProps extends TextProps {
   onPress?: () => void;
@@ -9,11 +11,14 @@ export interface ModalThanksProps extends TextProps {
 
 const PopupThanks: React.FC<ModalThanksProps> = (props) => {
   const {onPress} = props;
+
   return (
     <View style={styles.container}>
+      <Background/>
       {/* title */}
       <View style={styles.titleContainer}>
         <Text style={styles.title_txtLine1}>TRẠM TÁI SINH</Text>
+        <Image style={{ width: 100, height: 100, position: 'absolute', top: -5, left: 30 }} source={require('../../resource/images/cuttingMask.png')} />
         <Text style={styles.title_txtLine2}>CỦA AQUAFINA</Text>
         <Text style={styles.title_txtLine3}>
           NƠI TÁI SINH VÒNG ĐỜI MỚI CHO CHAI NHỰA
@@ -40,9 +45,7 @@ const PopupThanks: React.FC<ModalThanksProps> = (props) => {
       </View>
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={onPress}>
-          <Image style={styles.footer_imgButton} source={require('../../resource/images/btnConfirm.png')}/>
-        </TouchableOpacity>
+        <CircleButton title={"XÁC NHẬN"} onPress={onPress}/>
       </View>
     </View>
   );
@@ -52,7 +55,7 @@ export default PopupThanks;
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
+    width: '100%',
     height: '80%',
     backgroundColor: colors.WHITE,
     alignItems: 'center',
@@ -63,9 +66,10 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '100%',
     alignItems: 'center',
-    backgroundColor: 'white',
     height: '25%',
     justifyContent: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
 
   title_txtLine1: {
@@ -136,6 +140,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 
   footer_imgButton: {

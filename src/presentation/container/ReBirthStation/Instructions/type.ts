@@ -1,4 +1,12 @@
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import { ReBirthStationParamList } from '../../../storyboard';
+import {RouteProp} from '@react-navigation/native';
 
-export type ScreenProp = NativeStackScreenProps<ReBirthStationParamList>;
+export type InstructionsNaviagtionProps = NativeStackNavigationProp<ReBirthStationParamList, 'Instructions'>;
+
+export type InstructionsRouteProps = RouteProp<ReBirthStationParamList, 'Instructions'>;
+
+export type InstructionsProps = {
+    navigation: InstructionsNaviagtionProps;
+    route: InstructionsRouteProps;
+}

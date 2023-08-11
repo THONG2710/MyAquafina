@@ -8,11 +8,15 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { colors } from '../../../resource/values/color';
-import { fonts } from '../../../resource/values/fonts';
-import { ScreenProp } from './type';
+import {colors} from '../../../resource/values/color';
+import {fonts} from '../../../resource/values/fonts';
+import {LoadingProp} from './type';
+import CircleButton from '../../../component/Button/CircleButton';
+import Background from '../../../component/Background/Background';
+import BackgroundWide from '../../../component/Background/BackgroundWide';
 
-const Loading = ({navigation}: ScreenProp) => {
+const Loading: React.FC<LoadingProp> = props => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* header */}
@@ -29,12 +33,24 @@ const Loading = ({navigation}: ScreenProp) => {
       {/* body */}
       <View style={styles.body}>
         <View style={styles.body_navigation}>
-          <Image
-            style={styles.body_btnBack}
-            source={require('../../../resource/images/iconBack.png')}
-          />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Image
+              style={styles.body_btnBack}
+              source={require('../../../resource/images/iconBack.png')}
+            />
+          </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                position: 'absolute',
+                top: -10,
+                left: -5,
+              }}
+              source={require('../../../resource/images/cuttingMask.png')}
+            />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -44,12 +60,18 @@ const Loading = ({navigation}: ScreenProp) => {
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <View style={styles.body_outLine}>
-            <View style={styles.body_inLine}>
-              <Text style={styles.body_textInLine}>30</Text>
-              <Text style={styles.body_textPoint}>ĐIỂM</Text>
+            <View style={styles.body_outLine4}>
+              <View style={styles.body_outLine3}>
+                <View style={styles.body_outLine2}>
+                  <View style={styles.body_outLine}>
+                    <View style={styles.body_inLine}>
+                      <Text style={styles.body_textInLine}>30</Text>
+                      <Text style={styles.body_textPoint}>ĐIỂM</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
             </View>
-          </View>
         </View>
         <View style={styles.body_contentContainer}>
           {/* infor */}
@@ -91,12 +113,10 @@ const Loading = ({navigation}: ScreenProp) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
-          <Image
-            style={styles.footer_btnEnd}
-            source={require('../../../resource/images/btnComplete.png')}
-          />
-        </TouchableOpacity>
+        <CircleButton
+          title={'HOÀN TẤT'}
+          onPress={() => navigation.navigate('QRCode')}
+        />
       </View>
     </View>
   );
@@ -157,6 +177,7 @@ const styles = StyleSheet.create({
   body_btnBack: {
     width: 30,
     height: 30,
+    resizeMode: 'contain',
   },
 
   body_NameView: {
@@ -167,7 +188,7 @@ const styles = StyleSheet.create({
 
   body_txtLine1: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 17,
   },
 
   body_txtLine2: {
@@ -189,11 +210,38 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  body_outLine4: {
+    width: Dimensions.get('screen').width / 2 + 120,
+    height: Dimensions.get('screen').width / 2 + 120,
+    borderRadius: 200,
+    backgroundColor: colors.WHITE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  body_outLine3: {
+    width: Dimensions.get('screen').width / 2 + 80,
+    height: Dimensions.get('screen').width / 2 + 80,
+    borderRadius: 200,
+    backgroundColor: colors.LIGHT_4_BLUE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  body_outLine2: {
+    width: Dimensions.get('screen').width / 2 + 50,
+    height: Dimensions.get('screen').width / 2 + 50,
+    borderRadius: 200,
+    backgroundColor: colors.WHITE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   body_outLine: {
     width: Dimensions.get('screen').width / 2 - 20,
     height: Dimensions.get('screen').width / 2 - 20,
     borderRadius: 200,
-    backgroundColor: colors.LIGHT_BLUE,
+    backgroundColor: colors.LIGHT_4_BLUE,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -259,7 +307,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.LIGHT_BLUE,
     borderRadius: 10,
-  },        
+  },
 
   body_imgDetail: {
     width: 50,
@@ -312,11 +360,6 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignItems: 'center',
-  },
-
-  footer_btnEnd: {
-    width: Dimensions.get('screen').width / 3,
-    height: 150,
-    resizeMode: 'contain',
+    justifyContent: 'center',
   },
 });

@@ -1,11 +1,21 @@
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { colors } from '../../../resource/values/color';
-import { fonts } from '../../../resource/values/fonts';
-import { ScreenProp } from './type';
+import {colors} from '../../../resource/values/color';
+import {fonts} from '../../../resource/values/fonts';
+import Background from '../../../component/Background/Background';
+import CircleButton from '../../../component/Button/CircleButton';
+import {InstructionsProps} from './type';
 
-const Instructions = ({navigation}: ScreenProp) => {
+const Instructions: React.FC<InstructionsProps> = props => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* header */}
@@ -20,13 +30,26 @@ const Instructions = ({navigation}: ScreenProp) => {
       </View>
       {/* body */}
       <View style={styles.body}>
+        <Background />
         <View style={styles.body_navigation}>
-          <Image
-            style={styles.body_btnBack}
-            source={require('../../../resource/images/iconBack.png')}
-          />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Image
+              style={styles.body_btnBack}
+              source={require('../../../resource/images/iconBack.png')}
+            />
+          </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                position: 'absolute',
+                top: -7,
+                left: -6,
+              }}
+              source={require('../../../resource/images/cuttingMask.png')}
+            />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -92,17 +115,18 @@ const Instructions = ({navigation}: ScreenProp) => {
         {/* instructions */}
         <View style={styles.instructionsContainer}>
           <Text style={styles.instructionsText}>
-            Nhấn “<Text style={styles.txtConfirm}>XÁC NHẬN</Text>” khi bạn đã đọc và hiểu cách thức tham
-            gia
+            Nhấn “<Text style={styles.txtConfirm}>XÁC NHẬN</Text>” khi bạn đã
+            đọc và hiểu cách thức tham gia
           </Text>
         </View>
       </View>
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Start')}>
-          <Image style={styles.footer_imgButtonConfirm} source={require('../../../resource/images/btnConfirm.png')}/>
-        </TouchableOpacity>
+        <CircleButton
+          title={'XÁC NHẬN'}
+          onPress={() => navigation.navigate('Start')}
+        />
       </View>
     </View>
   );
@@ -172,14 +196,17 @@ const styles = StyleSheet.create({
   },
 
   body_txtLine1: {
-    fontWeight: '700',
-    fontSize: 16,
+    fontWeight: '900',
+    fontSize: 17,
+    width: '110%',
+    height: '90%',
+    position: 'absolute',
   },
 
   body_txtLine2: {
     fontWeight: '700',
     fontSize: 11,
-    marginTop: -5,
+    marginTop: 25,
   },
 
   body_txtLine3: {
@@ -196,6 +223,7 @@ const styles = StyleSheet.create({
     width: '96%',
     height: '25%',
     marginTop: 7,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
 
   imgStepContainer: {
@@ -256,10 +284,11 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   footer_imgButtonConfirm: {
-    width: Dimensions.get('screen').width/3,
+    width: Dimensions.get('screen').width / 3,
     height: 150,
     resizeMode: 'contain',
   },

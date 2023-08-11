@@ -1,11 +1,25 @@
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {fonts} from '../../../resource/values/fonts';
 import {colors} from '../../../resource/values/color';
 import Modal from 'react-native-modal';
 import PopupThanks from '../../../component/Popup/PopupThanks';
+import Background from '../../../component/Background/Background';
+import BackgroundWide from '../../../component/Background/BackgroundWide';
+import CircleButton from '../../../component/Button/CircleButton';
+import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
+import { QRCodeProp } from './type';
 
-const QRCode = () => {
+const QRCode: React.FC<QRCodeProp> = (props) => {
+  const {navigation} = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -14,6 +28,9 @@ const QRCode = () => {
 
   return (
     <View style={styles.container}>
+      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal} >
+        <PopupThanks onPress={toggleModal} />
+      </Modal>
       {/* header */}
       <View style={styles.header}>
         <Image
@@ -27,6 +44,7 @@ const QRCode = () => {
 
       {/* point frame */}
       <View style={styles.pointFrame}>
+        <Background backgroundStyle={{left: 100}}/>
         <Text style={[styles.textStyle, styles.pointFrame_txtNote]}>
           Điểm quy đổi:
         </Text>
@@ -35,14 +53,18 @@ const QRCode = () => {
 
       {/* body */}
       <View style={styles.body}>
+        <Background backgroundStyle={{top: 10,}}/>
         {/* title container */}
         <View style={styles.body_titleContainer}>
+          <Pressable onPress={() => navigation.goBack()}>
           <Image
             style={styles.body_btnBack}
             source={require('../../../resource/images/iconBack.png')}
           />
+          </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
+            <Image style={{ width: 50, height: 50, position: 'absolute', top: -10, left: -5 }} source={require('../../../resource/images/cuttingMask.png')} />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -70,15 +92,9 @@ const QRCode = () => {
         </View>
       </View>
 
-      <Modal isVisible={isModalVisible}>
-        <PopupThanks/>
-      </Modal>
-
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={toggleModal}>
-          <Image style={styles.footer_btnConfirm} source={require('../../../resource/images/btnConfirm.png')}/>
-        </TouchableOpacity>
+        <CircleButton title={"XÁC NHẬN"} onPress={toggleModal}/>
       </View>
     </View>
   );
@@ -173,7 +189,7 @@ const styles = StyleSheet.create({
 
   body_txtLine1: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 17,
   },
 
   body_txtLine2: {
@@ -229,11 +245,15 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  footer_btnConfirm: {
-    width: Dimensions.get('screen').width / 3,
-    height: 150,
-    resizeMode: 'contain',
+  footer_modal: {
+    width: '100%',
+    flex: 1,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+
 });

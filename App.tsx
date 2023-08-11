@@ -31,18 +31,21 @@ import QRCode from './src/presentation/container/ReBirthStation/QRCode/QRCode';
 import Start from './src/presentation/container/ReBirthStation/Start/Start';
 import RebirthStationStack from './src/presentation/navigation/RebirthStationStack';
 import PopupThanks from './src/presentation/component/Popup/PopupThanks';
+import Background from './src/presentation/component/Background/Background';
+import CircleButton from './src/presentation/component/Button/CircleButton';
 
 
 function App(): JSX.Element {
   return (
     // <HomePage/>
-    // <Instructions/>
+    // <Instructions />
     // <Loading/>
     // <QRCode/>
     // <Start/>
     <RebirthStationStack/>
     // <PopupThanks/>
-    // <PopupThanks/>
+    // <Background/>
+    // <CircleButton/>
   );
 }
 

@@ -10,9 +10,12 @@ import {
 import React from 'react';
 import { colors } from '../../../resource/values/color';
 import { fonts } from '../../../resource/values/fonts';
-import { ScreenProp } from './type';
+import { StartProps } from './type';
+import CircleButton from '../../../component/Button/CircleButton';
+import Background from '../../../component/Background/Background';
 
-const Start = ({navigation}: ScreenProp) => {
+const Start: React.FC<StartProps> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* header */}
@@ -26,16 +29,18 @@ const Start = ({navigation}: ScreenProp) => {
         </Text>
       </View>
 
-      {/* body */}
+      {/* body */}    
       <View style={styles.body}>
+        <Background/>
         <View style={styles.body_navigationView}>
-          <Pressable>
+          <Pressable onPress={() => navigation.goBack()}>
             <Text style={[styles.textStyle, styles.body_txtBack]}>
               Xem lại hướng dẫn
             </Text>
           </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
+            <Image style={{ width: 50, height: 50, position: 'absolute', top: -10, left: -5 }} source={require('../../../resource/images/cuttingMask.png')} />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -63,12 +68,7 @@ const Start = ({navigation}: ScreenProp) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Loading')}>
-          <Image
-            style={styles.footer_btnEnd}
-            source={require('../../../resource/images/btnEnd.png')}
-          />
-        </TouchableOpacity>
+        <CircleButton title={"KẾT THÚC"} onPress={() => navigation.navigate('Loading')}/>
       </View>
     </View>
   );
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
 
   body_txtLine1: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 17,
   },
 
   body_txtLine2: {
@@ -203,11 +203,6 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignItems: 'center',
-  },
-
-  footer_btnEnd: {
-    width: Dimensions.get('screen').width / 3,
-    height: 150,
-    resizeMode: 'contain',
+    justifyContent: 'center',
   },
 });
