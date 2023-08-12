@@ -8,6 +8,8 @@ import {
   TextProps,
   ViewStyle,
   StyleProp,
+  TextStyle,
+  ImageStyle,
 } from 'react-native';
 import React from 'react';
 import {Path, Svg} from 'react-native-svg';
@@ -17,18 +19,20 @@ import {fonts} from '../../resource/values/fonts';
 export interface CircleButtonProps extends TextProps {
   CircleButtonStyle?: StyleProp<ViewStyle>;
   title?: String; 
+  titleStyle?: StyleProp<TextStyle>;
+  imgStyle?: StyleProp<ImageStyle>;
   onPress?: () => void;
 }
 
 const CircleButton: React.FC<CircleButtonProps> = (props) => {
-  const {onPress, CircleButtonStyle, title} = props;
+  const {onPress, CircleButtonStyle, title, titleStyle, imgStyle} = props;
   return (
       <TouchableOpacity style={[styles.container, CircleButtonStyle]} onPress={onPress}>
         <ImageBackground
           source={require('../../resource/images/arrowBlue.png')}
-          style={styles.image}>
+          style={[styles.image, imgStyle]}>
           <View style={styles.view}>
-            <Text style={styles.text}>{title}</Text>
+            <Text style={[styles.text, titleStyle]}>{title}</Text>
           </View>
         </ImageBackground>
       </TouchableOpacity>

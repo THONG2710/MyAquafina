@@ -33,6 +33,7 @@ import RebirthStationStack from './src/presentation/navigation/RebirthStationSta
 import PopupThanks from './src/presentation/component/Popup/PopupThanks';
 import Background from './src/presentation/component/Background/Background';
 import CircleButton from './src/presentation/component/Button/CircleButton';
+import PopupErrorMessage from './src/presentation/component/Popup/PopupErrorMessage';
 
 
 function App(): JSX.Element {
@@ -42,10 +43,11 @@ function App(): JSX.Element {
     // <Loading/>
     // <QRCode/>
     // <Start/>
-    <RebirthStationStack/>
+    // <RebirthStationStack/>
     // <PopupThanks/>
     // <Background/>
     // <CircleButton/>
+    <PopupErrorMessage/>
   );
 }
 

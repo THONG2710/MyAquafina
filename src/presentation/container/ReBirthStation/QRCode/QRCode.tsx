@@ -17,6 +17,7 @@ import BackgroundWide from '../../../component/Background/BackgroundWide';
 import CircleButton from '../../../component/Button/CircleButton';
 import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
 import { QRCodeProp } from './type';
+import PopupErrorMessage from '../../../component/Popup/PopupErrorMessage';
 
 const QRCode: React.FC<QRCodeProp> = (props) => {
   const {navigation} = props;

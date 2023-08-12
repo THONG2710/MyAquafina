@@ -11,9 +11,11 @@ import {
 import React from 'react';
 import {colors} from '../../../resource/values/color';
 import {fonts} from '../../../resource/values/fonts';
-import { ScreenProp } from './type';
+import {HomePageProp} from './type';
+import CircleButton from '../../../component/Button/CircleButton';
 
-const HomePage = ({navigation}: ScreenProp) => {
+const HomePage: React.FC<HomePageProp> = props => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* header */}
@@ -25,12 +27,18 @@ const HomePage = ({navigation}: ScreenProp) => {
         <Text style={[styles.text, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
         </Text>
-        <Text style={[styles.text, styles.header_txtLine2]}>
-          TRẠM TÁI SINH
-        </Text>
-        <Text style={[styles.text, styles.header_txtLine3]}>
-          CỦA AQUAFINA
-        </Text>
+        <Text style={[styles.text, styles.header_txtLine2]}>TRẠM TÁI SINH</Text>
+        <Image
+          style={{
+            width: 100,
+            height: 100,
+            position: 'absolute',
+            top: 54,
+            left: 50,
+          }}
+          source={require('../../../resource/images/cuttingMask.png')}
+        />
+        <Text style={[styles.text, styles.header_txtLine3]}>CỦA AQUAFINA</Text>
         <Text style={[styles.text, styles.header_txtLine4]}>
           NƠI TÁI SINH VÒNG ĐỜI MỚI CHO CHAI NHỰA
         </Text>
@@ -42,16 +50,31 @@ const HomePage = ({navigation}: ScreenProp) => {
           style={styles.body_bgImage}
           source={require('../../../resource/images/adv.png')}
         />
-        <TouchableOpacity style={styles.body_btnStart} onPress={()=>navigation.navigate('Instructions')}>
-          <Image style={styles.body_btnStart} source={require('../../../resource/images/btnStart.png')} />
-        </TouchableOpacity>
-        <Text style={[styles.text, styles.body_txtLine1]}>*Hoạt động nằm trong Chiến dịch</Text>
+        <Image
+          style={styles.body_imgBottle}
+          source={require('../../../resource/images/cuttingBig.png')}
+        />
+        <Image
+          source={require('../../../resource/images/bottle2.png')}
+          style={styles.body_backgroundCuttingMask}
+        />
+        <CircleButton
+          title={'BẮT\nĐẦU'}
+          onPress={() => navigation.navigate('Instructions')}
+        />
+        <Text style={[styles.text, styles.body_txtLine1]}>
+          *Hoạt động nằm trong Chiến dịch
+        </Text>
         <Text style={[styles.text, styles.body_txtLine2]}>
-          Sải bước phong cách <Text style={styles.body_txtXanh}>Xanh</Text> của Aquafina
+          Sải bước phong cách <Text style={styles.body_txtXanh}>Xanh</Text> của
+          Aquafina
         </Text>
 
         <View style={styles.body_moreInfo}>
-          <Image style={styles.body_QA} source={require('../../../resource/images/QRcode.png')} />
+          <Image
+            style={styles.body_QA}
+            source={require('../../../resource/images/QRcode.png')}
+          />
           <Text style={[styles.text, styles.body_txtMore]}>Xem thêm</Text>
         </View>
       </View>
@@ -59,10 +82,15 @@ const HomePage = ({navigation}: ScreenProp) => {
       {/* footer */}
       <View style={styles.footer}>
         <View style={styles.footer_LeftView}>
-          <Image style={styles.footer_facebook} source={require('../../../resource/images/facebook.png')} />
+          <Image
+            style={styles.footer_facebook}
+            source={require('../../../resource/images/facebook.png')}
+          />
           <Text style={[styles.text, styles.footerText]}>Aquafina Vietnam</Text>
         </View>
-        <Text style={[styles.text, styles.footerText, {marginRight: 10,}]}>Aquafina.pepsishop.vn</Text>
+        <Text style={[styles.text, styles.footerText, {marginRight: 10}]}>
+          Aquafina.pepsishop.vn
+        </Text>
       </View>
     </View>
   );
@@ -86,7 +114,7 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     alignItems: 'center',
-    height: '34%',
+    height: '25%',
   },
 
   header_logo: {
@@ -119,9 +147,26 @@ const styles = StyleSheet.create({
   // body
   body: {
     width: '100%',
-    height: '62%',
+    height: '72%',
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+
+  body_imgBottle: {
+    position: 'absolute',
+    width: '100%',
+    height: '70%',
+    resizeMode: 'contain',
+    top: 212,
+  },
+
+  body_backgroundCuttingMask: {
+    width: 200,
+    height: 250,
+    resizeMode: 'contain',
+    position: 'absolute',
+    top: 220,
+    left: -30,
   },
 
   body_bgImage: {
@@ -129,11 +174,6 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'contain',
     position: 'absolute',
-  },
-
-  body_btnStart: {
-    width: Dimensions.get('screen').width/2.5,
-    height: Dimensions.get('screen').width/2.5,
   },
 
   body_txtLine1: {
