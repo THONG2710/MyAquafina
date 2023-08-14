@@ -15,11 +15,11 @@ import PopupThanks from '../../../component/Popup/PopupThanks';
 import Background from '../../../component/Background/Background';
 import BackgroundWide from '../../../component/Background/BackgroundWide';
 import CircleButton from '../../../component/Button/CircleButton';
-import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
-import { QRCodeProp } from './type';
+import {nativeViewGestureHandlerProps} from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
+import {QRCodeProp} from './type';
 import PopupErrorMessage from '../../../component/Popup/PopupErrorMessage';
 
-const QRCode: React.FC<QRCodeProp> = (props) => {
+const QRCode: React.FC<QRCodeProp> = props => {
   const {navigation} = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -29,7 +29,7 @@ const QRCode: React.FC<QRCodeProp> = (props) => {
 
   return (
     <View style={styles.container}>
-      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal} >
+      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
         <PopupThanks onPress={toggleModal} />
       </Modal>
       {/* header */}
@@ -45,27 +45,46 @@ const QRCode: React.FC<QRCodeProp> = (props) => {
 
       {/* point frame */}
       <View style={styles.pointFrame}>
-        <Background backgroundStyle={{left: 100}}/>
         <Text style={[styles.textStyle, styles.pointFrame_txtNote]}>
           Điểm quy đổi:
         </Text>
-        <Text style={[styles.textStyle, styles.pointFrame_txtScore]}>10</Text>
+        <View
+          style={{
+            width: '50%',
+            height: '100%',
+            position: 'absolute',
+            alignItems: 'center',
+            justifyContent: 'center',
+            right: 0,
+          }}>
+          <Background />
+          <Text style={[styles.textStyle, styles.pointFrame_txtScore]}>10</Text>
+        </View>
       </View>
 
       {/* body */}
       <View style={styles.body}>
-        <Background backgroundStyle={{top: 10,}}/>
+        <Background backgroundStyle={{top: 10}} />
         {/* title container */}
         <View style={styles.body_titleContainer}>
           <Pressable onPress={() => navigation.goBack()}>
-          <Image
-            style={styles.body_btnBack}
-            source={require('../../../resource/images/iconBack.png')}
-          />
+            <Image
+              style={styles.body_btnBack}
+              source={require('../../../resource/images/iconBack.png')}
+            />
           </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
-            <Image style={{ width: 50, height: 50, position: 'absolute', top: -10, left: -5 }} source={require('../../../resource/images/cuttingMask.png')} />
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                position: 'absolute',
+                top: -10,
+                left: -5,
+              }}
+              source={require('../../../resource/images/cuttingMask.png')}
+            />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -95,7 +114,7 @@ const QRCode: React.FC<QRCodeProp> = (props) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <CircleButton title={"XÁC NHẬN"} onPress={toggleModal}/>
+        <CircleButton title={'XÁC NHẬN'} onPress={toggleModal} />
       </View>
     </View>
   );
@@ -155,7 +174,7 @@ const styles = StyleSheet.create({
   pointFrame_txtScore: {
     fontSize: 42,
     fontWeight: '700',
-    marginRight: 40,
+    marginRight: 10,
   },
 
   // ================= BODY =============================
@@ -256,5 +275,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
 });
