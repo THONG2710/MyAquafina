@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   TextProps,
   Dimensions,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {fonts} from '../../resource/values/fonts';
@@ -15,10 +17,11 @@ import {Shadow} from 'react-native-shadow-2';
 export interface ButtonImgProps extends TextProps {
   text?: string;
   isButtonLight?: boolean;
+  btnStyle?: StyleProp<ViewStyle>;
 }
 
 const ButtonImg: React.FC<ButtonImgProps> = props => {
-  const {text, isButtonLight} = props;
+  const {text, isButtonLight, btnStyle} = props;
 
   const ChooseButton = () => {
     if (isButtonLight) {
@@ -53,7 +56,7 @@ const ButtonImg: React.FC<ButtonImgProps> = props => {
   };
 
   return (
-    <Shadow style={styles.container} offset={[0, 5]} distance={5}>
+    <Shadow style={[styles.container, btnStyle]} offset={[0, 5]} distance={5}>
       <TouchableOpacity >
         {ChooseButton()}
       </TouchableOpacity>

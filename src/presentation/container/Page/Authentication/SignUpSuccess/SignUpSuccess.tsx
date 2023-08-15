@@ -8,22 +8,22 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import TextFeild from '../../../component/Input/TextFeild';
-import ButtonImg from '../../../component/Button/ButtonImg';
-import {fonts} from '../../../resource/values/fonts';
-import {colors} from '../../../resource/values/color';
+import TextFeild from '../../../../component/Input/TextFeild';
+import ButtonImg from '../../../../component/Button/ButtonImg';
+import {fonts} from '../../../../resource/values/fonts';
+import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 
-const SignIn = () => {
+const SignUpSuccess = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.backgroundAdv}
-        source={require('../../../resource/images/adv.png')}
+        source={require('../../../../resource/images/adv.png')}
       />
       <ImageBackground
         style={styles.backgroundCutting}
-        source={require('../../../resource/images/cuttingBig.png')}
+        source={require('../../../../resource/images/cuttingBig.png')}
       />
 
       <LinearGradient
@@ -38,18 +38,18 @@ const SignIn = () => {
       <Pressable>
         <Image
           style={styles.iconHome}
-          source={require('../../../resource/images/home.png')}
+          source={require('../../../../resource/images/home.png')}
         />
       </Pressable>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={require('../../../../resource/images/logoAquafina.png')}
         />
         <Image
           style={styles.header_imgCuttingMask}
-          source={require('../../../resource/images/cuttingMask.png')}
+          source={require('../../../../resource/images/cuttingMask.png')}
         />
         <Text style={[styles.txt, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
@@ -62,26 +62,19 @@ const SignIn = () => {
       </View>
       {/* body */}
       <View style={styles.body}>
-        <Text style={[styles.txt, styles.body_title]}>ĐĂNG NHẬP</Text>
-        <View style={styles.body_inputContainer}>
-          <Text style={[styles.txt, styles.body_titleField]}>
-            Số điện thoại
-          </Text>
-          <TextFeild placeholder="Nhập số điện thoại của bạn" />
-        </View>
+        <Text style={[styles.txt, styles.body_title]}>Đăng ký thành công</Text>
+        <Text style={[styles.txt, styles.body_content]}>Vui lòng đăng nhập để bắt đầu chương trình</Text>
       </View>
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text='Đăng nhập'/>
-        <Text style={[styles.txt, styles.footer_or]}>Hoặc</Text>
-        <ButtonImg isButtonLight={true} text='Đăng kí'/>
+        <ButtonImg isButtonLight={false} text="Đăng nhập" />
       </View>
     </View>
   );
 };
 
-export default SignIn;
+export default SignUpSuccess;
 
 const styles = StyleSheet.create({
   container: {
@@ -165,28 +158,23 @@ const styles = StyleSheet.create({
   //   =================== body =================
   body: {
     width: '100%',
-    height: Dimensions.get('screen').height / 5,
+    height: Dimensions.get('screen').height / 4,
     alignItems: 'center',
     marginTop: -20,
   },
 
   body_title: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '700',
-    marginBottom: 30,
+    marginTop: 20,
   },
 
-  body_inputContainer: {
-    width: '100%',
-    alignItems: 'center',
+  body_content: {
+    fontSize: 13,
+    color: colors.GRAY,
+    marginVertical: 20,
   },
-
-  body_titleField: {
-    alignSelf: 'flex-start',
-    marginLeft: '5%',
-    fontSize: 16,
-    marginBottom: 5,
-  },
+  
   //
   backgroundAdv: {
     width: '80%',
@@ -206,30 +194,12 @@ const styles = StyleSheet.create({
     top: (Dimensions.get('screen').height / 10) * 6.6,
   },
 
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    width: '100%',
-    height: '20%',
-    resizeMode: 'contain',
-    position: 'absolute',
-    left: 0,
-    top: '80%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-
   //  ============================ footer ====================
   footer: {
     width: '100%',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 200,
   },
-
-  footer_or: {
-    fontSize: 14,
-    marginVertical: 5,
-    color: colors.GRAY,
-    fontWeight: 'bold',
-  }
 });

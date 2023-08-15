@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: colors.LIGHT_BLUE,
         paddingHorizontal: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.7)'
     },
 
     text: {

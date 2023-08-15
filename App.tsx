@@ -38,9 +38,13 @@ import PopupSuccessfulErrorReport from './src/presentation/component/Popup/Popup
 import PopupAccumulatePoints from './src/presentation/component/Popup/PopupAccumulatePoints';
 import PopupTimeUp from './src/presentation/component/Popup/PopupTimeUp';
 import PopupNotification from './src/presentation/component/Popup/PopupNotification';
-import SignIn from './src/presentation/container/Page/Authentication/SignIn';
 import ButtonImg from './src/presentation/component/Button/ButtonImg';
 import TextFeild from './src/presentation/component/Input/TextFeild';
+import SignIn from './src/presentation/container/Page/Authentication/SignIn/SignIn';
+import SignUp from './src/presentation/container/Page/Authentication/SignUp/SignUp';
+import OTP from './src/presentation/container/Page/Authentication/OTP/OTP';
+import SignUpSuccess from './src/presentation/container/Page/Authentication/SignUpSuccess/SignUpSuccess';
+import Error from './src/presentation/container/Page/Authentication/Error/Error';
 
 
 function App(): JSX.Element {
@@ -59,9 +63,13 @@ function App(): JSX.Element {
     // <PopupAccumulatePoints/>
     // <PopupTimeUp/>
     // <PopupNotification/>
-    <SignIn/>
+    // <SignIn/>
     // <ButtonImg/>
     // <TextFeild/>
+    // <OTP/>
+    // <SignUp/>
+    // <SignUpSuccess/>
+    <Error/>
   );
 }
 
