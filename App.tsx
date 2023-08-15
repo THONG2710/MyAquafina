@@ -36,6 +36,8 @@ import CircleButton from './src/presentation/component/Button/CircleButton';
 import PopupErrorMessage from './src/presentation/component/Popup/PopupErrorMessage';
 import PopupSuccessfulErrorReport from './src/presentation/component/Popup/PopupSuccessfulErrorReport';
 import PopupAccumulatePoints from './src/presentation/component/Popup/PopupAccumulatePoints';
+import PopupTimeUp from './src/presentation/component/Popup/PopupTimeUp';
+import PopupNotification from './src/presentation/component/Popup/PopupNotification';
 
 
 function App(): JSX.Element {
@@ -52,6 +54,8 @@ function App(): JSX.Element {
     // <PopupErrorMessage/>
     // <PopupSuccessfulErrorReport/>
     // <PopupAccumulatePoints/>
+    // <PopupTimeUp/>
+    // <PopupNotification/>
   );
 }
 
