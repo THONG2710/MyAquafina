@@ -38,6 +38,9 @@ import PopupSuccessfulErrorReport from './src/presentation/component/Popup/Popup
 import PopupAccumulatePoints from './src/presentation/component/Popup/PopupAccumulatePoints';
 import PopupTimeUp from './src/presentation/component/Popup/PopupTimeUp';
 import PopupNotification from './src/presentation/component/Popup/PopupNotification';
+import SignIn from './src/presentation/container/Page/Authentication/SignIn';
+import ButtonImg from './src/presentation/component/Button/ButtonImg';
+import TextFeild from './src/presentation/component/Input/TextFeild';
 
 
 function App(): JSX.Element {
@@ -47,7 +50,7 @@ function App(): JSX.Element {
     // <Loading/>
     // <QRCode/>
     // <Start/>
-    <RebirthStationStack/>
+    // <RebirthStationStack/>
     // <PopupThanks/>
     // <Background/>
     // <CircleButton/>
@@ -56,6 +59,9 @@ function App(): JSX.Element {
     // <PopupAccumulatePoints/>
     // <PopupTimeUp/>
     // <PopupNotification/>
+    <SignIn/>
+    // <ButtonImg/>
+    // <TextFeild/>
   );
 }
 

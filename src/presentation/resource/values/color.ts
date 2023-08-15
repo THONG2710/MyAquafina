@@ -8,5 +8,6 @@ export const colors = {
     GREEN: '#00BB29',
     WHITE: '#FFFFFF',
     GRAY: '#707172',
+    GRAY2: '#AEB1B5',
     RED: '#FA4238',
 }
