@@ -1,4 +1,4 @@
-import { StyleProp, StyleSheet, Text, TextInput, View, ViewStyle } from 'react-native'
+import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from 'react-native'
 import React from 'react'
 import { colors } from '../../resource/values/color'
 import { TextProps } from 'react-native-svg/lib/typescript/lib/extract/extractText'
@@ -6,13 +6,16 @@ import { TextProps } from 'react-native-svg/lib/typescript/lib/extract/extractTe
 export interface TextFeildProps extends TextProps {
     placeholder?: string;
     inputViewStyle?: StyleProp<ViewStyle>;
+    numberOfLines?: number;
+    multiline?: boolean;
+    textStyle?: StyleProp<TextStyle>;
 } 
 
 const TextFeild: React.FC<TextFeildProps> = (props) => {
-    const { placeholder, inputViewStyle } = props;
+    const { placeholder, inputViewStyle, multiline,  numberOfLines, textStyle} = props;
   return (
     <View style={[styles.container, inputViewStyle]}>
-      <TextInput style={styles.text} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
+      <TextInput multiline={multiline} numberOfLines={numberOfLines} style={[styles.text,textStyle]} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
     </View>
   )
 }
