@@ -11,31 +11,13 @@ import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import ButtonImg from '../../../../component/Button/ButtonImg';
+import HeaderComponent from '../../../../component/header/HeaderComponent';
 
 const Error = () => {
   return (
     <View style={styles.container}>
       {/* header */}
-      <View style={styles.header}>
-        <Pressable>
-          <Image
-            style={styles.header_menu}
-            source={require('../../../../resource/images/menu.png')}
-          />
-        </Pressable>
-        <Pressable>
-          <Image
-            style={styles.header_logo}
-            source={require('../../../../resource/images/logoAquafina.png')}
-          />
-        </Pressable>
-        <Pressable>
-          <Image
-            style={styles.header_logout}
-            source={require('../../../../resource/images/logout.png')}
-          />
-        </Pressable>
-      </View>
+      <HeaderComponent/>
 
       {/* background */}
       <ImageBackground
@@ -84,36 +66,6 @@ const styles = StyleSheet.create({
   txt: {
     fontFamily: fonts.primaryFont,
     color: colors.BLUE,
-  },
-
-  // ================ header =================
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginVertical: 10,
-    backgroundColor: colors.WHITE,
-  },
-
-  header_menu: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
-    marginLeft: 20,
-  },
-
-  header_logo: {
-    width: Dimensions.get('screen').width / 3,
-    height: 50,
-    resizeMode: 'contain',
-  },
-
-  header_logout: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
-    marginRight: 20,
   },
 
   // ================= background =======================

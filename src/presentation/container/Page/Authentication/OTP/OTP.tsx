@@ -65,6 +65,7 @@ const OTP = () => {
       {/* body */}
       <View style={styles.body}>
         <Text style={[styles.txt, styles.body_title]}>NHẬP OTP</Text>
+        <Text style={styles.body_content}>Một mã OTP vừa được gửi vào số <Text style={[styles.body_content, {fontWeight: '700'}]}>0327784561</Text></Text>
         <View style={styles.body_inputContainer}>
           <OTPTextView
             textInputStyle={styles.body_otpInput}
@@ -179,7 +180,12 @@ const styles = StyleSheet.create({
   body_title: {
     fontSize: 22,
     fontWeight: '700',
-    marginBottom: 30,
+    marginBottom: 20,
+  },
+
+  body_content: {
+    fontSize: 12,
+    marginBottom: 20,
   },
 
   body_inputContainer: {

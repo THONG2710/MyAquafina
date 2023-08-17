@@ -46,6 +46,9 @@ import OTP from './src/presentation/container/Page/Authentication/OTP/OTP';
 import SignUpSuccess from './src/presentation/container/Page/Authentication/SignUpSuccess/SignUpSuccess';
 import Error from './src/presentation/container/Page/Authentication/Error/Error';
 import ReportError from './src/presentation/container/Page/Authentication/ReportError/ReportError';
+import HeaderComponent from './src/presentation/component/header/HeaderComponent';
+import HomeMain from './src/presentation/container/Page/PageMain/Home/HomeMain';
+import PageDrawer from './src/presentation/navigation/PageDrawer';
 
 
 function App(): JSX.Element {
@@ -71,7 +74,10 @@ function App(): JSX.Element {
     // <SignUp/>
     // <SignUpSuccess/>
     // <Error/>
-    <ReportError/>
+    // <ReportError/>
+    // <HeaderComponent/>
+    <HomeMain/>
+    // <PageDrawer/>
   );
 }
 
