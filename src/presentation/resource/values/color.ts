@@ -8,6 +8,8 @@ export const colors = {
     LIGHT_7_BLUE: '#6F84F5',
     LIGHT_8_BLUE: '#57B7F5',
     LIGHT_9_BLUE: '#5794F2',
+    LIGHT_10_BLUE: '#8DC8FF',
+    LIGHT_11_BLUE: '#ECF3FC',
     BLUE: '#1545A5',
     BLUE2: '#4F67E5',
     DARK_BLUE: '#00358C',

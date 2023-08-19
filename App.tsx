@@ -54,6 +54,8 @@ import ItemChartVIP from './src/presentation/component/Item/ItemChart';
 import Present from './src/presentation/container/Page/PageMain/Home/Present';
 import ItemSlideGift from './src/presentation/component/Item/ItemSlideGift';
 import SwipperTest from './src/presentation/container/Page/PageMain/Home/SwipperTest';
+import Address from './src/presentation/container/Page/PageMain/Home/Address';
+import Footer from './src/presentation/container/Page/PageMain/Home/Footer';
 
 
 function App(): JSX.Element {
@@ -89,6 +91,8 @@ function App(): JSX.Element {
     // <TestSlide/>
     // <ItemSlideGift/>
     // <SwipperTest/>
+    // <Address/>
+    // <Footer/>
   );
 }
 

@@ -47,6 +47,7 @@ const Present = () => {
       </View>
       {/* slides */}
       <View style={styles.slides}>
+        <Image tintColor={colors.LIGHT_11_BLUE} style={styles.slides_imgRipple} source={require('../../../../resource/images/ripple.png')}/>
         <Custom data={data} />
       </View>
       {/* footer */}
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height:  Dimensions.get('screen').height/10*7.5,
+    backgroundColor: colors.WHITE,
   },
 
   txt: {
@@ -114,6 +116,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '45%',
     marginTop: 50,
+  },
+
+  slides_imgRipple: {
+    position: 'absolute',
+    width: 520,
+    height: 520,
+    resizeMode: 'contain',
+    top: -120,
+    left: -75,
   },
 
   // ================= footer ============================

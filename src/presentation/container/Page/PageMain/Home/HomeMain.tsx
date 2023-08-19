@@ -14,13 +14,15 @@ import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import Charts from './Charts';
 import Present from './Present';
+import Address from './Address';
+import Footer from './Footer';
 
 const HomeMain = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
       <HeaderComponent headerStyle={styles.header} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* banner */}
         <View style={styles.Banner}>
           {/* Backgroud */}
@@ -57,6 +59,10 @@ const HomeMain = () => {
         <Charts/>
         {/* Present */}
         <Present/>
+        {/* address */}
+        <Address/>
+        {/* footer */}
+        <Footer/>
       </ScrollView>
     </View>
   );
