@@ -12,6 +12,8 @@ import HeaderComponent from '../../../../component/header/HeaderComponent';
 import {colors} from '../../../../resource/values/color';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
+import Charts from './Charts';
+import Present from './Present';
 
 const HomeMain = () => {
   return (
@@ -51,6 +53,10 @@ const HomeMain = () => {
             <ButtonImg btnStyle={styles.buttonMore} text="Tìm hiểu thêm" />
           </View>
         </View>
+        {/* Chart */}
+        <Charts/>
+        {/* Present */}
+        <Present/>
       </ScrollView>
     </View>
   );
@@ -106,12 +112,12 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'flex-start',
     marginLeft: 30,
-    marginTop: 30,
-    marginBottom: 20,
+    marginTop: 15,
+    marginBottom: 50,
   },
 
   title_line1: {
-    fontSize: 22,
+    fontSize: 20,
   },
 
   title_hightLight: {
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
   },
 
   title_childText: {
-    fontSize: 34,
+    fontSize: 30,
     fontWeight: '900',
   },
 
@@ -138,7 +144,7 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     width: '100%',
-    marginTop: Dimensions.get('screen').height - 460,
+    marginTop: Dimensions.get('screen').height - 500,
     alignItems: 'center',
   },
 

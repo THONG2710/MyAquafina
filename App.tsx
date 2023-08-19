@@ -49,6 +49,11 @@ import ReportError from './src/presentation/container/Page/Authentication/Report
 import HeaderComponent from './src/presentation/component/header/HeaderComponent';
 import HomeMain from './src/presentation/container/Page/PageMain/Home/HomeMain';
 import PageDrawer from './src/presentation/navigation/PageDrawer';
+import Charts from './src/presentation/container/Page/PageMain/Home/Charts';
+import ItemChartVIP from './src/presentation/component/Item/ItemChart';
+import Present from './src/presentation/container/Page/PageMain/Home/Present';
+import ItemSlideGift from './src/presentation/component/Item/ItemSlideGift';
+import SwipperTest from './src/presentation/container/Page/PageMain/Home/SwipperTest';
 
 
 function App(): JSX.Element {
@@ -76,8 +81,14 @@ function App(): JSX.Element {
     // <Error/>
     // <ReportError/>
     // <HeaderComponent/>
-    <HomeMain/>
-    // <PageDrawer/>
+    // <HomeMain/>
+    <PageDrawer/>
+    // <Charts/>
+    // <ItemChart/>
+    // <Present/>
+    // <TestSlide/>
+    // <ItemSlideGift/>
+    // <SwipperTest/>
   );
 }
 
