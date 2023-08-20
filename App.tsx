@@ -56,6 +56,13 @@ import ItemSlideGift from './src/presentation/component/Item/ItemSlideGift';
 import SwipperTest from './src/presentation/container/Page/PageMain/Home/SwipperTest';
 import Address from './src/presentation/container/Page/PageMain/Home/Address';
 import Footer from './src/presentation/container/Page/PageMain/Home/Footer';
+import Discover from './src/presentation/container/Page/PageMain/PureWorld/Discover';
+import PureWorld from './src/presentation/container/Page/PageMain/PureWorld/PureWorld';
+import Station from './src/presentation/container/Page/PageMain/PureWorld/Station';
+import LifeCircle from './src/presentation/container/Page/PageMain/PureWorld/LifeCircle';
+import Procedure from './src/presentation/container/Page/PageMain/PureWorld/Procedure';
+import PureGift from './src/presentation/container/Page/PageMain/PureGift/PureGift';
+import Instroduce from './src/presentation/container/Page/PageMain/PureGift/Instroduce';
 
 
 function App(): JSX.Element {
@@ -84,7 +91,7 @@ function App(): JSX.Element {
     // <ReportError/>
     // <HeaderComponent/>
     // <HomeMain/>
-    <PageDrawer/>
+    // <PageDrawer/>
     // <Charts/>
     // <ItemChart/>
     // <Present/>
@@ -93,6 +100,13 @@ function App(): JSX.Element {
     // <SwipperTest/>
     // <Address/>
     // <Footer/>
+    // <Discover/>
+    // <PureWorld/>
+    // <Station/>
+    // <LifeCircle/>
+    // <Procedure/>
+    // <PureGift/>
+    <Instroduce/>
   );
 }
 

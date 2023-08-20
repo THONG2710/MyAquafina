@@ -1,14 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import HeaderComponent from '../../../../component/header/HeaderComponent';
+import Discover from './Discover';
+import Station from './Station';
+import LifeCircle from './LifeCircle';
+import Procedure from './Procedure';
+import Footer from '../Home/Footer';
 
 const PureWorld = () => {
   return (
-    <View>
-      <Text>PureWorld</Text>
+    <View style={styles.container}>
+      <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} />
+      <ScrollView>
+        {/* Discover */}
+        <Discover />
+        {/* station */}
+        <Station/>
+        {/* Life */}
+        <LifeCircle/>
+        {/* Procedure */}
+        <Procedure/>
+        {/* footer */}
+        <Footer/>
+      </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default PureWorld
+export default PureWorld;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+  },
+});
