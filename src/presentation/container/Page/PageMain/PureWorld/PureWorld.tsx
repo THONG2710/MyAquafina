@@ -5,7 +5,7 @@ import Discover from './Discover';
 import Station from './Station';
 import LifeCircle from './LifeCircle';
 import Procedure from './Procedure';
-import Footer from '../Home/Footer';
+import Footer from '../Middle/Footer';
 
 const PureWorld = () => {
   return (

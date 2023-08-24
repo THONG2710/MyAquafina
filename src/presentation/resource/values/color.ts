@@ -20,4 +20,5 @@ export const colors = {
     RED: '#FA4238',
     YELLOW: '#FBD300',
     DARK_YELLOW: '#FFB800',
+    BLACK: '#292B2E',
 }

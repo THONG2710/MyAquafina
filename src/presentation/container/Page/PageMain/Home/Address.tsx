@@ -2,9 +2,12 @@ import {
   Dimensions,
   Image,
   ImageBackground,
+  StyleProp,
   StyleSheet,
   Text,
+  TextProps,
   View,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
@@ -12,9 +15,14 @@ import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {forModalPresentationIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 
-const Address = () => {
+export interface AddressProps extends TextProps {
+  addressStyle?: StyleProp<ViewStyle>;
+}
+
+const Address: React.FC<AddressProps> = (props) => {
+  const {addressStyle} = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, addressStyle]}>
       {/* header */}
       <View style={styles.header}>
         <Text style={[styles.txt, styles.header_title1]}>BẢN ĐỒ XANH</Text>

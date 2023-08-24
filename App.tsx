@@ -55,7 +55,7 @@ import Present from './src/presentation/container/Page/PageMain/Home/Present';
 import ItemSlideGift from './src/presentation/component/Item/ItemSlideGift';
 import SwipperTest from './src/presentation/container/Page/PageMain/Home/SwipperTest';
 import Address from './src/presentation/container/Page/PageMain/Home/Address';
-import Footer from './src/presentation/container/Page/PageMain/Home/Footer';
+import Footer from './src/presentation/container/Page/PageMain/Middle/Footer';
 import Discover from './src/presentation/container/Page/PageMain/PureWorld/Discover';
 import PureWorld from './src/presentation/container/Page/PageMain/PureWorld/PureWorld';
 import Station from './src/presentation/container/Page/PageMain/PureWorld/Station';
@@ -63,6 +63,10 @@ import LifeCircle from './src/presentation/container/Page/PageMain/PureWorld/Lif
 import Procedure from './src/presentation/container/Page/PageMain/PureWorld/Procedure';
 import PureGift from './src/presentation/container/Page/PageMain/PureGift/PureGift';
 import Instroduce from './src/presentation/container/Page/PageMain/PureGift/Instroduce';
+import ProgarmLures from './src/presentation/container/Page/PageMain/PureGift/ProgarmLures';
+import ItemGift from './src/presentation/component/Item/ItemGift';
+import PureMap from './src/presentation/container/Page/PageMain/PureMap/PureMap';
+import ItemDrawer from './src/presentation/component/Item/ItemDrawer';
 
 
 function App(): JSX.Element {
@@ -91,7 +95,7 @@ function App(): JSX.Element {
     // <ReportError/>
     // <HeaderComponent/>
     // <HomeMain/>
-    // <PageDrawer/>
+    <PageDrawer/>
     // <Charts/>
     // <ItemChart/>
     // <Present/>
@@ -106,7 +110,11 @@ function App(): JSX.Element {
     // <LifeCircle/>
     // <Procedure/>
     // <PureGift/>
-    <Instroduce/>
+    // <Instroduce/>
+    // <ProgarmLures/>
+    // <ItemGift/>
+    // <PureMap/>
+    // <ItemDrawer/>
   );
 }
 

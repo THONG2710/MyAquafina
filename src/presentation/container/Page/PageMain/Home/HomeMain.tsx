@@ -15,7 +15,7 @@ import {fonts} from '../../../../resource/values/fonts';
 import Charts from './Charts';
 import Present from './Present';
 import Address from './Address';
-import Footer from './Footer';
+import Footer from '../Middle/Footer';
 
 const HomeMain = () => {
   return (

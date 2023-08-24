@@ -2,18 +2,26 @@ import {
   Dimensions,
   Image,
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
+  TextProps,
   View,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const Footer = () => {
+export interface FooterProps extends TextProps {
+  footerStyle?: StyleProp<ViewStyle>;
+}
+
+const Footer: React.FC<FooterProps> = (props) => {
+  const {footerStyle} = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, footerStyle]}>
       <Image
         style={styles.rippleBackground}
         tintColor={colors.LIGHT_11_BLUE}
