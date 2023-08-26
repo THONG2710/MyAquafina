@@ -1,4 +1,4 @@
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, TextProps, View} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-snap-carousel';
 import {Text} from 'react-native';
@@ -7,6 +7,11 @@ import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import ItemSlideGift from '../../../../component/Item/ItemSlideGift';
 import Custom from './Custom';
+import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
+
+export interface PresentProp extends TextProps {
+  navigation?: any;
+}
 
 const data = [
   {
@@ -26,7 +31,8 @@ const data = [
   },
 ];
 
-const Present = () => {
+const Present: React.FC<PresentProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -52,7 +58,7 @@ const Present = () => {
       </View>
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg btnStyle={styles.footer_btn} text="Khám phá ngay" />
+        <ButtonImg btnStyle={styles.footer_btn} text="Khám phá ngay" onPress={() => navigation.navigate('PureGift')}/>
       </View>
     </View>
   );
@@ -66,6 +72,7 @@ const styles = StyleSheet.create({
     height:  Dimensions.get('screen').height/10*7.5,
     backgroundColor: colors.WHITE,
   },
+
 
   txt: {
     fontFamily: fonts.primaryFont,

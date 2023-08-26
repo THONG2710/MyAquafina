@@ -4,13 +4,14 @@ import { colors } from '../../resource/values/color'
 
 export interface HeaderComponentProps extends TextProps {
   headerStyle?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
-  const {headerStyle} = props;
+  const {headerStyle, onPress} = props;
   return (
     <View style={[styles.header, headerStyle]}>
-        <Pressable>
+        <Pressable onPress={onPress}>
           <Image
             style={styles.header_menu}
             source={require('../../resource/images/menu.png')}

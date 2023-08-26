@@ -16,10 +16,11 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export interface FooterProps extends TextProps {
   footerStyle?: StyleProp<ViewStyle>;
+  navigation?: any;
 }
 
 const Footer: React.FC<FooterProps> = (props) => {
-  const {footerStyle} = props;
+  const {footerStyle, navigation} = props;
   return (
     <View style={[styles.container, footerStyle]}>
       <Image
@@ -29,19 +30,20 @@ const Footer: React.FC<FooterProps> = (props) => {
       />
       {/* body */}
       <View style={styles.body}>
-        <Pressable style={styles.body_buttonNavigate}>
+        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('PureWorld')}>
           <Text style={styles.body_textBtn}>Thế Giới Xanh</Text>
         </Pressable>
-        <Pressable style={styles.body_buttonNavigate}>
+        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('PureGift')}>
           <Text style={styles.body_textBtn}>Quà Tặng Xanh</Text>
         </Pressable>
-        <Pressable style={styles.body_buttonNavigate}>
+        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('PureMap')}>
           <Text style={styles.body_textBtn}>Bản Đồ Xanh</Text>
         </Pressable>
-        <Pressable style={styles.body_buttonNavigate}>
+        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('RewardPoints')}>
           <Text style={styles.body_textBtn}>Điểm thưởng Xanh</Text>
         </Pressable>
         <Pressable
+          onPress={() => navigation.navigate('RankingTable')}
           style={[styles.body_buttonNavigate, styles.body_buttonNavigateEnd]}>
           <Text style={styles.body_textBtn}>Bảng Xếp Hạng</Text>
         </Pressable>
@@ -62,10 +64,10 @@ const Footer: React.FC<FooterProps> = (props) => {
             source={require('../../../../resource/images/youtube.png')}
           />
         </View>
-        <View style={styles.footer_waring}>
+        <Pressable style={styles.footer_waring} onPress={() => navigation.navigate('ReportError')}>
           <Image style={styles.footer_iconWarning} source={require('../../../../resource/images/warning.png')} />
           <Text style={styles.footer_textWarning}>Báo Lỗi</Text>
-        </View>
+        </Pressable>
         <Text style={styles.footer_end}>Copyright © 2022 Aquafina Vietnam</Text>
       </View>
     </View>

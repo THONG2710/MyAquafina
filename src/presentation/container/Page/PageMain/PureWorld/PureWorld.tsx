@@ -6,8 +6,10 @@ import Station from './Station';
 import LifeCircle from './LifeCircle';
 import Procedure from './Procedure';
 import Footer from '../Middle/Footer';
+import { PureWorldProp } from './type';
 
-const PureWorld = () => {
+const PureWorld:React.FC<PureWorldProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} />

@@ -67,6 +67,13 @@ import ProgarmLures from './src/presentation/container/Page/PageMain/PureGift/Pr
 import ItemGift from './src/presentation/component/Item/ItemGift';
 import PureMap from './src/presentation/container/Page/PageMain/PureMap/PureMap';
 import ItemDrawer from './src/presentation/component/Item/ItemDrawer';
+import Banners from './src/presentation/container/Page/PageMain/Home/Banners/Banners';
+import Banner1 from './src/presentation/container/Page/PageMain/Home/Banners/Banner1';
+import Banner2 from './src/presentation/container/Page/PageMain/Home/Banners/Banner2';
+import Banner3 from './src/presentation/container/Page/PageMain/Home/Banners/Banner3';
+import Banner4 from './src/presentation/container/Page/PageMain/Home/Banners/Banner4';
+import AuthenticationStack from './src/presentation/navigation/AuthenticationStack';
+import RootNavigation from './src/presentation/navigation/RootNavigation';
 
 
 function App(): JSX.Element {
@@ -95,7 +102,7 @@ function App(): JSX.Element {
     // <ReportError/>
     // <HeaderComponent/>
     // <HomeMain/>
-    <PageDrawer/>
+    // <PageDrawer/>
     // <Charts/>
     // <ItemChart/>
     // <Present/>
@@ -115,6 +122,10 @@ function App(): JSX.Element {
     // <ItemGift/>
     // <PureMap/>
     // <ItemDrawer/>
+    // <Banners/>
+    // <Banner4/>
+    // <AuthenticationStack/>
+    <RootNavigation/>
   );
 }
 

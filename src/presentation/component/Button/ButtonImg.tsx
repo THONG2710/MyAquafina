@@ -18,10 +18,11 @@ export interface ButtonImgProps extends TextProps {
   text?: string;
   isButtonLight?: boolean;
   btnStyle?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 const ButtonImg: React.FC<ButtonImgProps> = props => {
-  const {text, isButtonLight, btnStyle} = props;
+  const {text, isButtonLight, btnStyle, onPress} = props;
 
   const ChooseButton = () => {
     if (isButtonLight) {
@@ -57,7 +58,7 @@ const ButtonImg: React.FC<ButtonImgProps> = props => {
 
   return (
     <Shadow style={[styles.container, btnStyle]} offset={[0, 5]} distance={5}>
-      <TouchableOpacity >
+      <TouchableOpacity onPress={onPress}>
         {ChooseButton()}
       </TouchableOpacity>
     </Shadow>

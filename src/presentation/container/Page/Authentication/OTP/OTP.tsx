@@ -8,15 +8,20 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import TextFeild from '../../../../component/Input/TextFeild';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import OTPTextView from 'react-native-otp-textinput';
+import { OTPProp } from './type';
 
-const OTP = () => {
+const OTP:React.FC<OTPProp> = (props) => {
+  const {navigation} = props;
+  const phoneNumber = props.route.params.phoneNumber;
+  const isLogin = props.route.params.isLogin;
+  const [isCorrect, setIsCorrect] = useState(true);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -65,18 +70,20 @@ const OTP = () => {
       {/* body */}
       <View style={styles.body}>
         <Text style={[styles.txt, styles.body_title]}>NHẬP OTP</Text>
-        <Text style={styles.body_content}>Một mã OTP vừa được gửi vào số <Text style={[styles.body_content, {fontWeight: '700'}]}>0327784561</Text></Text>
+        <Text style={styles.body_content}>Một mã OTP vừa được gửi vào số <Text style={[styles.body_content, {fontWeight: '700'}]}>{phoneNumber}</Text></Text>
         <View style={styles.body_inputContainer}>
           <OTPTextView
             textInputStyle={styles.body_otpInput}
-            tintColor={colors.GRAY2}
+            tintColor={isCorrect?colors.GRAY:colors.RED}
+            offTintColor={isCorrect?colors.GRAY:colors.RED}
+            inputCount={4}
           />
         </View>
       </View>
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Xác nhận" />
+        <ButtonImg isButtonLight={false} text="Xác nhận" onPress={() => navigation.navigate(isLogin?'PageDrawer':'SignUpSuccess')}/>
         <Text style={[styles.txt, styles.footer_txtTimeCode]}>
           Mã sẽ được gửi trong vòng <Text style={styles.footer_time}>30 GIÂY</Text>
         </Text>
@@ -198,7 +205,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     borderWidth: 1,
+    borderBottomWidth: 1,
     color: colors.BLUE,
+    zIndex: 1,
   },
 
   //

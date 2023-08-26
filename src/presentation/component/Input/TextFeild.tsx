@@ -9,13 +9,15 @@ export interface TextFeildProps extends TextProps {
     numberOfLines?: number;
     multiline?: boolean;
     textStyle?: StyleProp<TextStyle>;
+    onChangeText?: (value: string) => any;
+    value?: string;
 } 
 
 const TextFeild: React.FC<TextFeildProps> = (props) => {
-    const { placeholder, inputViewStyle, multiline,  numberOfLines, textStyle} = props;
+    const { placeholder, inputViewStyle, multiline,  numberOfLines, textStyle, onChangeText, value} = props;
   return (
     <View style={[styles.container, inputViewStyle]}>
-      <TextInput multiline={multiline} numberOfLines={numberOfLines} style={[styles.text,textStyle]} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
+      <TextInput value={value} onChangeText={onChangeText} multiline={multiline} numberOfLines={numberOfLines} style={[styles.text,textStyle]} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
     </View>
   )
 }

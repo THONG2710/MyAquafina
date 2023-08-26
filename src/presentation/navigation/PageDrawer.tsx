@@ -12,14 +12,14 @@ import PureGift from '../container/Page/PageMain/PureGift/PureGift';
 import PureMap from '../container/Page/PageMain/PureMap/PureMap';
 import RewardPoints from '../container/Page/PageMain/rewardPoints/RewardPoints';
 import RankingTable from '../container/Page/PageMain/RankingTable/RankingTable';
+import { AuthenticationParamList } from '../storyboard';
+import { DrawerStoryBoard } from '../storyboard/DrawerStoryBoard';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerStoryBoard>();
 
-const PageDrawer = () => {
+const PageDrawer:React.FC = (props) => {
   return (
-    <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="HomePage"
         screenOptions={{
           headerShown: false,
           drawerType: 'slide',
@@ -109,7 +109,6 @@ const PageDrawer = () => {
           }}
         />
       </Drawer.Navigator>
-    </NavigationContainer>
   );
 };
 

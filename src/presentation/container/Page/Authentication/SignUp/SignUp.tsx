@@ -7,14 +7,17 @@ import {
   Pressable,
   Dimensions,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import TextFeild from '../../../../component/Input/TextFeild';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
+import { SignUpProps } from './type';
 
-const SignUp = () => {
+const SignUp:React.FC<SignUpProps> = (props) => {
+  const {navigation} = props;
+  const [phoneNumber, setPhoneNumber] = useState('');
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -71,13 +74,13 @@ const SignUp = () => {
           <Text style={[styles.txt, styles.body_titleField, {marginTop: 20}]}>
             Số điện thoại
           </Text>
-          <TextFeild placeholder="Nhập số điện thoại của bạn" />
+          <TextFeild onChangeText={(values) => setPhoneNumber(values)} placeholder="Nhập số điện thoại của bạn" />
         </View>
       </View>
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Đăng ký" />
+        <ButtonImg isButtonLight={false} text="Đăng ký" onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: false})}/>
       </View>
     </View>
   );

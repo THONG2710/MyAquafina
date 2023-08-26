@@ -13,8 +13,10 @@ import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
+import { SignUpSuccessProp } from './type';
 
-const SignUpSuccess = () => {
+const SignUpSuccess: React.FC<SignUpSuccessProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -68,7 +70,7 @@ const SignUpSuccess = () => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Đăng nhập" />
+        <ButtonImg isButtonLight={false} text="Đăng nhập" onPress={() => navigation.navigate('SignIn')}/>
       </View>
     </View>
   );

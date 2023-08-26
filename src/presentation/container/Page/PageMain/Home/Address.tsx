@@ -1,4 +1,5 @@
 import {
+  Alert,
   Dimensions,
   Image,
   ImageBackground,
@@ -17,10 +18,11 @@ import {forModalPresentationIOS} from '@react-navigation/stack/lib/typescript/sr
 
 export interface AddressProps extends TextProps {
   addressStyle?: StyleProp<ViewStyle>;
+  navigation: any;
 }
 
-const Address: React.FC<AddressProps> = (props) => {
-  const {addressStyle} = props;
+const Address: React.FC<AddressProps> = props => {
+  const {addressStyle, navigation} = props;
   return (
     <View style={[styles.container, addressStyle]}>
       {/* header */}
@@ -80,7 +82,11 @@ const Address: React.FC<AddressProps> = (props) => {
           />
         </View>
         <View style={styles.body_btnContainer}>
-          <ButtonImg btnStyle={styles.body_btn} text="Khám phá ngay" />
+          <ButtonImg
+            btnStyle={styles.body_btn}
+            text="Khám phá ngay"
+            onPress={() => navigation.navigate('PureMap')}
+          />
         </View>
       </View>
     </View>
@@ -92,8 +98,9 @@ export default Address;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: (Dimensions.get('screen').height / 10) * 7.7,
+    height: (Dimensions.get('screen').height / 10) * 8,
     backgroundColor: colors.LIGHT_5_BLUE,
+    zIndex: 100,
     overflow: 'hidden',
   },
 
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
   },
 
   body_itemAddress: {
-    // position: 'absolute',
+    width: '100%',
   },
 
   body_imgRipple: {
@@ -199,17 +206,18 @@ const styles = StyleSheet.create({
     width: 60,
     height: 90,
     resizeMode: 'contain',
-    zIndex: 1,
+    zIndex: 0,
   },
 
-//   3
-body_imgRipple3: {
+  //   3
+  body_imgRipple3: {
     position: 'absolute',
     width: 400,
     height: 400,
     resizeMode: 'contain',
     top: 70,
-    left: -150
+    left: -150,
+    zIndex: -10,
   },
 
   body_imgMarker3: {
@@ -218,7 +226,7 @@ body_imgRipple3: {
     width: 60,
     height: 70,
     resizeMode: 'contain',
-    zIndex: 1,
+    zIndex: -1,
   },
 
   body_btnContainer: {
@@ -226,9 +234,10 @@ body_imgRipple3: {
     marginTop: 165,
     flex: 1,
     alignItems: 'center',
+    zIndex: 10,
   },
 
   body_btn: {
-    width: Dimensions.get('screen').width/2 - 20,
-  }
+    width: Dimensions.get('screen').width / 2 ,
+  },
 });

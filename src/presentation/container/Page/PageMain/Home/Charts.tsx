@@ -1,4 +1,4 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, TextProps, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
@@ -6,6 +6,10 @@ import {FlatList} from 'react-native';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import ItemChartVIP from '../../../../component/Item/ItemChart';
 import {ScrollView} from 'react-native';
+
+export interface ChartsProp extends TextProps {
+  navigation?: any;
+}
 
 const list = [
   {_id: 1},
@@ -17,7 +21,8 @@ const list = [
   {_id: 7},
 ];
 
-const Charts = () => {
+const Charts:React.FC<ChartsProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -68,7 +73,7 @@ const Charts = () => {
         </View>
         <View style={styles.chart_footer}>
           <Text style={styles.chart_note}>Vui lòng đăng nhập để xem hạng của bạn</Text>
-          <ButtonImg isButtonLight={true} text="Đăng nhập" />
+          <ButtonImg isButtonLight={true} text="Đăng nhập" onPress={() => navigation.navigate('AuthenticationStack')}/>
         </View>
       </View>
     </View>

@@ -15,18 +15,19 @@ import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 
 const CutomDrawer: React.FC<any> = props => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
       {/* header */}
       <View style={styles.header}>
-        <Pressable>
+        <Pressable onPress={() => navigation.closeDrawer()}>
           <Image
             style={styles.header_btnX}
             source={require('../../../../resource/images/x2.png')}
           />
         </Pressable>
         <Image
-          style={styles.header_logo}
+          style={styles.header_logo}    
           source={require('../../../../resource/images/logoAquafina.png')}
         />
         <View></View>
