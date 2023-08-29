@@ -16,11 +16,13 @@ import ButtonImg from '../../../../component/Button/ButtonImg';
 import LinearGradient from 'react-native-linear-gradient';
 import MapView from 'react-native-maps';
 import Footer from '../Middle/Footer';
+import { PureMapProp } from './type';
 
-const PureMap = () => {
+const PureMap:React.FC<PureMapProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
-      <HeaderComponent />
+      <HeaderComponent navigation={navigation}/>
       <ScrollView>
         <View style={styles.body}>
           <Image

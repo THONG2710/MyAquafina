@@ -6,18 +6,24 @@ import {
   TextProps,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
+import Modal from 'react-native-modal';
+import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
 
 const CutomDrawer: React.FC<any> = props => {
   const {navigation} = props;
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.container}>
+      <Modal>
+        <PopupOnLogin/>
+      </Modal>
       {/* header */}
       <View style={styles.header}>
         <Pressable onPress={() => navigation.closeDrawer()}>
@@ -36,7 +42,7 @@ const CutomDrawer: React.FC<any> = props => {
       <View style={styles.information}>
         <Image
           style={styles.information_avatar}
-          source={require('../../../../resource/images/avatar2.png')}
+          source={require('../../../../resource/images/avatar3.png')}
         />
         <Text style={styles.information_txtName}>Lê Quỳnh Ái Vân</Text>
       </View>

@@ -3,7 +3,7 @@ export type DrawerStoryBoard = {
     PureWorld: undefined,
     PureGift: undefined,
     PureMap: undefined,
-    RewardPoints: undefined,
-    RankingTable: undefined,
+    PureCoin: undefined,
+    PureChart: undefined,
     AuthenticationStack: undefined,
 }

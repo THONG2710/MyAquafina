@@ -88,8 +88,8 @@ const SignIn:React.FC<SingInProp> = (props) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        {/* <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: true})}/> */}
-        <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => dispatch(fetchImages())}/>
+        <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: true})}/>
+        {/* <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => dispatch(fetchImages())}/> */}
         <Text style={[styles.txt, styles.footer_or]}>Hoặc</Text>
         <ButtonImg isButtonLight={true} text='Đăng kí' onPress={() => navigation.navigate('SignUp')}/>
       </View>

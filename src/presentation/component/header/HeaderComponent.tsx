@@ -1,48 +1,67 @@
-import { Dimensions, Image, Pressable, StyleProp, StyleSheet, Text, TextProps, View, ViewStyle } from 'react-native'
-import React from 'react'
-import { colors } from '../../resource/values/color'
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextProps,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React, {useState} from 'react';
+import {colors} from '../../resource/values/color';
+import PopupConfirmLogout from '../Popup/PopupConfirmLogout';
+import Modal from 'react-native-modal';
 
 export interface HeaderComponentProps extends TextProps {
   headerStyle?: StyleProp<ViewStyle>;
-  onPress?: () => void;
+  navigation: any;
 }
 
-const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
-  const {headerStyle, onPress} = props;
+const HeaderComponent: React.FC<HeaderComponentProps> = props => {
+  const {headerStyle, navigation, } = props;
+  const [isVisible, setIsVisible] = useState(false);
+  const onToggleModal = () => {
+    setIsVisible(!isVisible);
+  }
+
   return (
     <View style={[styles.header, headerStyle]}>
-        <Pressable onPress={onPress}>
-          <Image
-            style={styles.header_menu}
-            source={require('../../resource/images/menu.png')}
-          />
-        </Pressable>
-        <Pressable>
-          <Image
-            style={styles.header_logo}
-            source={require('../../resource/images/logoAquafina.png')}
-          />
-        </Pressable>
-        <Pressable>
-          <Image
-            style={styles.header_logout}
-            source={require('../../resource/images/logout.png')}
-          />
-        </Pressable>
-      </View>
-  )
-}
+      <Modal isVisible={isVisible}>
+        <PopupConfirmLogout onPress={onToggleModal}/>
+      </Modal>
+      <Pressable onPress={() => navigation.openDrawer()}>
+        <Image
+          style={styles.header_menu}
+          source={require('../../resource/images/menu.png')}
+        />
+      </Pressable>
+      <Pressable>
+        <Image
+          style={styles.header_logo}
+          source={require('../../resource/images/logoAquafina.png')}
+        />
+      </Pressable>
+      <Pressable onPress={onToggleModal}>
+        <Image
+          style={styles.header_logout}
+          source={require('../../resource/images/logout.png')}
+        />
+      </Pressable>
+    </View>
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;
 
 const styles = StyleSheet.create({
-    // ================ header =================
+  // ================ header =================
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginVertical: 10,
     backgroundColor: colors.WHITE,
   },
 
@@ -65,4 +84,4 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 20,
   },
-})
+});

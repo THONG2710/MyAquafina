@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 import {colors} from '../../../../resource/values/color';
 import ButtonImg from '../../../../component/Button/ButtonImg';
@@ -17,26 +17,31 @@ import Present from './Present';
 import Address from './Address';
 import Footer from '../Middle/Footer';
 import Banners from './Banners/Banners';
-import { HomeMainProp } from './type';
+import {HomeMainProp} from './type';
+import PopupConfirmLogout from '../../../../component/Popup/PopupConfirmLogout';
 
-const HomeMain:React.FC<HomeMainProp> = (props) => {
+
+
+const HomeMain: React.FC<HomeMainProp> = props => {
   const {navigation} = props;
-
   return (
     <View style={styles.container}>
       {/* Header */}
-      <HeaderComponent headerStyle={styles.header} onPress={() => navigation.toggleDrawer()}/>
+      <HeaderComponent
+        headerStyle={styles.header}
+        navigation={navigation}
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* banner */}
-        <Banners navigation={navigation}/>
+        <Banners navigation={navigation} />
         {/* Chart */}
-        <Charts navigation={navigation}/>
+        <Charts navigation={navigation} />
         {/* Present */}
-        <Present navigation={navigation}/>
+        <Present navigation={navigation} />
         {/* address */}
-        <Address navigation={navigation}/>
+        <Address navigation={navigation} />
         {/* footer */}
-        <Footer navigation={navigation}/>
+        <Footer navigation={navigation} />
       </ScrollView>
     </View>
   );

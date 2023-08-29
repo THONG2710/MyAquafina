@@ -10,10 +10,11 @@ import CutomDrawer from '../container/Page/PageMain/CutomDrawer/CutomDrawer';
 import ItemDrawer from '../component/Item/ItemDrawer';
 import PureGift from '../container/Page/PageMain/PureGift/PureGift';
 import PureMap from '../container/Page/PageMain/PureMap/PureMap';
-import RewardPoints from '../container/Page/PageMain/rewardPoints/RewardPoints';
-import RankingTable from '../container/Page/PageMain/RankingTable/RankingTable';
+import RankingTable from '../container/Page/PageMain/PureChart/PureChart';
 import { AuthenticationParamList } from '../storyboard';
 import { DrawerStoryBoard } from '../storyboard/DrawerStoryBoard';
+import PureCoin from '../container/Page/PageMain/PureCoin/PureCoin';
+import PureChart from '../container/Page/PageMain/PureChart/PureChart';
 
 const Drawer = createDrawerNavigator<DrawerStoryBoard>();
 
@@ -79,8 +80,8 @@ const PageDrawer:React.FC = (props) => {
           }}
         />
         <Drawer.Screen
-          name="RewardPoints"
-          component={RewardPoints}
+          name="PureCoin"
+          component={PureCoin}
           options={{
             drawerLabel({focused, color}) {
               return (
@@ -94,8 +95,8 @@ const PageDrawer:React.FC = (props) => {
           }}
         />
         <Drawer.Screen
-          name="RankingTable"
-          component={RankingTable}
+          name="PureChart"
+          component={PureChart}
           options={{
             drawerLabel({focused, color}) {
               return (

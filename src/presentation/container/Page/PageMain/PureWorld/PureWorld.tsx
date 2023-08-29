@@ -6,13 +6,13 @@ import Station from './Station';
 import LifeCircle from './LifeCircle';
 import Procedure from './Procedure';
 import Footer from '../Middle/Footer';
-import { PureWorldProp } from './type';
+import { AppProp } from './type';
 
-const PureWorld:React.FC<PureWorldProp> = (props) => {
+const PureWorld:React.FC<AppProp> = (props) => {
   const {navigation} = props;
   return (
     <View style={styles.container}>
-      <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} />
+      <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} navigation={navigation}/>
       <ScrollView>
         {/* Discover */}
         <Discover />

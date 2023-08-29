@@ -13,6 +13,7 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import Instroduce from './Instroduce';
 import Footer from '../Middle/Footer';
+import { PureGiftProp } from './type';
 
 const data = [
   {
@@ -32,10 +33,11 @@ const data = [
   },
 ];
 
-const PureGift = () => {
+const PureGift:React.FC<PureGiftProp> = (props) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
-      <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} />
+      <HeaderComponent headerStyle={{marginTop: 0, marginBottom: 0}} navigation={navigation}/>
       <ScrollView>
         {/* gift */}
         <View style={styles.gift}>

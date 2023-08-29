@@ -4,7 +4,7 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {FlatList} from 'react-native';
 import ButtonImg from '../../../../component/Button/ButtonImg';
-import ItemChartVIP from '../../../../component/Item/ItemChart';
+import ItemChart from '../../../../component/Item/ItemChart';
 import {ScrollView} from 'react-native';
 
 export interface ChartsProp extends TextProps {
@@ -67,7 +67,7 @@ const Charts:React.FC<ChartsProp> = (props) => {
         <View style={styles.chart_table}>
           <ScrollView showsVerticalScrollIndicator={false}>
             {list.map((item, index) => {
-              return <ItemChartVIP places={index + 1} key={item._id} />;
+              return <ItemChart places={index + 1} key={item._id} />;
             })}
           </ScrollView>
         </View>
