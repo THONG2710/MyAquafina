@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Pressable,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import TextFeild from '../../../../component/Input/TextFeild';
@@ -14,22 +15,11 @@ import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import { SingInProp } from './type';
-import { useAppDispatch, useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
-import { RootState } from '../../../../shared-state/Redux/Reducers/RootReducer';
-import { fetchImages } from '../../../../shared-state/Redux/Thunks/ImagesThunks';
 
 const SignIn:React.FC<SingInProp> = (props) => {
   const {navigation} = props;
   const [phoneNumber, setPhoneNumber] = useState('');
   
-  const get = useAppSelector((state) => state.ImageReducer.list)
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    console.log(get);
-  }, [get])
-  
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -44,13 +34,13 @@ const SignIn:React.FC<SingInProp> = (props) => {
       <LinearGradient
         colors={[
           'rgba(255, 255, 255, 0.1)',
-          'rgba(255, 255, 255, 0.2)',
+          'rgba(255, 255, 255, 0.2)', 
           colors.WHITE,
           'rgba(255, 255, 255, 0.6)',
         ]}
         style={styles.gradient}></LinearGradient>
 
-      <Pressable onPress={() => navigation.navigate('PageDrawer')}>
+      <Pressable onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
           source={require('../../../../resource/images/home.png')}
@@ -82,7 +72,7 @@ const SignIn:React.FC<SingInProp> = (props) => {
           <Text style={[styles.txt, styles.body_titleField]}>
             Số điện thoại
           </Text>
-          <TextFeild onChangeText={(value) => setPhoneNumber(value)} placeholder="Nhập số điện thoại của bạn" />
+          <TextFeild keyboardType='number-pad' onChangeText={(value) => setPhoneNumber(value)} placeholder="Nhập số điện thoại của bạn" />
         </View>
       </View>
 
@@ -116,6 +106,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     left: -Dimensions.get('screen').width / 2 + 10,
+    zIndex: 10,
   },
 
   txt: {

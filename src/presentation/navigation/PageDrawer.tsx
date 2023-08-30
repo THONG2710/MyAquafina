@@ -11,105 +11,131 @@ import ItemDrawer from '../component/Item/ItemDrawer';
 import PureGift from '../container/Page/PageMain/PureGift/PureGift';
 import PureMap from '../container/Page/PageMain/PureMap/PureMap';
 import RankingTable from '../container/Page/PageMain/PureChart/PureChart';
-import { AuthenticationParamList } from '../storyboard';
-import { DrawerStoryBoard } from '../storyboard/DrawerStoryBoard';
+import {AuthenticationParamList} from '../storyboard';
+import {DrawerStoryBoard} from '../storyboard/DrawerStoryBoard';
 import PureCoin from '../container/Page/PageMain/PureCoin/PureCoin';
 import PureChart from '../container/Page/PageMain/PureChart/PureChart';
+import {useAppSelector} from '../shared-state/Redux/Hook/Hook';
+import ReactNativeModal from 'react-native-modal';
+import PopupOnLogin from '../component/Popup/PopupOnLogin';
+import ProgarmLures from '../container/Page/PageMain/PureGift/ProgarmLures';
+import ReportError from '../container/Page/Authentication/ReportError/ReportError';
 
 const Drawer = createDrawerNavigator<DrawerStoryBoard>();
 
-const PageDrawer:React.FC = (props) => {
+const PageDrawer: React.FC = props => {
+  const isLogged = useAppSelector(state => state.authentication.isLogged);
+
   return (
-      <Drawer.Navigator
-        screenOptions={{
-          headerShown: false,
-          drawerType: 'slide',
-          drawerActiveBackgroundColor: 'null',
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerType: 'slide',
+        drawerActiveBackgroundColor: 'null',
+      }}
+      drawerContent={props => <CutomDrawer {...props} />}>
+      <Drawer.Screen
+        name="HomePage"
+        component={HomeMain}
+        options={{
+          drawerItemStyle: {display: 'none'},
         }}
-        drawerContent={props => <CutomDrawer {...props} />}>
-        <Drawer.Screen
-          name="HomePage"
-          component={HomeMain}
-          options={{
-            drawerItemStyle: {display: 'none'},
-          }}
-        />
-        <Drawer.Screen
-          name="PureWorld"
-          component={PureWorld}
-          options={{
-            drawerLabel({focused, color}) {
-              return (
-                <ItemDrawer
-                  icon={require('../resource/images/earth.png')}
-                  isFocused={focused}
-                  label="Thế giới xanh"
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="PureGift"
-          component={PureGift}
-          options={{
-            drawerLabel({focused, color}) {
-              return (
-                <ItemDrawer
-                  icon={require('../resource/images/gift.png')}
-                  isFocused={focused}
-                  label="Quà tặng xanh"
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="PureMap"
-          component={PureMap}
-          options={{
-            drawerLabel({focused, color}) {
-              return (
-                <ItemDrawer
-                  icon={require('../resource/images/map2.png')}
-                  isFocused={focused}
-                  label="Bản đồ xanh"
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="PureCoin"
-          component={PureCoin}
-          options={{
-            drawerLabel({focused, color}) {
-              return (
-                <ItemDrawer
-                  icon={require('../resource/images/score.png')}
-                  isFocused={focused}
-                  label="Điểm thưởng xanh"
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="PureChart"
-          component={PureChart}
-          options={{
-            drawerLabel({focused, color}) {
-              return (
-                <ItemDrawer
-                  icon={require('../resource/images/rank.png')}
-                  isFocused={focused}
-                  label="Bảng xếp hạng"
-                />
-              );
-            },
-          }}
-        />
-      </Drawer.Navigator>
+      />
+      <Drawer.Screen
+        name="PureWorld"
+        component={PureWorld}
+        options={{
+          drawerLabel({focused, color}) {
+            return (
+              <ItemDrawer
+                icon={require('../resource/images/earth.png')}
+                isFocused={focused}
+                label="Thế giới xanh"
+              />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="PureGift"
+        component={PureGift}
+        options={{
+          drawerLabel({focused, color}) {
+            return (
+              <ItemDrawer
+                icon={require('../resource/images/gift.png')}
+                isFocused={focused}
+                label="Quà tặng xanh"
+              />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="PureMap"
+        component={PureMap}
+        options={{
+          drawerLabel({focused, color}) {
+            return (
+              <ItemDrawer
+                icon={require('../resource/images/map2.png')}
+                isFocused={focused}
+                label="Bản đồ xanh"
+              />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="PureCoin"
+        component={PureCoin}
+        listeners={{
+          drawerItemPress: ({}) => {
+            
+          }
+        }}
+        options={{
+          drawerLabel({focused, color}) {
+            return (
+              <ItemDrawer
+                icon={require('../resource/images/score.png')}
+                isFocused={focused}
+                label="Điểm thưởng xanh"
+              />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="PureChart"
+        component={PureChart}
+        options={{
+          drawerLabel({focused, color}) {
+            return (
+              <ItemDrawer
+                icon={require('../resource/images/rank.png')}
+                isFocused={focused}
+                label="Bảng xếp hạng"
+              />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name='ProgarmLures'
+        component={ProgarmLures}
+        options={{
+          drawerItemStyle: {display: 'none'},
+        }}
+      />
+      <Drawer.Screen
+        name='ReportError'
+        component={ReportError}
+        options={{
+          drawerItemStyle: {display: 'none'},
+        }}
+      />
+    </Drawer.Navigator>
   );
 };
 

@@ -11,13 +11,14 @@ export interface TextFeildProps extends TextProps {
     textStyle?: StyleProp<TextStyle>;
     onChangeText?: (value: string) => any;
     value?: string;
+    keyboardType?: 'default' | 'number-pad';
 } 
 
 const TextFeild: React.FC<TextFeildProps> = (props) => {
-    const { placeholder, inputViewStyle, multiline,  numberOfLines, textStyle, onChangeText, value} = props;
+    const { placeholder, inputViewStyle, multiline,  numberOfLines, textStyle, onChangeText, value, keyboardType} = props;
   return (
     <View style={[styles.container, inputViewStyle]}>
-      <TextInput value={value} onChangeText={onChangeText} multiline={multiline} numberOfLines={numberOfLines} style={[styles.text,textStyle]} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
+      <TextInput keyboardType={keyboardType} value={value} onChangeText={onChangeText} multiline={multiline} numberOfLines={numberOfLines} style={[styles.text,textStyle]} placeholder={placeholder} placeholderTextColor={colors.GRAY2}/>
     </View>
   )
 }

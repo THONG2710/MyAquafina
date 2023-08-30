@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
-import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {forModalPresentationIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
+import ButtonImg from '../../../../component/Button/ButtonImg';
 
 export interface AddressProps extends TextProps {
   addressStyle?: StyleProp<ViewStyle>;

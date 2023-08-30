@@ -6,9 +6,9 @@ import Station from './Station';
 import LifeCircle from './LifeCircle';
 import Procedure from './Procedure';
 import Footer from '../Middle/Footer';
-import { AppProp } from './type';
+import { PureWorldProp } from './type';
 
-const PureWorld:React.FC<AppProp> = (props) => {
+const PureWorld:React.FC<PureWorldProp> = (props) => {
   const {navigation} = props;
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ const PureWorld:React.FC<AppProp> = (props) => {
         {/* Procedure */}
         <Procedure/>
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );

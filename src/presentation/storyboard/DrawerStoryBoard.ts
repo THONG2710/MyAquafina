@@ -5,5 +5,7 @@ export type DrawerStoryBoard = {
     PureMap: undefined,
     PureCoin: undefined,
     PureChart: undefined,
+    ProgarmLures: undefined,
+    ReportError: undefined,
     AuthenticationStack: undefined,
 }

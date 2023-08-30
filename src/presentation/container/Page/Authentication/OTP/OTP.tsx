@@ -8,20 +8,45 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import TextFeild from '../../../../component/Input/TextFeild';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import OTPTextView from 'react-native-otp-textinput';
-import { OTPProp } from './type';
+import {OTPProp} from './type';
+import { useAppDispatch } from '../../../../shared-state/Redux/Hook/Hook';
+import { Login } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
 
-const OTP:React.FC<OTPProp> = (props) => {
+const OTP: React.FC<OTPProp> = props => {
   const {navigation} = props;
   const phoneNumber = props.route.params.phoneNumber;
   const isLogin = props.route.params.isLogin;
   const [isCorrect, setIsCorrect] = useState(true);
+  const [otpInput, setOTPInput] = useState('');
+  const dispatch = useAppDispatch();
+  const otp = useRef(null);
+
+  const CheckOTP = () => {
+    if (otpInput == '1234') {
+      setIsCorrect(true);
+      navigation.navigate(isLogin ? 'PageDrawer' : 'SignUpSuccess');
+      dispatch(Login(true));
+    } else {
+      setIsCorrect(false);
+    }
+  };
+
+  const handleInputOtp = (value: string) => {
+    setOTPInput(value)
+  }
+
+  const ResetOTP = () => {
+    otp.current.clear();
+    setIsCorrect(true);
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -42,12 +67,12 @@ const OTP:React.FC<OTPProp> = (props) => {
         ]}
         style={styles.gradient}></LinearGradient>
 
-      <Pressable>
+      <TouchableOpacity onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
           source={require('../../../../resource/images/home.png')}
         />
-      </Pressable>
+      </TouchableOpacity>
       {/* header */}
       <View style={styles.header}>
         <Image
@@ -70,24 +95,41 @@ const OTP:React.FC<OTPProp> = (props) => {
       {/* body */}
       <View style={styles.body}>
         <Text style={[styles.txt, styles.body_title]}>NHẬP OTP</Text>
-        <Text style={styles.body_content}>Một mã OTP vừa được gửi vào số <Text style={[styles.body_content, {fontWeight: '700'}]}>{phoneNumber}</Text></Text>
+        <Text style={styles.body_content}>
+          Một mã OTP vừa được gửi vào số{' '}
+          <Text style={[styles.body_content, {fontWeight: '700'}]}>
+            {phoneNumber}
+          </Text>
+        </Text>
         <View style={styles.body_inputContainer}>
           <OTPTextView
-            textInputStyle={styles.body_otpInput}
-            tintColor={isCorrect?colors.GRAY:colors.RED}
-            offTintColor={isCorrect?colors.GRAY:colors.RED}
+            textInputStyle={{
+              width: 50,
+              height: 50,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderBottomWidth: 1,
+              color: isCorrect?colors.BLUE:colors.RED,
+              zIndex: 1,
+            }}
+            tintColor={isCorrect ? colors.GRAY : colors.RED}
+            offTintColor={isCorrect ? colors.GRAY : colors.RED}
             inputCount={4}
+            defaultValue={otpInput}
+            handleTextChange={(value) => handleInputOtp(value)}
+            ref={otp}
           />
         </View>
       </View>
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Xác nhận" onPress={() => navigation.navigate(isLogin?'PageDrawer':'SignUpSuccess')}/>
+        <ButtonImg isButtonLight={false} text="Xác nhận" onPress={CheckOTP} />
         <Text style={[styles.txt, styles.footer_txtTimeCode]}>
-          Mã sẽ được gửi trong vòng <Text style={styles.footer_time}>30 GIÂY</Text>
+          Mã sẽ được gửi trong vòng{' '}
+          <Text style={styles.footer_time}>30 GIÂY</Text>
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={ResetOTP}>
           <Text style={[styles.txt]}>Gửi lại mã</Text>
         </TouchableOpacity>
       </View>
@@ -262,5 +304,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
   },
-
 });

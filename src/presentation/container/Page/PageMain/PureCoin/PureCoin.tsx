@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {PureCoinProp} from './type';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 import TextFeildDark from '../../../../component/Input/TextFeildDark';
@@ -17,6 +17,7 @@ import Footer from '../Middle/Footer';
 
 const PureCoin: React.FC<PureCoinProp> = props => {
   const {navigation} = props;
+
   return (
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} />
@@ -73,7 +74,7 @@ const PureCoin: React.FC<PureCoinProp> = props => {
           />
         </View>
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );

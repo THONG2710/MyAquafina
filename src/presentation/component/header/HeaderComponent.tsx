@@ -9,10 +9,11 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {colors} from '../../resource/values/color';
 import PopupConfirmLogout from '../Popup/PopupConfirmLogout';
 import Modal from 'react-native-modal';
+import {useAppSelector} from '../../shared-state/Redux/Hook/Hook';
 
 export interface HeaderComponentProps extends TextProps {
   headerStyle?: StyleProp<ViewStyle>;
@@ -20,16 +21,20 @@ export interface HeaderComponentProps extends TextProps {
 }
 
 const HeaderComponent: React.FC<HeaderComponentProps> = props => {
-  const {headerStyle, navigation, } = props;
+  const {headerStyle, navigation} = props;
   const [isVisible, setIsVisible] = useState(false);
+  const isLogged = useAppSelector(state => state.authentication.isLogged);
+
   const onToggleModal = () => {
-    setIsVisible(!isVisible);
-  }
+    isLogged
+      ? setIsVisible(!isVisible)
+      : navigation.replace('AuthenticationStack');
+  };
 
   return (
     <View style={[styles.header, headerStyle]}>
       <Modal isVisible={isVisible}>
-        <PopupConfirmLogout onPress={onToggleModal}/>
+        <PopupConfirmLogout onPress={onToggleModal} onPressLogout={()=>navigation.replace("AuthenticationStack")}/>
       </Modal>
       <Pressable onPress={() => navigation.openDrawer()}>
         <Image
@@ -37,7 +42,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = props => {
           source={require('../../resource/images/menu.png')}
         />
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate('HomePage')}>
         <Image
           style={styles.header_logo}
           source={require('../../resource/images/logoAquafina.png')}

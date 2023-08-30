@@ -17,7 +17,7 @@ const Error = () => {
   return (
     <View style={styles.container}>
       {/* header */}
-      <HeaderComponent/>
+      {/* <HeaderComponent /> */}
 
       {/* background */}
       <ImageBackground

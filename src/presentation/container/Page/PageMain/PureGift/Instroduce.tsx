@@ -4,6 +4,7 @@ import {
   ImageBase,
   StyleSheet,
   Text,
+  TextProps,
   View,
 } from 'react-native';
 import React from 'react';
@@ -11,7 +12,12 @@ import ButtonImg from '../../../../component/Button/ButtonImg';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 
-const Instroduce = () => {
+export interface InstroduceProp extends TextProps {
+  navigation: any;
+}
+
+const Instroduce:React.FC<InstroduceProp> = (props) => {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
       <Image
@@ -41,7 +47,7 @@ const Instroduce = () => {
         />
       </View>
       <View style={styles.footer}>
-        <ButtonImg btnStyle={styles.btn} text="Tìm hiểu thêm" />
+        <ButtonImg btnStyle={styles.btn} text="Tìm hiểu thêm" onPress={() => navigation.navigate('ProgarmLures')}/>
       </View>
 
       {/* contact */}
@@ -151,8 +157,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('screen').height/4,
     alignItems: 'center',
-    marginTop: 10,
     backgroundColor: colors.LIGHT_6_BLUE,
+    marginTop: 30,
+    marginBottom: -20,
   },
 
   contact_title: {

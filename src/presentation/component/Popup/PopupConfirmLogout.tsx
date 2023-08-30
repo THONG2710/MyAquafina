@@ -14,10 +14,11 @@ import {fonts} from '../../resource/values/fonts';
 
 export interface ModalConfrimLogoutProp extends TextProps {
   onPress?: () => void;
+  onPressLogout?: () => void;
 }
 
 const PopupConfirmLogout: React.FC<ModalConfrimLogoutProp> = props => {
-  const {onPress} = props;
+  const {onPress, onPressLogout} = props;
   return (
     <View style={styles.container}>
       <Image
@@ -33,7 +34,7 @@ const PopupConfirmLogout: React.FC<ModalConfrimLogoutProp> = props => {
           text="Hủy"
           onPress={onPress}
         />
-        <ButtonImg btnStyle={styles.btnStyle} text="Đăng xuất" />
+        <ButtonImg btnStyle={styles.btnStyle} text="Đăng xuất" onPress={onPressLogout}/>
       </View>
     </View>
   );

@@ -1,4 +1,4 @@
-import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, Text, TextProps, View} from 'react-native';
 import React from 'react';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 import {fonts} from '../../../../resource/values/fonts';
@@ -17,12 +17,15 @@ const data = [
   {_id: 7},
 ];
 
-const ProgarmLures = () => {
+export interface ProgarmLuresProp extends TextProps {
+  navigation: any;
+}
+
+const ProgarmLures: React.FC<ProgarmLuresProp> = (props) => {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
-      <HeaderComponent
-        headerStyle={{width: Dimensions.get('screen').width, marginLeft: -16}}
-      />
+      <HeaderComponent navigation={navigation}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.titleHeader}>THỂ LỆ CHƯƠNG TRÌNH</Text>
         <View style={styles.titleContainer}>
@@ -269,11 +272,11 @@ const ProgarmLures = () => {
         </View>
 
         <View style={styles.end}>
-            <ButtonImg btnStyle={{width: Dimensions.get('screen').width/3}} text='Đã hiểu'/>
+            <ButtonImg btnStyle={{width: Dimensions.get('screen').width/3, zIndex: 10,}} text='Đã hiểu'/>
         </View>
 
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );
@@ -283,8 +286,9 @@ export default ProgarmLures;
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width,
+    width: Dimensions.get('screen').width - 10,
     flex: 1,
+    backgroundColor: colors.WHITE,
   },
 
   titleContainer: {

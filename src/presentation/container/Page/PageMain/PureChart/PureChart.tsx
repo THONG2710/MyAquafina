@@ -71,7 +71,7 @@ const PureChart: React.FC<PureChartProp> = props => {
           </View>
         </View>
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );

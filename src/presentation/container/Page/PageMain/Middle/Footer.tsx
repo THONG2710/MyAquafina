@@ -16,7 +16,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export interface FooterProps extends TextProps {
   footerStyle?: StyleProp<ViewStyle>;
-  navigation?: any;
+  navigation: any;
 }
 
 const Footer: React.FC<FooterProps> = (props) => {
@@ -39,11 +39,11 @@ const Footer: React.FC<FooterProps> = (props) => {
         <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('PureMap')}>
           <Text style={styles.body_textBtn}>Bản Đồ Xanh</Text>
         </Pressable>
-        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('RewardPoints')}>
+        <Pressable style={styles.body_buttonNavigate} onPress={() => navigation.navigate('PureCoin')}>
           <Text style={styles.body_textBtn}>Điểm thưởng Xanh</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate('RankingTable')}
+          onPress={() => navigation.navigate('PureChart')}
           style={[styles.body_buttonNavigate, styles.body_buttonNavigateEnd]}>
           <Text style={styles.body_textBtn}>Bảng Xếp Hạng</Text>
         </Pressable>

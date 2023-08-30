@@ -2,4 +2,6 @@ import { createAction } from "@reduxjs/toolkit";
 
 const Login = createAction<boolean, 'authentication/login'>('authentication/login');
 
-export {Login, }
+const checkOTP = createAction<boolean, 'authentication/checkOTP'>('authentication/checkOTP');
+
+export {Login, checkOTP}

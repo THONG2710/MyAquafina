@@ -1,11 +1,20 @@
-import {Dimensions, Image, StyleSheet, Text, TextProps, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TextProps,
+  View,
+} from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {FlatList} from 'react-native';
-import ButtonImg from '../../../../component/Button/ButtonImg';
 import ItemChart from '../../../../component/Item/ItemChart';
 import {ScrollView} from 'react-native';
+import {useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
+import ItemMyRank from '../../../../component/Item/ItemMyRank';
+import ButtonImg from '../../../../component/Button/ButtonImg';
 
 export interface ChartsProp extends TextProps {
   navigation?: any;
@@ -21,8 +30,9 @@ const list = [
   {_id: 7},
 ];
 
-const Charts:React.FC<ChartsProp> = (props) => {
+const Charts: React.FC<ChartsProp> = props => {
   const {navigation} = props;
+  const isLogged = useAppSelector(state => state.authentication.isLogged);
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -61,7 +71,10 @@ const Charts:React.FC<ChartsProp> = (props) => {
       </View>
       {/* Charts */}
       <View style={styles.charts}>
-        <Image style={styles.chart_background} source={require('../../../../resource/images/ripple.png')}/>
+        <Image
+          style={styles.chart_background}
+          source={require('../../../../resource/images/ripple.png')}
+        />
         <Text style={styles.chart_title}>Bảng xếp hạng </Text>
         <Text style={styles.chart_txtTime}>13/06/2022 - 19/06/2022</Text>
         <View style={styles.chart_table}>
@@ -71,10 +84,29 @@ const Charts:React.FC<ChartsProp> = (props) => {
             })}
           </ScrollView>
         </View>
-        <View style={styles.chart_footer}>
-          <Text style={styles.chart_note}>Vui lòng đăng nhập để xem hạng của bạn</Text>
-          <ButtonImg isButtonLight={true} text="Đăng nhập" onPress={() => navigation.navigate('AuthenticationStack')}/>
-        </View>
+        {/* footer */}
+        {isLogged ? (
+          <View style={styles.chart_footer}>
+            <Text style={styles.chart_note}>Hạng của tôi</Text>
+            <ItemMyRank />
+            <ButtonImg
+              btnStyle={{width: Dimensions.get('screen').width - 80}}
+              isButtonLight={true}
+              text="Xem chi tiết"
+            />
+          </View>
+        ) : (
+          <View style={styles.chart_footer}>
+            <Text style={styles.chart_note}>
+              Vui lòng đăng nhập để xem hạng của bạn
+            </Text>
+            <ButtonImg
+              isButtonLight={true}
+              text="Đăng nhập"
+              onPress={() => navigation.navigate('AuthenticationStack')}
+            />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -85,7 +117,7 @@ export default Charts;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: Dimensions.get('screen').height/10*7.5,
+    height: (Dimensions.get('screen').height / 10) * 8,
     backgroundColor: 'red',
   },
 
@@ -237,5 +269,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primaryFont,
     fontSize: 14,
     fontWeight: 'bold',
-  }
+  },
 });

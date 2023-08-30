@@ -157,7 +157,7 @@ const PureMap:React.FC<PureMapProp> = (props) => {
           </View>
         </LinearGradient>
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: colors.LIGHT_5_BLUE,
-    paddingBottom: 70,
+    paddingBottom: 50,
   },
 
   //   =============================== station styles =============================

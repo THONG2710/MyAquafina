@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   ImageBackground,
+  TextProps,
 } from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../../../../resource/values/color';
@@ -16,9 +17,15 @@ import TextFeild from '../../../../component/Input/TextFeild';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 
-const ReportError = () => {
+export interface ReportErrorProp extends TextProps {
+  navigation: any;
+}
+
+const ReportError:React.FC<ReportErrorProp> = (props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const {navigation} = props;
+
   const [items, setItems] = useState([
     {
       label: '1. Bỏ chai Aquafina nhưng hệ thống không nhận diện được',
@@ -50,7 +57,7 @@ const ReportError = () => {
         style={styles.gradient}></LinearGradient>
 
       {/* header */}
-      <HeaderComponent/>
+      <HeaderComponent navigation={navigation}/>
 
       {/* body */}
       <View style={styles.body}>

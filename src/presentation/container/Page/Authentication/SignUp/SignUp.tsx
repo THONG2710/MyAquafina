@@ -7,17 +7,19 @@ import {
   Pressable,
   Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextFeild from '../../../../component/Input/TextFeild';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import { SignUpProps } from './type';
+import { TouchableOpacity } from 'react-native';
 
 const SignUp:React.FC<SignUpProps> = (props) => {
   const {navigation} = props;
   const [phoneNumber, setPhoneNumber] = useState('');
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -38,7 +40,7 @@ const SignUp:React.FC<SignUpProps> = (props) => {
         ]}
         style={styles.gradient}></LinearGradient>
 
-      <Pressable>
+      <Pressable onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
           source={require('../../../../resource/images/home.png')}

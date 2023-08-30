@@ -49,9 +49,9 @@ const PureGift:React.FC<PureGiftProp> = (props) => {
           />
         </View>
         {/* Instroduce */}
-        <Instroduce />
+        <Instroduce navigation={navigation}/>
         {/* footer */}
-        <Footer/>
+        <Footer navigation={navigation}/>
       </ScrollView>
     </View>
   );

@@ -4,25 +4,41 @@ import {
   StyleSheet,
   Text,
   TextProps,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   DrawerContentScrollView,
+  DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
-import Modal from 'react-native-modal';
+import Modal, { ReactNativeModal } from 'react-native-modal';
 import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
+import {useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
+import PopupConfirmLogout from '../../../../component/Popup/PopupConfirmLogout';
 
 const CutomDrawer: React.FC<any> = props => {
   const {navigation} = props;
-  const [isVisible, setIsVisible] = useState(false);
+  const isLogged = useAppSelector(state => state.authentication.isLogged);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleLogout = () => {
+    if (isLogged) {
+      navigation.closeDrawer();
+      setShowPopup(true);
+    } else {
+      navigation.replace('AuthenticationStack');
+      setShowPopup(false);
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Modal>
-        <PopupOnLogin/>
+      <Modal isVisible={showPopup}>
+        <PopupConfirmLogout onPress={() => setShowPopup(false)} onPressLogout={() => navigation.replace('AuthenticationStack')}/>
       </Modal>
       {/* header */}
       <View style={styles.header}>
@@ -32,29 +48,44 @@ const CutomDrawer: React.FC<any> = props => {
             source={require('../../../../resource/images/x2.png')}
           />
         </Pressable>
-        <Image
-          style={styles.header_logo}    
-          source={require('../../../../resource/images/logoAquafina.png')}
-        />
+        <Pressable onPress={() => navigation.navigate('HomePage')}>
+          <Image
+            style={styles.header_logo}
+            source={require('../../../../resource/images/logoAquafina.png')}
+          />
+        </Pressable>
         <View></View>
       </View>
       {/* information */}
-      <View style={styles.information}>
-        <Image
-          style={styles.information_avatar}
-          source={require('../../../../resource/images/avatar3.png')}
-        />
-        <Text style={styles.information_txtName}>Lê Quỳnh Ái Vân</Text>
-      </View>
+      {isLogged ? (
+        <View style={styles.information}>
+          <Image
+            style={styles.information_avatar}
+            source={require('../../../../resource/images/avatar3.png')}
+          />
+          <Text style={styles.information_txtName}>Lê Quỳnh Ái Vân</Text>
+        </View>
+      ) : (
+        <View style={styles.information}>
+          <Image
+            style={styles.information_avatar}
+            source={require('../../../../resource/images/avatarDefault.png')}
+          />
+          <Text style={styles.information_txtName2}>User is not sign in</Text>
+        </View>
+      )}
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       {/* footer */}
       <View style={styles.footer}>
-        <Pressable style={styles.footer_btnLogout}>
-          <Image style={styles.footer_img} source={require('../../../../resource/images/logout.png')} />
-          <Text style={styles.footer_text}>Sign out</Text>
-        </Pressable>
+        <TouchableOpacity style={styles.footer_btnLogout} onPress={handleLogout}>
+          <Image
+            style={styles.footer_img}
+            source={require('../../../../resource/images/logout.png')}
+          />
+          <Text style={styles.footer_text}>{isLogged ? 'Sign out' : 'Sign in'}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -77,9 +108,10 @@ const styles = StyleSheet.create({
   },
 
   header_logo: {
-    width: '50%',
+    width: 140,
     height: 50,
     resizeMode: 'contain',
+    marginRight: 30,
   },
 
   header_btnX: {
@@ -88,7 +120,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 
-  //   ================== information =================
+  //   ================== information  =================
   information: {
     width: '100%',
     marginLeft: 20,
@@ -109,6 +141,13 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 
+  information_txtName2: {
+    fontFamily: fonts.primaryFont,
+    fontSize: 14,
+    color: colors.GRAY,
+    marginVertical: 5,
+  },
+
   //  ================= footer =================
   footer: {
     width: '100%',
@@ -122,6 +161,7 @@ const styles = StyleSheet.create({
   footer_btnLogout: {
     alignItems: 'center',
     flexDirection: 'row',
+    zIndex: 12,
   },
 
   footer_img: {
