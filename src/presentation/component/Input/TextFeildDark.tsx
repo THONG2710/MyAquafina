@@ -15,14 +15,15 @@ export interface TextFeildDarkProp extends TextProps {
   value?: string;
   textFieldStyle?: StyleProp<ViewStyle>;
   title?: string; 
+  editable?: boolean;
 }
 
 const TextFeildDark: React.FC<TextFeildDarkProp> = props => {
-  const {value, textFieldStyle, title} = props;
+  const {value, textFieldStyle, title, editable} = props;
   return (
     <View>
       <Text style={styles.textTitle}>{title}</Text>
-      <TextInput style={[styles.textField, textFieldStyle]} value={value} />
+      <TextInput editable={editable} style={[styles.textField, textFieldStyle]} value={value} />
     </View>
   );
 };

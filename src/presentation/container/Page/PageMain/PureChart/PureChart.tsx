@@ -8,7 +8,7 @@ import {
   TextProps,
   View,
 } from 'react-native';
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 import {PureChartProp} from './type';
 import {colors} from '../../../../resource/values/color';
@@ -18,19 +18,8 @@ import ItemChart from '../../../../component/Item/ItemChart';
 import GroupButton from '../../../../component/Button/GroupButton';
 import ItemMyRank from '../../../../component/Item/ItemMyRank';
 import Footer from '../Middle/Footer';
-
-const list = [
-  {_id: 1},
-  {_id: 2},
-  {_id: 3},
-  {_id: 4},
-  {_id: 5},
-  {_id: 6},
-  {_id: 7},
-  {_id: 8},
-  {_id: 9},
-  {_id: 10},
-];
+import { useAppDispatch, useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
+import { fetchUsers } from '../../../../shared-state/Redux/Thunks/GetUsersThunks';
 
 const list2 = [
   '06/2022 Tuần 1',
@@ -43,9 +32,18 @@ const list2 = [
 
 const PureChart: React.FC<PureChartProp> = props => {
   const {navigation} = props;
+  const dispatch = useAppDispatch();
+  // const [listUsers, setlistUsers] = useState([]);
+  const listUsers = useAppSelector((state) => state.UsersReduer.listUsers)
+  const user = useAppSelector((state) => state.LoginReducer.user)
+
   const handleClickButton = (item: any) => {
     console.log(item);
   };
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -60,14 +58,14 @@ const PureChart: React.FC<PureChartProp> = props => {
           <GroupButton buttons={list2} onChangeButton={handleClickButton} />
           <View style={styles.chart_table}>
             <ScrollView showsVerticalScrollIndicator={false}>
-              {list.map((item, index) => {
-                return <ItemChart places={index + 1} key={item._id} />;
+              {listUsers.map((item, index) => {
+                return <ItemChart places={index + 1} key={item.id} data={item}/>;
               })}
             </ScrollView>
           </View>
           <View style={styles.chart_footer}>
             <Text style={styles.chart_note}>Hạng của tôi</Text>
-            <ItemMyRank />
+            <ItemMyRank user={user}/>
           </View>
         </View>
         {/* footer */}

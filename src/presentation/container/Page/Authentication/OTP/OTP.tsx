@@ -16,8 +16,12 @@ import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import OTPTextView from 'react-native-otp-textinput';
 import {OTPProp} from './type';
-import { useAppDispatch } from '../../../../shared-state/Redux/Hook/Hook';
-import { Login } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared-state/Redux/Hook/Hook';
+import {Login} from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import {fetchLogin} from '../../../../shared-state/Redux/Thunks/LoginThunk';
 
 const OTP: React.FC<OTPProp> = props => {
   const {navigation} = props;
@@ -27,20 +31,26 @@ const OTP: React.FC<OTPProp> = props => {
   const [otpInput, setOTPInput] = useState('');
   const dispatch = useAppDispatch();
   const otp = useRef(null);
+  const currentUser = useAppSelector(state => state.LoginReducer.user);
 
-  const CheckOTP = () => {
+  const HandleOTP = () => {
     if (otpInput == '1234') {
       setIsCorrect(true);
-      navigation.navigate(isLogin ? 'PageDrawer' : 'SignUpSuccess');
       dispatch(Login(true));
-    } else {
-      setIsCorrect(false);
+      dispatch(fetchLogin({phoneNumber: phoneNumber}));
+      console.log(currentUser);
+      
+      if (isLogin && currentUser) {
+        navigation.navigate(isLogin ? 'PageDrawer' : 'SignUpSuccess');
+      } else {
+        setIsCorrect(false);
+      }
     }
   };
 
   const handleInputOtp = (value: string) => {
-    setOTPInput(value)
-  }
+    setOTPInput(value);
+  };
 
   const ResetOTP = () => {
     otp.current.clear();
@@ -109,14 +119,14 @@ const OTP: React.FC<OTPProp> = props => {
               borderRadius: 10,
               borderWidth: 1,
               borderBottomWidth: 1,
-              color: isCorrect?colors.BLUE:colors.RED,
+              color: isCorrect ? colors.BLUE : colors.RED,
               zIndex: 1,
             }}
             tintColor={isCorrect ? colors.GRAY : colors.RED}
             offTintColor={isCorrect ? colors.GRAY : colors.RED}
             inputCount={4}
             defaultValue={otpInput}
-            handleTextChange={(value) => handleInputOtp(value)}
+            handleTextChange={value => handleInputOtp(value)}
             ref={otp}
           />
         </View>
@@ -124,7 +134,7 @@ const OTP: React.FC<OTPProp> = props => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Xác nhận" onPress={CheckOTP} />
+        <ButtonImg isButtonLight={false} text="Xác nhận" onPress={HandleOTP} />
         <Text style={[styles.txt, styles.footer_txtTimeCode]}>
           Mã sẽ được gửi trong vòng{' '}
           <Text style={styles.footer_time}>30 GIÂY</Text>

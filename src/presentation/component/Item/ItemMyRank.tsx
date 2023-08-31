@@ -1,19 +1,25 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Dimensions, Image, StyleSheet, Text, TextProps, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { colors } from '../../resource/values/color';
 import { fonts } from '../../resource/values/fonts';
+import { useAppSelector } from '../../shared-state/Redux/Hook/Hook';
 
-const ItemMyRank = () => {
+export interface ItemMyRankProp extends TextProps {
+  user: {id: string, name: string, phoneNumber: string, avatar: string, scores: number}
+} 
+
+const ItemMyRank:React.FC<ItemMyRankProp> = (props) => { 
+  const {user} = props;
   return (
     <View style={styles.container}>
       <View style={styles.left_box}>
-        <Text style={[styles.text, {paddingHorizontal: 10,}]}>#100</Text>
+        <Text style={[styles.text, {paddingHorizontal: 10, fontSize: 14,}]}>#5</Text>
         <View style={styles.infoBox}>
-          <Image style={styles.avatar} source={require('../../resource/images/avatar.png')} />
-          <Text style={styles.text}>John Wick</Text>
+          <Image style={styles.avatar} source={{uri: user.avatar}}/>
+          <Text style={styles.text}>{user.name}</Text>
         </View>
       </View>
-      <Text style={[styles.text, {marginHorizontal: 10,}]}>200</Text>
+      <Text style={[styles.text, {marginHorizontal: 10, fontSize: 14}]}>{user.scores}</Text>
     </View>
   );
 };
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontFamily: fonts.primaryFont,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
     color: colors.WHITE,
   },
@@ -54,6 +60,7 @@ const styles = StyleSheet.create({
     height: 30,
     resizeMode: 'contain',
     marginHorizontal: 5,
+    borderRadius: 40,
   }
 
 });

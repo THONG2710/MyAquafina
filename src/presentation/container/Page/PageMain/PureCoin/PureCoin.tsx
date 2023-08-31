@@ -14,13 +14,23 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {ScrollView} from 'react-native';
 import Footer from '../Middle/Footer';
+import ReactNativeModal from 'react-native-modal';
+import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
+import { useAppDispatch, useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
+import { showModalLogin } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
 
 const PureCoin: React.FC<PureCoinProp> = props => {
   const {navigation} = props;
+  const showModal = useAppSelector((state) => state.authentication.showModalLogin)
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.LoginReducer.user)
 
   return (
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} />
+      <ReactNativeModal isVisible={showModal}>
+        <PopupOnLogin onPress={() => dispatch(showModalLogin(false))} />
+      </ReactNativeModal>
       <ScrollView>
         {/* title */}
         <View style={styles.title}>
@@ -29,7 +39,7 @@ const PureCoin: React.FC<PureCoinProp> = props => {
         <View style={styles.avatar}>
           <Image
             style={styles.avatar_img}
-            source={require('../../../../resource/images/avatar2.png')}
+            source={{uri: user.avatar}}
           />
           <Pressable>
             <Image
@@ -40,8 +50,8 @@ const PureCoin: React.FC<PureCoinProp> = props => {
         </View>
         {/* avatar */}
         <View style={styles.information}>
-          <TextFeildDark title="Họ và tên" />
-          <TextFeildDark title="Số điện thoại" />
+          <TextFeildDark editable={false} value={user.name} title="Họ và tên" />
+          <TextFeildDark editable={false} value={user.phoneNumber} title="Số điện thoại" />
         </View>
         {/* background */}
         <Image
@@ -56,7 +66,7 @@ const PureCoin: React.FC<PureCoinProp> = props => {
             source={require('../../../../resource/images/message2.png')}
           />
           <Text style={styles.coin_text}>Số Điểm tích lũy:</Text>
-          <Text style={styles.coin_textScore}>150</Text>
+          <Text style={styles.coin_textScore}>{user.scores}</Text>
         </View>
         {/* thanks */}
         <View style={styles.thanks}>

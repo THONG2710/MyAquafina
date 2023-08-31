@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {DrawerActions, NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -15,16 +15,18 @@ import {AuthenticationParamList} from '../storyboard';
 import {DrawerStoryBoard} from '../storyboard/DrawerStoryBoard';
 import PureCoin from '../container/Page/PageMain/PureCoin/PureCoin';
 import PureChart from '../container/Page/PageMain/PureChart/PureChart';
-import {useAppSelector} from '../shared-state/Redux/Hook/Hook';
+import {useAppDispatch, useAppSelector} from '../shared-state/Redux/Hook/Hook';
 import ReactNativeModal from 'react-native-modal';
 import PopupOnLogin from '../component/Popup/PopupOnLogin';
 import ProgarmLures from '../container/Page/PageMain/PureGift/ProgarmLures';
 import ReportError from '../container/Page/Authentication/ReportError/ReportError';
+import { showModalLogin } from '../shared-state/Redux/Actions/AuthenticationActions';
 
 const Drawer = createDrawerNavigator<DrawerStoryBoard>();
 
 const PageDrawer: React.FC = props => {
   const isLogged = useAppSelector(state => state.authentication.isLogged);
+  const dispatch = useAppDispatch();
 
   return (
     <Drawer.Navigator
@@ -91,8 +93,8 @@ const PageDrawer: React.FC = props => {
         component={PureCoin}
         listeners={{
           drawerItemPress: ({}) => {
-            
-          }
+            isLogged ? null : dispatch(showModalLogin(true));
+          },
         }}
         options={{
           drawerLabel({focused, color}) {
@@ -122,14 +124,14 @@ const PageDrawer: React.FC = props => {
         }}
       />
       <Drawer.Screen
-        name='ProgarmLures'
+        name="ProgarmLures"
         component={ProgarmLures}
         options={{
           drawerItemStyle: {display: 'none'},
         }}
       />
       <Drawer.Screen
-        name='ReportError'
+        name="ReportError"
         component={ReportError}
         options={{
           drawerItemStyle: {display: 'none'},

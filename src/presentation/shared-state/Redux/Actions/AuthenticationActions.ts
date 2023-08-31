@@ -4,4 +4,8 @@ const Login = createAction<boolean, 'authentication/login'>('authentication/logi
 
 const checkOTP = createAction<boolean, 'authentication/checkOTP'>('authentication/checkOTP');
 
-export {Login, checkOTP}
+const showModalLogin = createAction<boolean, 'authentication/showModalLogin'>('authentication/showModalLogin');
+
+const getMyPlace = createAction<number, 'authentication/getMyPlace'>('authentication/getMyPlace');
+
+export {Login, checkOTP, showModalLogin, getMyPlace}

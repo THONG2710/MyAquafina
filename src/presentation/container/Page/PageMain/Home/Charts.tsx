@@ -6,33 +6,33 @@ import {
   TextProps,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {FlatList} from 'react-native';
 import ItemChart from '../../../../component/Item/ItemChart';
 import {ScrollView} from 'react-native';
-import {useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
+import {useAppDispatch, useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
 import ItemMyRank from '../../../../component/Item/ItemMyRank';
 import ButtonImg from '../../../../component/Button/ButtonImg';
+import { fetchUsers } from '../../../../shared-state/Redux/Thunks/GetUsersThunks';
+import * as Progress from 'react-native-progress';
 
 export interface ChartsProp extends TextProps {
   navigation?: any;
 }
 
-const list = [
-  {_id: 1},
-  {_id: 2},
-  {_id: 3},
-  {_id: 4},
-  {_id: 5},
-  {_id: 6},
-  {_id: 7},
-];
-
 const Charts: React.FC<ChartsProp> = props => {
   const {navigation} = props;
   const isLogged = useAppSelector(state => state.authentication.isLogged);
+  const dispatch = useAppDispatch();
+  const lisUsers = useAppSelector((state) => state.UsersReduer.listUsers);
+  const user = useAppSelector((state) => state.LoginReducer.user);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [])
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -79,8 +79,8 @@ const Charts: React.FC<ChartsProp> = props => {
         <Text style={styles.chart_txtTime}>13/06/2022 - 19/06/2022</Text>
         <View style={styles.chart_table}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {list.map((item, index) => {
-              return <ItemChart places={index + 1} key={item._id} />;
+            {lisUsers.map((item, index) => {
+              return <ItemChart data={item} places={index + 1}  key={item.id} />;
             })}
           </ScrollView>
         </View>
@@ -88,11 +88,12 @@ const Charts: React.FC<ChartsProp> = props => {
         {isLogged ? (
           <View style={styles.chart_footer}>
             <Text style={styles.chart_note}>Hạng của tôi</Text>
-            <ItemMyRank />
+            <ItemMyRank user={user}/>
             <ButtonImg
               btnStyle={{width: Dimensions.get('screen').width - 80}}
               isButtonLight={true}
               text="Xem chi tiết"
+              onPress={() => navigation.navigate('PureChart')}
             />
           </View>
         ) : (

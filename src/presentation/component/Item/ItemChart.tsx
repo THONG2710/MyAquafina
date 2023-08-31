@@ -7,16 +7,18 @@ import {
   TextProps,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import { user } from '../../shared-state/Redux/Reducers/GetUsersReducer';
 
 export interface ItemChartProps extends TextProps {
   places?: number;
+  data: user;
 }
 
 const ItemChart: React.FC<ItemChartProps> = props => {
-  const {places} = props;
+  const {places, data} = props;
 
   const HandleRenderChart = () => {
     if (places == 1) {
@@ -31,9 +33,9 @@ const ItemChart: React.FC<ItemChartProps> = props => {
             <View style={styles.inforBox}>
               <Image
                 style={styles.avatar}
-                source={require('../../resource/images/avatar.png')}
+                source={{uri: data.avatar}}
               />
-              <Text style={styles.name}>John Wick</Text>
+              <Text style={styles.name}>{data.name}</Text>
               <View style={styles.crownContainer}>
                 <Image
                   style={styles.crown}
@@ -42,7 +44,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               </View>
             </View>
           </View>
-          <Text style={styles.score}>1000</Text>
+          <Text style={styles.score}>{data.scores}</Text>
         </View>
       );
     } else if (places === 2) {
@@ -57,9 +59,9 @@ const ItemChart: React.FC<ItemChartProps> = props => {
             <View style={styles.inforBox}>
               <Image
                 style={styles.avatar}
-                source={require('../../resource/images/avatar.png')}
+                source={{uri: data.avatar}}
               />
-              <Text style={styles.name}>John Wick</Text>
+              <Text style={styles.name}>{data.name}</Text>
               <View style={[styles.crownContainer, {backgroundColor: colors.BLUE2}]}>
                 <Image
                   style={styles.crown}
@@ -68,7 +70,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               </View>
             </View>
           </View>
-          <Text style={styles.score}>1000</Text>
+          <Text style={styles.score}>{data.scores}</Text>
         </View>
       );
     } else if (places === 3) {
@@ -83,9 +85,9 @@ const ItemChart: React.FC<ItemChartProps> = props => {
             <View style={styles.inforBox}>
               <Image
                 style={styles.avatar}
-                source={require('../../resource/images/avatar.png')}
+                source={{uri: data.avatar}}
               />
-              <Text style={styles.name}>John Wick</Text>
+              <Text style={styles.name}>{data.name}</Text>
               <View style={[styles.crownContainer, {backgroundColor: colors.LIGHT_9_BLUE}]}>
                 <Image
                   style={styles.crown}
@@ -94,7 +96,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               </View>
             </View>
           </View>
-          <Text style={styles.score}>1000</Text>
+          <Text style={styles.score}>{data.scores}</Text>
         </View>
       );
     } else {
@@ -107,12 +109,12 @@ const ItemChart: React.FC<ItemChartProps> = props => {
             <View style={styles.inforBox}>
               <Image
                 style={[styles.avatar, ]}
-                source={require('../../resource/images/avatar.png')}
+                source={{uri: data.avatar}}
               />
-              <Text style={[styles.name, {color: colors.GRAY}]}>John Wick</Text>
+              <Text style={[styles.name, {color: colors.GRAY}]}>{data.name}</Text>
             </View>
           </View>
-          <Text style={[styles.score, {color: colors.GRAY}]}>1000</Text>
+          <Text style={[styles.score, {color: colors.GRAY}]}>{data.scores}</Text>
         </View>
       );
     }
@@ -172,6 +174,8 @@ const styles = StyleSheet.create({
   name: {
     color: colors.WHITE,
     fontFamily: fonts.primaryFont,
+    fontSize: 10,
+    fontWeight: 'bold',
   },
 
   crownContainer: {

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -17,13 +17,17 @@ import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import Modal, { ReactNativeModal } from 'react-native-modal';
 import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
-import {useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
+import {useAppDispatch, useAppSelector} from '../../../../shared-state/Redux/Hook/Hook';
 import PopupConfirmLogout from '../../../../component/Popup/PopupConfirmLogout';
+import { resetUser } from '../../../../shared-state/Redux/Reducers/LoginReducer';
+import { Login } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
 
 const CutomDrawer: React.FC<any> = props => {
   const {navigation} = props;
   const isLogged = useAppSelector(state => state.authentication.isLogged);
   const [showPopup, setShowPopup] = useState(false);
+  const user = useAppSelector((state) => state.LoginReducer.user);
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     if (isLogged) {
@@ -35,10 +39,16 @@ const CutomDrawer: React.FC<any> = props => {
     }
   }
 
+  const Logout = () => {
+    dispatch(resetUser());
+    dispatch(Login(false))
+    setShowPopup(false);
+  }
+
   return (
     <View style={styles.container}>
       <Modal isVisible={showPopup}>
-        <PopupConfirmLogout onPress={() => setShowPopup(false)} onPressLogout={() => navigation.replace('AuthenticationStack')}/>
+        <PopupConfirmLogout onPress={() => setShowPopup(false)} onPressLogout={Logout}/>
       </Modal>
       {/* header */}
       <View style={styles.header}>
@@ -61,9 +71,9 @@ const CutomDrawer: React.FC<any> = props => {
         <View style={styles.information}>
           <Image
             style={styles.information_avatar}
-            source={require('../../../../resource/images/avatar3.png')}
+            source={{uri: user.avatar}}
           />
-          <Text style={styles.information_txtName}>Lê Quỳnh Ái Vân</Text>
+          <Text style={styles.information_txtName}>{user.name}</Text>
         </View>
       ) : (
         <View style={styles.information}>
@@ -131,6 +141,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     resizeMode: 'contain',
+    borderRadius: 20,
   },
 
   information_txtName: {

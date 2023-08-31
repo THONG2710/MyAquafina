@@ -13,7 +13,10 @@ import React, {useEffect, useState} from 'react';
 import {colors} from '../../resource/values/color';
 import PopupConfirmLogout from '../Popup/PopupConfirmLogout';
 import Modal from 'react-native-modal';
-import {useAppSelector} from '../../shared-state/Redux/Hook/Hook';
+import {useAppDispatch, useAppSelector} from '../../shared-state/Redux/Hook/Hook';
+import { Login, showModalLogin } from '../../shared-state/Redux/Actions/AuthenticationActions';
+import { fetchLogin } from '../../shared-state/Redux/Thunks/LoginThunk';
+import { LoginReducer, resetUser } from '../../shared-state/Redux/Reducers/LoginReducer';
 
 export interface HeaderComponentProps extends TextProps {
   headerStyle?: StyleProp<ViewStyle>;
@@ -24,6 +27,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = props => {
   const {headerStyle, navigation} = props;
   const [isVisible, setIsVisible] = useState(false);
   const isLogged = useAppSelector(state => state.authentication.isLogged);
+  const dispatch = useAppDispatch();
 
   const onToggleModal = () => {
     isLogged
@@ -31,10 +35,16 @@ const HeaderComponent: React.FC<HeaderComponentProps> = props => {
       : navigation.replace('AuthenticationStack');
   };
 
+  const handleLogout = () => {
+    dispatch(Login(false));
+    dispatch(resetUser())
+    setIsVisible(!isVisible);
+  }
+
   return (
     <View style={[styles.header, headerStyle]}>
       <Modal isVisible={isVisible}>
-        <PopupConfirmLogout onPress={onToggleModal} onPressLogout={()=>navigation.replace("AuthenticationStack")}/>
+        <PopupConfirmLogout onPress={onToggleModal} onPressLogout={handleLogout}/>
       </Modal>
       <Pressable onPress={() => navigation.openDrawer()}>
         <Image

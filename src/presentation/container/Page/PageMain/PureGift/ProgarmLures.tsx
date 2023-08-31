@@ -272,7 +272,7 @@ const ProgarmLures: React.FC<ProgarmLuresProp> = (props) => {
         </View>
 
         <View style={styles.end}>
-            <ButtonImg btnStyle={{width: Dimensions.get('screen').width/3, zIndex: 10,}} text='Đã hiểu'/>
+            <ButtonImg btnStyle={{width: Dimensions.get('screen').width/3, zIndex: 10,}} text='Đã hiểu' onPress={() => navigation.goBack()}/>
         </View>
 
         {/* footer */}
