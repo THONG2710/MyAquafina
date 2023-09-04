@@ -4,6 +4,7 @@ import {colors} from '../../../../../resource/values/color';
 import {fonts} from '../../../../../resource/values/fonts';
 import ButtonImg from '../../../../../component/Button/ButtonImg';
 import { BannersProp } from './Banners';
+import { bag2, rippleRing, rippleRing3, shirt2, xanh } from '../../../../../resource/images';
 
 const Banner4:React.FC<BannersProp> = (props) => {
   const {navigation} = props;
@@ -11,28 +12,28 @@ const Banner4:React.FC<BannersProp> = (props) => {
     <View style={styles.container}>
       <Image
         style={styles.background1}
-        source={require('../../../../../resource/images/rippleRing3.png')}
+        source={{uri: rippleRing3}}
       />
       <Image
         style={styles.background2}
-        source={require('../../../../../resource/images/rippleRing.png')}
+        source={{uri: rippleRing}}
       />
       <View style={styles.titleContainer}>
         <Text style={styles.txtTitle}>THỂ LỆ{'\n'}CHƯƠNG TRÌNH</Text>
         <Text style={styles.txtTitle2}>NHẬN QUÀ{'\n'}SỐNG</Text>
         <Image
           style={styles.imgXanh}
-          source={require('../../../../../resource/images/xanh.png')}
+          source={{uri: xanh}}
         />
       </View>
       <View style={styles.imgContainer}>
         <Image
           style={styles.imgShirt}
-          source={require('../../../../../resource/images/shirt2.png')}
+          source={{uri: shirt2}}
         />
         <Image
           style={styles.imgBag}
-          source={require('../../../../../resource/images/bag2.png')}
+          source={{uri: bag2}}
         />
       </View>
       <View style={styles.footer}>

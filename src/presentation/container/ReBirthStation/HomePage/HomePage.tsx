@@ -13,6 +13,7 @@ import {colors} from '../../../resource/values/color';
 import {fonts} from '../../../resource/values/fonts';
 import {HomePageProp} from './type';
 import CircleButton from '../../../component/Button/CircleButton';
+import { QRCode, adv, bottle2, cuttingBig, cuttingMask, logoAquafina } from '../../../resource/images';
 
 const HomePage: React.FC<HomePageProp> = props => {
   const {navigation} = props;
@@ -22,7 +23,7 @@ const HomePage: React.FC<HomePageProp> = props => {
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={{uri:logoAquafina}}
         />
         <Text style={[styles.text, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
@@ -36,7 +37,7 @@ const HomePage: React.FC<HomePageProp> = props => {
             top: 54,
             left: 50,
           }}
-          source={require('../../../resource/images/cuttingMask.png')}
+          source={{uri: cuttingMask}}
         />
         <Text style={[styles.text, styles.header_txtLine3]}>CỦA AQUAFINA</Text>
         <Text style={[styles.text, styles.header_txtLine4]}>
@@ -48,14 +49,14 @@ const HomePage: React.FC<HomePageProp> = props => {
       <View style={styles.body}>
         <ImageBackground
           style={styles.body_bgImage}
-          source={require('../../../resource/images/adv.png')}
+          source={{uri: adv}}
         />
         <Image
           style={styles.body_imgBottle}
-          source={require('../../../resource/images/cuttingBig.png')}
+          source={{uri: cuttingBig}}
         />
         <Image
-          source={require('../../../resource/images/bottle2.png')}
+          source={{uri: bottle2}}
           style={styles.body_backgroundCuttingMask}
         />
         <CircleButton
@@ -73,7 +74,7 @@ const HomePage: React.FC<HomePageProp> = props => {
         <View style={styles.body_moreInfo}>
           <Image
             style={styles.body_QA}
-            source={require('../../../resource/images/QRcode.png')}
+            source={{uri: QRCode}}
           />
           <Text style={[styles.text, styles.body_txtMore]}>Xem thêm</Text>
         </View>

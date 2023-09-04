@@ -15,6 +15,7 @@ import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import { SingInProp } from './type';
+import { adv, cuttingBig, cuttingMask, home, logoAquafina } from '../../../../resource/images';
 
 const SignIn:React.FC<SingInProp> = (props) => {
   const {navigation} = props;
@@ -24,11 +25,11 @@ const SignIn:React.FC<SingInProp> = (props) => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.backgroundAdv}
-        source={require('../../../../resource/images/adv.png')}
+        source={{uri: adv}}
       />
       <ImageBackground
         style={styles.backgroundCutting}
-        source={require('../../../../resource/images/cuttingBig.png')}
+        source={{uri: cuttingBig}}
       />
 
       <LinearGradient
@@ -43,18 +44,18 @@ const SignIn:React.FC<SingInProp> = (props) => {
       <Pressable onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
-          source={require('../../../../resource/images/home.png')}
+          source={{uri: home}}
         />
       </Pressable>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Image
           style={styles.header_imgCuttingMask}
-          source={require('../../../../resource/images/cuttingMask.png')}
+          source={{uri: cuttingMask}}
         />
         <Text style={[styles.txt, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
@@ -78,7 +79,7 @@ const SignIn:React.FC<SingInProp> = (props) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: true})}/>
+        <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: true, name: ''})}/>
         {/* <ButtonImg isButtonLight={false} text='Đăng nhập' onPress={() => dispatch(fetchImages())}/> */}
         <Text style={[styles.txt, styles.footer_or]}>Hoặc</Text>
         <ButtonImg isButtonLight={true} text='Đăng kí' onPress={() => navigation.navigate('SignUp')}/>

@@ -4,6 +4,7 @@ import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
 import Background from '../Background/Background';
 import CircleButton from '../Button/CircleButton';
+import { cuttingMask } from '../../resource/images';
 
 export interface ModalThanksProps extends TextProps {
   onPress?: () => void;
@@ -18,7 +19,7 @@ const PopupThanks: React.FC<ModalThanksProps> = (props) => {
       {/* title */}
       <View style={styles.titleContainer}>
         <Text style={styles.title_txtLine1}>TRẠM TÁI SINH</Text>
-        <Image style={{ width: 100, height: 100, position: 'absolute', top: -5, left: 30 }} source={require('../../resource/images/cuttingMask.png')} />
+        <Image style={{ width: 100, height: 100, position: 'absolute', top: -5, left: 30 }} source={{uri: cuttingMask}} />
         <Text style={styles.title_txtLine2}>CỦA AQUAFINA</Text>
         <Text style={styles.title_txtLine3}>
           NƠI TÁI SINH VÒNG ĐỜI MỚI CHO CHAI NHỰA

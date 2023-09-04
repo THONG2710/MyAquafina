@@ -18,6 +18,7 @@ import ReactNativeModal from 'react-native-modal';
 import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
 import { useAppDispatch, useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
 import { showModalLogin } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import { btnCamera, message2, ripple, strokeAqua } from '../../../../resource/images';
 
 const PureCoin: React.FC<PureCoinProp> = props => {
   const {navigation} = props;
@@ -25,11 +26,16 @@ const PureCoin: React.FC<PureCoinProp> = props => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.LoginReducer.user)
 
+  const handleCancle = () => {
+    dispatch(showModalLogin(false))
+    navigation.navigate('HomePage');
+  }
+
   return (
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} />
       <ReactNativeModal isVisible={showModal}>
-        <PopupOnLogin onPress={() => dispatch(showModalLogin(false))} />
+        <PopupOnLogin onPress={handleCancle} onLogin={() => navigation.replace('AuthenticationStack')}/>
       </ReactNativeModal>
       <ScrollView>
         {/* title */}
@@ -44,7 +50,7 @@ const PureCoin: React.FC<PureCoinProp> = props => {
           <Pressable>
             <Image
               style={styles.avatar_btnChange}
-              source={require('../../../../resource/images/btnCamera.png')}
+              source={{uri: btnCamera}}
             />
           </Pressable>
         </View>
@@ -57,13 +63,13 @@ const PureCoin: React.FC<PureCoinProp> = props => {
         <Image
           style={styles.background}
           tintColor={colors.LIGHT_4_BLUE}
-          source={require('../../../../resource/images/ripple.png')}
+          source={{uri: ripple}}
         />
         {/* coin */}
         <View style={styles.coin}>
           <Image
             style={styles.coin_imgBackground}
-            source={require('../../../../resource/images/message2.png')}
+            source={{uri:message2}}
           />
           <Text style={styles.coin_text}>Số Điểm tích lũy:</Text>
           <Text style={styles.coin_textScore}>{user.scores}</Text>
@@ -80,7 +86,7 @@ const PureCoin: React.FC<PureCoinProp> = props => {
         <View style={styles.stroke}>
           <Image
             style={styles.stroke_image}
-            source={require('../../../../resource/images/strokeAqua.png')}
+            source={{uri: strokeAqua}}
           />
         </View>
         {/* footer */}

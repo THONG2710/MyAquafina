@@ -21,6 +21,7 @@ import {useAppDispatch, useAppSelector} from '../../../../shared-state/Redux/Hoo
 import PopupConfirmLogout from '../../../../component/Popup/PopupConfirmLogout';
 import { resetUser } from '../../../../shared-state/Redux/Reducers/LoginReducer';
 import { Login } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import { avatarDefault, logoAquafina, logout, x2 } from '../../../../resource/images';
 
 const CutomDrawer: React.FC<any> = props => {
   const {navigation} = props;
@@ -55,13 +56,13 @@ const CutomDrawer: React.FC<any> = props => {
         <Pressable onPress={() => navigation.closeDrawer()}>
           <Image
             style={styles.header_btnX}
-            source={require('../../../../resource/images/x2.png')}
+            source={{uri: x2}}
           />
         </Pressable>
         <Pressable onPress={() => navigation.navigate('HomePage')}>
           <Image
             style={styles.header_logo}
-            source={require('../../../../resource/images/logoAquafina.png')}
+            source={{uri: logoAquafina}}
           />
         </Pressable>
         <View></View>
@@ -79,7 +80,7 @@ const CutomDrawer: React.FC<any> = props => {
         <View style={styles.information}>
           <Image
             style={styles.information_avatar}
-            source={require('../../../../resource/images/avatarDefault.png')}
+            source={{uri: avatarDefault}}
           />
           <Text style={styles.information_txtName2}>User is not sign in</Text>
         </View>
@@ -92,7 +93,7 @@ const CutomDrawer: React.FC<any> = props => {
         <TouchableOpacity style={styles.footer_btnLogout} onPress={handleLogout}>
           <Image
             style={styles.footer_img}
-            source={require('../../../../resource/images/logout.png')}
+            source={{uri: logout}}
           />
           <Text style={styles.footer_text}>{isLogged ? 'Sign out' : 'Sign in'}</Text>
         </TouchableOpacity>

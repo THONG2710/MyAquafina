@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { fetchImages } from "../Thunks/ImagesThunks";
 
 export type image = {
-    link: string;
+    gift: {id: string, name: string, image: string, quantity: number, value: string}
 }
 
 export type imageState = {
@@ -20,7 +20,7 @@ export const ImageReducer = createReducer(
         .addCase(fetchImages.pending, (state, action) => {
             // console.log('pending' + state.list[0]);
         })
-        .addCase(fetchImages.fulfilled, (state, action) => {
+        .addCase(fetchImages.fulfilled, (state, action: any) => {
             state.list = action.payload;
         })
         .addCase(fetchImages.rejected, (state, action) => {

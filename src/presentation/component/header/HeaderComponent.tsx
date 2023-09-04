@@ -17,6 +17,7 @@ import {useAppDispatch, useAppSelector} from '../../shared-state/Redux/Hook/Hook
 import { Login, showModalLogin } from '../../shared-state/Redux/Actions/AuthenticationActions';
 import { fetchLogin } from '../../shared-state/Redux/Thunks/LoginThunk';
 import { LoginReducer, resetUser } from '../../shared-state/Redux/Reducers/LoginReducer';
+import { logoAquafina, logout, menu } from '../../resource/images';
 
 export interface HeaderComponentProps extends TextProps {
   headerStyle?: StyleProp<ViewStyle>;
@@ -49,19 +50,19 @@ const HeaderComponent: React.FC<HeaderComponentProps> = props => {
       <Pressable onPress={() => navigation.openDrawer()}>
         <Image
           style={styles.header_menu}
-          source={require('../../resource/images/menu.png')}
+          source={{uri: menu}}
         />
       </Pressable>
       <Pressable onPress={() => navigation.navigate('HomePage')}>
         <Image
           style={styles.header_logo}
-          source={require('../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
       </Pressable>
       <Pressable onPress={onToggleModal}>
         <Image
           style={styles.header_logout}
-          source={require('../../resource/images/logout.png')}
+          source={{uri: logout}}
         />
       </Pressable>
     </View>

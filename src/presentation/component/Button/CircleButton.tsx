@@ -15,6 +15,7 @@ import React from 'react';
 import {Path, Svg} from 'react-native-svg';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import { arrowBlue } from '../../resource/images';
 
 export interface CircleButtonProps extends TextProps {
   CircleButtonStyle?: StyleProp<ViewStyle>;
@@ -29,7 +30,7 @@ const CircleButton: React.FC<CircleButtonProps> = (props) => {
   return (
       <TouchableOpacity style={[styles.container, CircleButtonStyle]} onPress={onPress}>
         <ImageBackground
-          source={require('../../resource/images/arrowBlue.png')}
+          source={{uri: arrowBlue}}
           style={[styles.image, imgStyle]}>
           <View style={styles.view}>
             <Text style={[styles.text, titleStyle]}>{title}</Text>

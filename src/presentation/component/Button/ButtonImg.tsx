@@ -13,6 +13,7 @@ import React from 'react';
 import {fonts} from '../../resource/values/fonts';
 import {colors} from '../../resource/values/color';
 import {Shadow} from 'react-native-shadow-2';
+import { imgBackground, imgBackgroundLight } from '../../resource/images';
 
 export interface ButtonImgProps extends TextProps {
   text?: string;
@@ -35,7 +36,7 @@ const ButtonImg: React.FC<ButtonImgProps> = props => {
             alignItems: 'center',
           }}
           resizeMode='repeat'
-          source={require('../../resource/images/imgBackgroundLight.png')}>
+          source={{uri: imgBackgroundLight}}>
           <Text style={[styles.txtButton, {color: colors.BLUE}]}>{text}</Text>
         </ImageBackground>
       );
@@ -49,7 +50,7 @@ const ButtonImg: React.FC<ButtonImgProps> = props => {
             alignItems: 'center',
           }}
           resizeMode='repeat'
-          source={require('../../resource/images/imgBackground.png')}>
+          source={{uri: imgBackground}}>
           <Text style={styles.txtButton}>{text}</Text>
         </ImageBackground>
       );

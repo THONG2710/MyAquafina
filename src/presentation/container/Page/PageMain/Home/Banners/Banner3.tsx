@@ -5,6 +5,7 @@ import { fonts } from '../../../../../resource/values/fonts'
 import ButtonImg from '../../../../../component/Button/ButtonImg'
 import { BannersProp } from './Banners'
 import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler'
+import { bigBottleAquafina, rippleGradient, title } from '../../../../../resource/images'
 
 const Banner3:React.FC<BannersProp> = (props) => {
   const {navigation} = props;
@@ -18,18 +19,18 @@ const Banner3:React.FC<BannersProp> = (props) => {
         </Text>
         <Image
           style={styles.header_imgRipple}
-          source={require('../../../../../resource/images/title.png')}
+          source={{uri: title}}
         />
       </View>
       {/* body */}
       <View style={styles.body}>
         <Image
           style={styles.body_imgRipple}
-          source={require('../../../../../resource/images/rippleGradient.png')}
+          source={{uri: rippleGradient}}
         />
         <Image
           style={styles.body_imgBottle}
-          source={require('../../../../../resource/images/bigBottleAquafina.png')}
+          source={{uri: bigBottleAquafina}}
         />
       </View>
       <View style={styles.footer}>

@@ -1,27 +1,32 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, TextProps, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import { ripple, shirt } from '../../resource/images';
 
-const ItemGift = () => {
+export interface ItemGiftProp extends TextProps {
+  item?: any
+}
+
+const ItemGift: React.FC<ItemGiftProp> = (prop) => {
+  const { item } = prop;
   return (
     <View style={styles.container}>
       <View style={styles.imgContaier}>
         <Image
           tintColor={colors.BLUE}
           style={styles.backgroundImg}
-          source={require('../../resource/images/ripple.png')}
+          source={{uri: ripple}}
         />
         <Image
           style={styles.imgGift}
-          source={require('../../resource/images/shirt.png')}
+          source={{uri: item.image}}
         />
       </View>
-      <Text style={styles.titleName}>Áo khoác cape Aquafina x Headless</Text>
+      <Text style={styles.titleName}>{item.name}</Text>
       <Text style={styles.txtContent}>
-        Số lượng quà tặng mỗi tuần: 6 Cách thức đổi quà: Trao cho 6 người có
-        điểm Aquaffina cao nhất Giá trị quà tặng (+VAT): 1.200.000 đồng/ áo
-        khoác
+        Số lượng quà tặng mỗi tuần: {item.quantity}{'\n'}Cách thức đổi quà: Trao cho 6 người có
+        điểm Aquaffina cao nhất Giá trị quà tặng (+VAT): {'\n' + item.value}
       </Text>
     </View>
   );

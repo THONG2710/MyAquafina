@@ -1,13 +1,14 @@
 import {Dimensions, Image, StyleSheet, TextProps, View} from 'react-native';
-import React from 'react';
-import Carousel from 'react-native-snap-carousel';
+import React, { useState } from 'react';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import {Text} from 'react-native';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import ItemSlideGift from '../../../../component/Item/ItemSlideGift';
-import Custom from './Custom';
 import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
+import { Slide } from '../PureGift/PureGift';
+import { hat, iconHat, iconShirt, iconSock, iconTote, ripple, shirt, sock, tShirt_b, tShirt_w, tote, xanh } from '../../../../resource/images';
 
 export interface PresentProp extends TextProps {
   navigation?: any;
@@ -15,24 +16,63 @@ export interface PresentProp extends TextProps {
 
 const data = [
   {
-    image: require('../../../../resource/images/shirt.png'),
+    id: 1,
+    name: 'Áo khoác cape\nAquafina x Headles',
+    image: shirt,
+    icon: iconShirt,
+    quantity: 108
   },
   {
-    image: require('../../../../resource/images/hat.png'),
+    id: 2,
+    name: 'Nón lưỡi trai\nAquafina x Repeet',
+    image: hat,
+    icon: iconHat,
+    quantity: 15,
   },
   {
-    image: require('../../../../resource/images/sock.png'),
+    id: 3,
+    name: 'Vớ\nAquafina x Repeet',
+    image: sock,
+    icon: iconSock,
+    quantity: 1,
   },
   {
-    image: require('../../../../resource/images/tShirt_w.png'),
+    id: 4,
+    name: 'Áo thời trang\nAquafina x Repeet',
+    image: tShirt_w,
+    icon: iconShirt,
+    quantity: 7
   },
   {
-    image: require('../../../../resource/images/tShirt_b.png'),
+    id: 5,
+    name: 'Túi tote\nAquafina = Repeet',
+    image: tote,
+    icon: iconTote,
+    quantity: 2
   },
 ];
 
 const Present: React.FC<PresentProp> = (props) => {
   const {navigation} = props;
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+
+  const renderSlide = ({item, index}: {item: Slide, index: number}) => {
+    const isActive: boolean = index === activeItemIndex;
+    const itemStyle = isActive ? styles.activeItem : styles.inactiveItem;
+    const textActiveStyle = isActive ? colors.WHITE : colors.BLUE;
+    const isItemActive = isActive ? true : false
+
+    return (
+      <ItemSlideGift item={item} styleMore={itemStyle} textStyle={textActiveStyle} isActive={isItemActive} isShowRiple={isActive ? 'flex' : 'none'}/>
+    );
+  };
+  
+  const onSnapToItem: any = (index: number) => {
+    setActiveItemIndex(index);
+  };
+
+
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -41,7 +81,7 @@ const Present: React.FC<PresentProp> = (props) => {
         <Text style={[styles.txt, styles.header_title2]}>PHỤ KIỆN</Text>
         <Image
           style={styles.header_xanh}
-          source={require('../../../../resource/images/xanh.png')}
+          source={{uri: xanh}}
         />
         <Text style={[styles.txt]}>
           Tự tin{' '}
@@ -53,8 +93,23 @@ const Present: React.FC<PresentProp> = (props) => {
       </View>
       {/* slides */}
       <View style={styles.slides}>
-        <Image tintColor={colors.LIGHT_11_BLUE} style={styles.slides_imgRipple} source={require('../../../../resource/images/ripple.png')}/>
-        <Custom data={data} />
+        <Image tintColor={colors.LIGHT_11_BLUE} style={styles.slides_imgRipple} source={{uri: ripple}}/>
+        <Carousel
+            data={data}
+            renderItem={renderSlide}
+            sliderWidth={Dimensions.get('screen').width}
+            itemWidth={190}
+            onSnapToItem={index => onSnapToItem(index)}
+          />
+          <Pagination
+            dotsLength={data.length}
+            activeDotIndex={activeItemIndex}
+            containerStyle={styles.paginationContainer}
+            dotStyle={styles.paginationDot}
+            inactiveDotStyle={styles.paginationInactiveDot}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+          />
       </View>
       {/* footer */}
       <View style={styles.footer}>
@@ -121,8 +176,9 @@ const styles = StyleSheet.create({
   // ================ slides =================================
   slides: {
     width: '100%',
-    height: '45%',
+    height: '50%',
     marginTop: 50,
+    zIndex: 10,
   },
 
   slides_imgRipple: {
@@ -132,6 +188,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     top: -120,
     left: -75,
+    zIndex: -10,
   },
 
   // ================= footer ============================
@@ -139,9 +196,47 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignItems: 'center',
+    zIndex: 100,
   },
 
   footer_btn: {
     width: Dimensions.get('screen').width/2,
+  },
+
+  paginationContainer: {
+    paddingVertical: 8,
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: colors.BLUE,
+  },
+  paginationInactiveDot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+
+  activeItem: {
+    backgroundColor: colors.BLUE,
+  },
+
+  textActive: {
+    color: colors.WHITE,
+  },
+
+  intextActive: {
+    color: colors.GRAY,
+  },
+
+  item: {
+    width: 200,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ccc',
+  },
+
+  inactiveItem: {
+    backgroundColor: colors.WHITE,
   },
 });

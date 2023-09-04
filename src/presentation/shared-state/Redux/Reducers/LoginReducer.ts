@@ -4,14 +4,14 @@ import { fetchLogin } from "../Thunks/LoginThunk";
 import firestore from '@react-native-firebase/firestore';
 
 export type currentUser = {
-    user: { id: string, phoneNumber: string, name: string, scores: number, avatar: string },
+    user: { id: string, phoneNumber: string, name: string, scores: number, avatar: string, bottleAqua: number,  bottleOther: number},
     isLoading: boolean
 }
 
 export const resetUser = createAction('LoginReducer/resetUser');
 
 export const INITIAL_LOGIN_STATE: currentUser = {
-    user: { id: '', phoneNumber: '', name: '', scores: 0, avatar: 'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg' },
+    user: { id: '', phoneNumber: '', name: '', scores: 0, avatar: 'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg', bottleAqua: 0, bottleOther: 0 },
     isLoading: false,
 }
 
@@ -30,7 +30,7 @@ export const LoginReducer = createReducer(
 
             })
             .addCase(resetUser, (state) => {
-                state.user = { id: '', phoneNumber: '', name: '', scores: 0, avatar: 'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg' }
+                state.user = { id: '', phoneNumber: '', name: '', scores: 0, avatar: 'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg', bottleAqua: 0, bottleOther: 0  }
             })
 
     }

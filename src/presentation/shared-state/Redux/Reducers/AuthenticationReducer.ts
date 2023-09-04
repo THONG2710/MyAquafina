@@ -2,7 +2,6 @@ import { PayloadAction, createReducer } from "@reduxjs/toolkit";
 import { Login, checkOTP, getMyPlace, showModalLogin } from "../Actions/AuthenticationActions";
 import { fetchImages } from "../Thunks/ImagesThunks";
 
-
 export type AuthenticationState = {
     isLogged: boolean;
     checkOTP: boolean;

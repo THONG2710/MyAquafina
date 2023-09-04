@@ -15,20 +15,22 @@ import {colors} from '../../../../resource/values/color';
 import LinearGradient from 'react-native-linear-gradient';
 import { SignUpProps } from './type';
 import { TouchableOpacity } from 'react-native';
+import { adv, cuttingBig, cuttingMask, home, logoAquafina } from '../../../../resource/images';
 
 const SignUp:React.FC<SignUpProps> = (props) => {
   const {navigation} = props;
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setname] = useState('');
 
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.backgroundAdv}
-        source={require('../../../../resource/images/adv.png')}
+        source={{uri: adv}}
       />
       <ImageBackground
         style={styles.backgroundCutting}
-        source={require('../../../../resource/images/cuttingBig.png')}
+        source={{uri: cuttingBig}}
       />
 
       <LinearGradient
@@ -43,18 +45,18 @@ const SignUp:React.FC<SignUpProps> = (props) => {
       <Pressable onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
-          source={require('../../../../resource/images/home.png')}
+          source={{uri: home}}
         />
       </Pressable>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Image
           style={styles.header_imgCuttingMask}
-          source={require('../../../../resource/images/cuttingMask.png')}
+          source={{uri: cuttingMask}}
         />
         <Text style={[styles.txt, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI
@@ -72,7 +74,7 @@ const SignUp:React.FC<SignUpProps> = (props) => {
           <Text style={[styles.txt, styles.body_titleField]}>
             Họ và tên
           </Text>
-          <TextFeild placeholder="Nhập họ và tên của bạn" />
+          <TextFeild onChangeText={(value) => setname(value)} placeholder="Nhập họ và tên của bạn" />
           <Text style={[styles.txt, styles.body_titleField, {marginTop: 20}]}>
             Số điện thoại
           </Text>
@@ -82,7 +84,7 @@ const SignUp:React.FC<SignUpProps> = (props) => {
 
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg isButtonLight={false} text="Đăng ký" onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: false})}/>
+        <ButtonImg isButtonLight={false} text="Đăng ký" onPress={() => navigation.navigate('OTP', {phoneNumber: phoneNumber, isLogin: false, name: name})}/>
       </View>
     </View>
   );

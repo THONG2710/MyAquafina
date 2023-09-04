@@ -13,6 +13,7 @@ import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { iconFacebook, ripple, warning, youtube } from '../../../../resource/images';
 
 export interface FooterProps extends TextProps {
   footerStyle?: StyleProp<ViewStyle>;
@@ -26,7 +27,7 @@ const Footer: React.FC<FooterProps> = (props) => {
       <Image
         style={styles.rippleBackground}
         tintColor={colors.LIGHT_11_BLUE}
-        source={require('../../../../resource/images/ripple.png')}
+        source={{uri: ripple}}
       />
       {/* body */}
       <View style={styles.body}>
@@ -57,15 +58,15 @@ const Footer: React.FC<FooterProps> = (props) => {
         <View style={styles.footer_follow}>
           <Image
             style={styles.footer_iconFl}
-            source={require('../../../../resource/images/iconFacebook.png')}
+            source={{uri: iconFacebook}}
           />
           <Image
             style={styles.footer_iconFl}
-            source={require('../../../../resource/images/youtube.png')}
+            source={{uri: youtube}}
           />
         </View>
         <Pressable style={styles.footer_waring} onPress={() => navigation.navigate('ReportError')}>
-          <Image style={styles.footer_iconWarning} source={require('../../../../resource/images/warning.png')} />
+          <Image style={styles.footer_iconWarning} source={{uri: warning}} />
           <Text style={styles.footer_textWarning}>Báo Lỗi</Text>
         </Pressable>
         <Text style={styles.footer_end}>Copyright © 2022 Aquafina Vietnam</Text>

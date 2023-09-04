@@ -2,6 +2,7 @@ import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
+import { bigBottleAquafina, rippleGradient, title } from '../../../../resource/images';
 
 const Discover = () => {
   return (
@@ -14,18 +15,18 @@ const Discover = () => {
         </Text>
         <Image
           style={styles.header_imgRipple}
-          source={require('../../../../resource/images/title.png')}
+          source={{uri: title}}
         />
       </View>
       {/* body */}
       <View style={styles.body}>
         <Image
           style={styles.body_imgRipple}
-          source={require('../../../../resource/images/rippleGradient.png')}
+          source={{uri: rippleGradient}}
         />
         <Image
           style={styles.body_imgBottle}
-          source={require('../../../../resource/images/bigBottleAquafina.png')}
+          source={{uri: bigBottleAquafina}}
         />
       </View>
       {/* discover */}

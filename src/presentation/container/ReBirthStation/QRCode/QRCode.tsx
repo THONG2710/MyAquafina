@@ -18,6 +18,7 @@ import CircleButton from '../../../component/Button/CircleButton';
 import {nativeViewGestureHandlerProps} from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
 import {QRCodeProp} from './type';
 import PopupErrorMessage from '../../../component/Popup/PopupErrorMessage';
+import { QRCodeBig, cuttingMask, iconBack, logoAquafina } from '../../../resource/images';
 
 const QRCode: React.FC<QRCodeProp> = props => {
   const {navigation} = props;
@@ -36,7 +37,7 @@ const QRCode: React.FC<QRCodeProp> = props => {
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           TRẠM TÁI SINH CỦA AQUAFINA
@@ -70,7 +71,7 @@ const QRCode: React.FC<QRCodeProp> = props => {
           <Pressable onPress={() => navigation.goBack()}>
             <Image
               style={styles.body_btnBack}
-              source={require('../../../resource/images/iconBack.png')}
+              source={{uri: iconBack}}
             />
           </Pressable>
           <View style={styles.body_NameView}>
@@ -83,7 +84,7 @@ const QRCode: React.FC<QRCodeProp> = props => {
                 top: -10,
                 left: -5,
               }}
-              source={require('../../../resource/images/cuttingMask.png')}
+              source={{uri: cuttingMask}}
             />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
@@ -103,7 +104,7 @@ const QRCode: React.FC<QRCodeProp> = props => {
           </Text>
           <Image
             style={styles.body_imgQRcode}
-            source={require('../../../resource/images/QRCodeBig.png')}
+            source={{uri: QRCodeBig}}
           />
           <Text style={styles.body_txtNotice}>
             Thời gian quét QR còn:{' '}

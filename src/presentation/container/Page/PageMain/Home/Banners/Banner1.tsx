@@ -4,6 +4,7 @@ import {colors} from '../../../../../resource/values/color';
 import {fonts} from '../../../../../resource/values/fonts';
 import ButtonImg from '../../../../../component/Button/ButtonImg';
 import { BannersProp } from './Banners';
+import { rippleRing, talent, xanh } from '../../../../../resource/images';
 
 const Banner1:React.FC<BannersProp> = (props) => {
   const {navigation} = props;
@@ -12,11 +13,11 @@ const Banner1:React.FC<BannersProp> = (props) => {
       {/* Backgroud */}
       <Image
         style={styles.rippleRingBackground}
-        source={require('../../../../../resource/images/rippleRing.png')}
+        source={{uri: rippleRing}}
       />
       <Image
         style={styles.talentBackground}
-        source={require('../../../../../resource/images/talent.png')}
+        source={{uri: talent}}
       />
       {/* title */}
       <View style={styles.titleContainer}>
@@ -27,7 +28,7 @@ const Banner1:React.FC<BannersProp> = (props) => {
           <Text style={[styles.txt, styles.title_childText]}>THẾ GIỚI</Text>
           <Image
             style={styles.title_childImg}
-            source={require('../../../../../resource/images/xanh.png')}
+            source={{uri: xanh}}
           />
         </View>
         <Text style={[styles.txt, styles.title_childText]}>THUẦN KHIẾT</Text>

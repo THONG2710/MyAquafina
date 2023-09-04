@@ -4,7 +4,7 @@ import { fonts } from '../../resource/values/fonts';
 import { colors } from '../../resource/values/color';
 
 export interface ItemDrawerProps extends TextProps {
-  icon?: any;
+  icon?: string;
   label: string;
   isFocused: boolean;
 }
@@ -13,7 +13,7 @@ const ItemDrawer: React.FC<ItemDrawerProps> = props => {
   const {icon, label, isFocused} = props;
   return (
     <View style={styles.container}>
-      <Image tintColor={isFocused?colors.BLUE:colors.GRAY} style={styles.icon} source={icon} />
+      <Image tintColor={isFocused?colors.BLUE:colors.GRAY} style={styles.icon} source={{uri: icon}} />
       <Text style={[styles.label, {color: isFocused?colors.BLUE:colors.GRAY}]}>{label}</Text>
     </View>
   );

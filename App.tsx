@@ -9,11 +9,10 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {StyleSheet} from 'react-native';
 import RootNavigation from './src/presentation/navigation/RootNavigation';
-import Test from './src/presentation/container/Test';
+
 
 function App(): JSX.Element {
-  // return <RootNavigation />;
-  return <Test/>
+  return <RootNavigation />;
 }
 
 const styles = StyleSheet.create({});

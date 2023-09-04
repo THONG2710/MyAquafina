@@ -14,9 +14,10 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import LinearGradient from 'react-native-linear-gradient';
-import MapView from 'react-native-maps';
+import MapView, { UrlTile } from 'react-native-maps';
 import Footer from '../Middle/Footer';
 import { PureMapProp } from './type';
+import { machine, marker, message, partnerCoop, partnerLottemart, ripple, rippleRing, rippleRing2, textRebirthStation } from '../../../../resource/images';
 
 const PureMap:React.FC<PureMapProp> = (props) => {
   const {navigation} = props;
@@ -27,19 +28,19 @@ const PureMap:React.FC<PureMapProp> = (props) => {
         <View style={styles.body}>
           <Image
             style={styles.body_imgTitle}
-            source={require('../../../../resource/images/textRebirthStation.png')}
+            source={{uri: textRebirthStation}}
           />
           <Image
             style={styles.body_imgRipple1}
-            source={require('../../../../resource/images/rippleRing.png')}
+            source={{uri: rippleRing}}
           />
           <Image
             style={styles.body_imgRipple2}
-            source={require('../../../../resource/images/rippleRing2.png')}
+            source={{uri: rippleRing2}}
           />
           <Image
             style={styles.body_imgMachine}
-            source={require('../../../../resource/images/machine.png')}
+            source={{uri: machine}}
           />
         </View>
 
@@ -55,7 +56,7 @@ const PureMap:React.FC<PureMapProp> = (props) => {
               </Text>
               <Image
                 style={styles.header_img}
-                source={require('../../../../resource/images/textRebirthStation.png')}
+                source={{uri: textRebirthStation}}
               />
             </View>
             {/* body */}
@@ -63,22 +64,22 @@ const PureMap:React.FC<PureMapProp> = (props) => {
               <View style={styles.body_itemAddress}>
                 <ImageBackground
                   style={styles.body_imgMess}
-                  source={require('../../../../resource/images/message.png')}>
+                  source={{uri: message}}>
                   <Text style={styles.body_titleAddress}>HÀ NỘI</Text>
                 </ImageBackground>
                 <ImageBackground
                   style={styles.body_imgMess2}
-                  source={require('../../../../resource/images/message.png')}>
+                  source={{uri: message}}>
                   <Text style={styles.body_titleAddress2}>TP. HỒ CHÍ MINH</Text>
                 </ImageBackground>
                 <Image
                   style={styles.body_imgRipple}
                   tintColor={colors.WHITE}
-                  source={require('../../../../resource/images/ripple.png')}
+                  source={{uri: ripple}}
                 />
                 <Image
                   style={styles.body_imgMarker}
-                  source={require('../../../../resource/images/marker.png')}
+                  source={{uri: marker}}
                 />
               </View>
 
@@ -86,11 +87,11 @@ const PureMap:React.FC<PureMapProp> = (props) => {
                 <Image
                   style={styles.address_imgRipple2}
                   tintColor={colors.WHITE}
-                  source={require('../../../../resource/images/ripple.png')}
+                  source={{uri: ripple}}
                 />
                 <Image
                   style={styles.body_imgMarker2}
-                  source={require('../../../../resource/images/marker.png')}
+                  source={{uri: marker}}
                 />
               </View>
 
@@ -98,11 +99,11 @@ const PureMap:React.FC<PureMapProp> = (props) => {
                 <Image
                   style={styles.body_imgRipple3}
                   tintColor={colors.WHITE}
-                  source={require('../../../../resource/images/ripple.png')}
+                  source={{uri: ripple}}
                 />
                 <Image
                   style={styles.body_imgMarker3}
-                  source={require('../../../../resource/images/marker.png')}
+                  source={{uri: marker}}
                 />
               </View>
               <View style={styles.body_btnContainer}>
@@ -118,12 +119,12 @@ const PureMap:React.FC<PureMapProp> = (props) => {
           <Image
             tintColor={colors.LIGHT_11_BLUE}
             style={styles.partnerBackground}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Image
             tintColor={colors.LIGHT_11_BLUE}
             style={styles.partnerBackground2}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Text style={styles.header_title}>ĐỐI TÁC</Text>
           <Text style={styles.title2}>
@@ -133,11 +134,11 @@ const PureMap:React.FC<PureMapProp> = (props) => {
           <View style={styles.partnerContainer}>
             <Image
               style={styles.partnerimg}
-              source={require('../../../../resource/images/partnerCoop.png')}
+              source={{uri: partnerCoop}}
             />
             <Image
               style={styles.partnerimg}
-              source={require('../../../../resource/images/partnerLottemart.png')}
+              source={{uri: partnerLottemart}}
             />
           </View>
 

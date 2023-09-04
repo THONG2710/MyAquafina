@@ -3,6 +3,7 @@ import React from 'react';
 import Background from '../Background/Background';
 import {colors} from '../../resource/values/color';
 import { fonts } from '../../resource/values/fonts';
+import { x } from '../../resource/images';
 
 const PopupSuccessfulErrorReport = () => {
   return (
@@ -10,7 +11,7 @@ const PopupSuccessfulErrorReport = () => {
       <Background/>
       <Text style={styles.text}>BÁO LỖI THÀNH CÔNG!</Text>
       <TouchableOpacity>
-        <Image style={styles.btnX} source={require('../../resource/images/x.png')}/> 
+        <Image style={styles.btnX} source={{uri: x}}/> 
       </TouchableOpacity>
     </View>
   );

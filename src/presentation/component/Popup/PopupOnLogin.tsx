@@ -12,33 +12,37 @@ import React from 'react';
 import {colors} from '../../resource/values/color';
 import ButtonImg from '../Button/ButtonImg';
 import {fonts} from '../../resource/values/fonts';
+import { useAppDispatch } from '../../shared-state/Redux/Hook/Hook';
+import { ripple, x2 } from '../../resource/images';
 
 export interface OnLoginProp extends TextProps {
   onPress?: () => void;
+  onLogin?: () => void;
 }
 
 const PopupOnLogin: React.FC<OnLoginProp> = props => {
-  const {onPress} = props;
+  const {onPress, onLogin} = props;
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <Image
           style={styles.btn_cancle}
           tintColor={colors.BLACK}
-          source={require('../../resource/images/x2.png')}
+          source={{uri: x2}}
         />
       </TouchableOpacity>
       <View style={styles.bodyView}>
         <Image
           tintColor={colors.LIGHT_4_BLUE}
           style={styles.body_imgBackground}
-          source={require('../../resource/images/ripple.png')}
+          source={{uri: ripple}}
         />
         <Text style={styles.body_textTitle}>
           Bạn hãy <Text style={styles.body_textHighlight}>đăng nhập</Text> để
           tiếp tục nhé!
         </Text>
-        <ButtonImg btnStyle={styles.btn_login} text="Đăng nhập" />
+        <ButtonImg btnStyle={styles.btn_login} text="Đăng nhập" onPress={onLogin}/>
       </View>
     </View>
   );

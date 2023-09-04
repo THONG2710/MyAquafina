@@ -20,31 +20,50 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared-state/Redux/Hook/Hook';
-import {Login} from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import {Login, getMyPlace} from '../../../../shared-state/Redux/Actions/AuthenticationActions';
 import {fetchLogin} from '../../../../shared-state/Redux/Thunks/LoginThunk';
+import {fetchSignUp} from '../../../../shared-state/Redux/Thunks/SignUpThunk';
+import { adv, cuttingBig, cuttingMask, home, logoAquafina } from '../../../../resource/images';
 
 const OTP: React.FC<OTPProp> = props => {
   const {navigation} = props;
   const phoneNumber = props.route.params.phoneNumber;
+  const _name = props.route.params.name;
   const isLogin = props.route.params.isLogin;
   const [isCorrect, setIsCorrect] = useState(true);
   const [otpInput, setOTPInput] = useState('');
   const dispatch = useAppDispatch();
   const otp = useRef(null);
   const currentUser = useAppSelector(state => state.LoginReducer.user);
+  const isLogged = useAppSelector(state => state.authentication.isLogged);
+  const listUsers = useAppSelector(state => state.UsersReduer.listUsers);
 
   const HandleOTP = () => {
     if (otpInput == '1234') {
-      setIsCorrect(true);
-      dispatch(Login(true));
-      dispatch(fetchLogin({phoneNumber: phoneNumber}));
-      console.log(currentUser);
-      
-      if (isLogin && currentUser) {
-        navigation.navigate(isLogin ? 'PageDrawer' : 'SignUpSuccess');
+      if (!isLogin) {
+        dispatch(
+          fetchSignUp({
+            avatar:
+              'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg',
+            name: _name,
+            phoneNumber: phoneNumber,
+            scores: 0,
+          }),
+        );
+        navigation.navigate('SignUpSuccess');
       } else {
+        navigation.navigate('PageDrawer');
+        dispatch(fetchLogin({phoneNumber: phoneNumber}));
+        dispatch(Login(true));
         setIsCorrect(false);
+        listUsers.map((item, index) => {
+          if (item.phoneNumber == phoneNumber) {
+            dispatch(getMyPlace(index+1));  
+          }
+        });
       }
+    } else {
+      setIsCorrect(false);
     }
   };
 
@@ -61,11 +80,11 @@ const OTP: React.FC<OTPProp> = props => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.backgroundAdv}
-        source={require('../../../../resource/images/adv.png')}
+        source={{uri: adv}}
       />
       <ImageBackground
         style={styles.backgroundCutting}
-        source={require('../../../../resource/images/cuttingBig.png')}
+        source={{uri: cuttingBig}}
       />
 
       <LinearGradient
@@ -80,18 +99,18 @@ const OTP: React.FC<OTPProp> = props => {
       <TouchableOpacity onPress={() => navigation.replace('PageDrawer')}>
         <Image
           style={styles.iconHome}
-          source={require('../../../../resource/images/home.png')}
+          source={{uri: home}}
         />
       </TouchableOpacity>
       {/* header */}
       <View style={styles.header}>
         <Image
           style={styles.header_logo}
-          source={require('../../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Image
           style={styles.header_imgCuttingMask}
-          source={require('../../../../resource/images/cuttingMask.png')}
+          source={{uri: cuttingMask}}
         />
         <Text style={[styles.txt, styles.header_txtLine1]}>
           CHÀO MỪNG BẠN ĐẾN VỚI

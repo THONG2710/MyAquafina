@@ -10,6 +10,7 @@ import React from 'react';
 import ButtonImg from '../Button/ButtonImg';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import { ripple } from '../../resource/images';
 
 
 export interface ModalConfrimLogoutProp extends TextProps {
@@ -24,7 +25,7 @@ const PopupConfirmLogout: React.FC<ModalConfrimLogoutProp> = props => {
       <Image
         tintColor={colors.LIGHT_4_BLUE}
         style={styles.imgBackground}
-        source={require('../../resource/images/ripple.png')}
+        source={{uri: ripple}}
       />
       <Text style={styles.textTitle}>Bạn có muốn đăng xuất hay không?</Text>
       <View style={styles.buttonView}>

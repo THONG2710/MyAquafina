@@ -3,6 +3,7 @@ import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {Shadow} from 'react-native-shadow-2';
+import { ripple, xanh } from '../../../../resource/images';
 
 const Procedure = () => {
   return (
@@ -16,7 +17,7 @@ const Procedure = () => {
         <Image
           tintColor={colors.WHITE}
           style={styles.body_imgRipple}
-          source={require('../../../../resource/images/ripple.png')}
+          source={{uri: ripple}}
         />
 
         <Shadow distance={5}>
@@ -95,7 +96,7 @@ const Procedure = () => {
           VÀ <Text style={styles.footer_line2}>LAN TỎA</Text>
         </Text>
         <Text style={styles.footer_line4}>PHONG CÁCH</Text>
-        <Image style={styles.footer_img} source={require('../../../../resource/images/xanh.png')} />
+        <Image style={styles.footer_img} source={{uri: xanh}} />
         <Text style={styles.footer_line3}>BỀN VỮNG</Text>
       </View>
     </View>

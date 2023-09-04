@@ -13,6 +13,7 @@ import { fonts } from '../../../resource/values/fonts';
 import { StartProps } from './type';
 import CircleButton from '../../../component/Button/CircleButton';
 import Background from '../../../component/Background/Background';
+import { cuttingMask, frame1, logoAquafina } from '../../../resource/images';
 
 const Start: React.FC<StartProps> = (props) => {
   const {navigation} = props;
@@ -22,7 +23,7 @@ const Start: React.FC<StartProps> = (props) => {
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           HÃY CHO CHAI RỖNG VÀO MÁY
@@ -40,7 +41,7 @@ const Start: React.FC<StartProps> = (props) => {
           </Pressable>
           <View style={styles.body_NameView}>
             <Text style={[styles.textStyle, styles.body_txtLine1]}>TRẠM</Text>
-            <Image style={{ width: 50, height: 50, position: 'absolute', top: -10, left: -5 }} source={require('../../../resource/images/cuttingMask.png')} />
+            <Image style={{ width: 50, height: 50, position: 'absolute', top: -10, left: -5 }} source={{uri: cuttingMask}} />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
             </Text>
@@ -52,7 +53,7 @@ const Start: React.FC<StartProps> = (props) => {
         <View style={styles.imgContainer}>
           <Image
             style={styles.imgMain}
-            source={require('../../../resource/images/frame1.png')}
+            source={{uri: frame1}}
           />
         </View>
         <View style={styles.body_contentContainer}>

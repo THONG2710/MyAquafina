@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
 import { user } from '../../shared-state/Redux/Reducers/GetUsersReducer';
+import { crown, crownBackground } from '../../resource/images';
 
 export interface ItemChartProps extends TextProps {
   places?: number;
@@ -27,7 +28,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
           <View style={styles.left_box}>
             <ImageBackground
               style={styles.placesBackground}
-              source={require('../../resource/images/crownBackground.png')}>
+              source={{uri: crownBackground}}>
               <Text style={styles.textPlaces}>{places}</Text>
             </ImageBackground>
             <View style={styles.inforBox}>
@@ -39,7 +40,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               <View style={styles.crownContainer}>
                 <Image
                   style={styles.crown}
-                  source={require('../../resource/images/crown.png')}
+                  source={{uri: crown}}
                 />
               </View>
             </View>
@@ -53,7 +54,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
           <View style={styles.left_box}>
             <ImageBackground
               style={styles.placesBackground}
-              source={require('../../resource/images/crownBackground.png')}>
+              source={{uri: crownBackground}}>
               <Text style={styles.textPlaces}>{places}</Text>
             </ImageBackground>
             <View style={styles.inforBox}>
@@ -65,7 +66,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               <View style={[styles.crownContainer, {backgroundColor: colors.BLUE2}]}>
                 <Image
                   style={styles.crown}
-                  source={require('../../resource/images/crown.png')}
+                  source={{uri: crown}}
                 />
               </View>
             </View>
@@ -79,7 +80,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
           <View style={styles.left_box}>
             <ImageBackground
               style={styles.placesBackground}
-              source={require('../../resource/images/crownBackground.png')}>
+              source={{uri: crownBackground}}>
               <Text style={styles.textPlaces}>{places}</Text>
             </ImageBackground>
             <View style={styles.inforBox}>
@@ -91,7 +92,7 @@ const ItemChart: React.FC<ItemChartProps> = props => {
               <View style={[styles.crownContainer, {backgroundColor: colors.LIGHT_9_BLUE}]}>
                 <Image
                   style={styles.crown}
-                  source={require('../../resource/images/crown.png')}
+                  source={{uri: crown}}
                 />
               </View>
             </View>

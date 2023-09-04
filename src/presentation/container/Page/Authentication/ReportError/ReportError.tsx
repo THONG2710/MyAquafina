@@ -16,6 +16,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import TextFeild from '../../../../component/Input/TextFeild';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
+import { adv, cuttingBig, down, up } from '../../../../resource/images';
 
 export interface ReportErrorProp extends TextProps {
   navigation: any;
@@ -40,11 +41,11 @@ const ReportError:React.FC<ReportErrorProp> = (props) => {
       {/* background */}
       <ImageBackground
         style={styles.backgroundAdv}
-        source={require('../../../../resource/images/adv.png')}
+        source={{uri: adv}}
       />
       <ImageBackground
         style={styles.backgroundCutting}
-        source={require('../../../../resource/images/cuttingBig.png')}
+        source={{uri: cuttingBig}}
       />
 
       <LinearGradient
@@ -70,10 +71,10 @@ const ReportError:React.FC<ReportErrorProp> = (props) => {
           textStyle={{color: colors.GRAY2}}
           TickIconComponent={() => <></>}
           ArrowDownIconComponent={() => (
-            <Image source={require('../../../../resource/images/down.png')} />
+            <Image source={{uri: down}} />
           )}
           ArrowUpIconComponent={() => (
-            <Image source={require('../../../../resource/images/up.png')} />
+            <Image source={{uri: up}} />
           )}
           open={open}
           value={value}

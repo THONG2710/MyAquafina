@@ -8,4 +8,4 @@ const showModalLogin = createAction<boolean, 'authentication/showModalLogin'>('a
 
 const getMyPlace = createAction<number, 'authentication/getMyPlace'>('authentication/getMyPlace');
 
-export {Login, checkOTP, showModalLogin, getMyPlace}
+export {Login, checkOTP, showModalLogin, getMyPlace, }

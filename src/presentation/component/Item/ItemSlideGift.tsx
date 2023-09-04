@@ -1,31 +1,74 @@
-import {Dimensions, Image, StyleProp, StyleSheet, Text, TextProps, TextStyle, View} from 'react-native';
-import React from 'react';
+import {
+  Alert,
+  Dimensions,
+  Image,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextProps,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React, {useEffect} from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
+import {iconBottle, iconTote, ripple, tote} from '../../resource/images';
 
 export interface ItemSlideProps extends TextProps {
-    styleMore?: StyleProp<TextStyle>
+  styleMore?: StyleProp<ViewStyle>;
+  textStyle?: string;
+  item?: any;
+  isActive?: boolean;
+  isShowRiple?: 'flex' | 'none';
 }
 
-const ItemSlideGift: React.FC<ItemSlideProps> = (props) => {
-    const {styleMore} = props;
+const ItemSlideGift: React.FC<ItemSlideProps> = props => {
+  const {styleMore, item, textStyle, isActive, isShowRiple} = props;
+
   return (
-    <View style={[styles.container, styleMore]}>
-      <View style={styles.imgContainer}>
-        <Image
-          style={styles.img}
-          source={require('../../resource/images/tote.png')}
-        />
-      </View>
-      <View style={styles.infor}>
-        <Text style={styles.name}>Túi tote {'\n'} Aqufina x Repeet</Text>
-      </View>
-      <View style={styles.footer}>
-        <Image tintColor={colors.GRAY} style={styles.icon} source={require('../../resource/images/iconTote.png')} />
-        <Text style={styles.txtQuantity}> ~ 2  </Text>
-        <Image tintColor={colors.GRAY} style={styles.iconBottle} source={require('../../resource/images/iconBottle.png')} />
-      </View>
-    </View>
+      <TouchableOpacity style={[styles.container, styleMore]}>
+        <View
+          style={{
+            width: '100%',
+            height: '50%',
+            alignItems: 'center',
+            overflow: 'hidden',
+            position: 'absolute',
+          }}>
+          <Image
+            tintColor={colors.DARK_BLUE2}
+            style={{position: 'absolute', display: isShowRiple, top: -100, width: 290, height: 290, resizeMode: 'contain'}}
+            source={{uri: ripple}}
+          />
+        </View>
+        <View style={styles.imgContainer}>
+          <Image
+            style={isActive ? styles.imgActive : styles.img}
+            source={{uri: item.image}}
+          />
+        </View>
+        <View style={styles.infor}>
+          <Text style={[styles.name, {color: textStyle}]}>
+            {item.name}
+          </Text>
+        </View>
+        <View style={styles.footer}>
+          <Image
+            tintColor={isActive ? textStyle : colors.GRAY}
+            style={styles.icon}
+            source={{uri: item.icon}}
+          />
+          <Text style={[styles.txtQuantity, {color: textStyle}]}> ~ {item.quantity} </Text>
+          <Image
+            tintColor={isActive ? textStyle : colors.GRAY}
+            style={styles.iconBottle}
+            source={{uri: iconBottle}}
+          />
+        </View>
+      </TouchableOpacity>
   );
 };
 
@@ -38,20 +81,27 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: colors.WHITE,
-    aspectRatio: 1,
+    marginTop: 30,
   },
 
   imgContainer: {
-    width: '100%',
-    height: '60%',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
+    height: '60%',
   },
 
   img: {
     width: 150,
     height: 100,
     resizeMode: 'contain',
+  },
+
+  imgActive: {
+    width: 200,
+    height: 150,
+    resizeMode: 'contain',
+    marginTop: -60,
   },
 
   infor: {
@@ -88,5 +138,5 @@ const styles = StyleSheet.create({
 
   txtQuantity: {
     color: colors.GRAY,
-  }
+  },
 });

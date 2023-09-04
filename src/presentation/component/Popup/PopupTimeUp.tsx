@@ -3,6 +3,7 @@ import React from 'react';
 import {colors} from '../../resource/values/color';
 import {fonts} from '../../resource/values/fonts';
 import {Shadow} from 'react-native-shadow-2';
+import { cuttingMask } from '../../resource/images';
 
 const PopupTimeUp = () => {
   return (
@@ -14,7 +15,7 @@ const PopupTimeUp = () => {
             <View style={styles.header}>
               <Image
                 style={styles.imgCuttingMask}
-                source={require('../../resource/images/cuttingMask.png')}
+                source={{uri: cuttingMask}}
               />
               <Text style={styles.txtTram}>TRẠM</Text>
               <Text style={styles.txtTaiSinh}>TÁI SINH</Text>

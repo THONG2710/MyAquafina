@@ -20,6 +20,10 @@ import ItemMyRank from '../../../../component/Item/ItemMyRank';
 import Footer from '../Middle/Footer';
 import { useAppDispatch, useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
 import { fetchUsers } from '../../../../shared-state/Redux/Thunks/GetUsersThunks';
+import ReactNativeModal from 'react-native-modal';
+import PopupOnLogin from '../../../../component/Popup/PopupOnLogin';
+import { showModalLogin } from '../../../../shared-state/Redux/Actions/AuthenticationActions';
+import { ripple } from '../../../../resource/images';
 
 const list2 = [
   '06/2022 Tuần 1',
@@ -36,6 +40,7 @@ const PureChart: React.FC<PureChartProp> = props => {
   // const [listUsers, setlistUsers] = useState([]);
   const listUsers = useAppSelector((state) => state.UsersReduer.listUsers)
   const user = useAppSelector((state) => state.LoginReducer.user)
+  const showModal = useAppSelector((state) => state.authentication.showModalLogin)
 
   const handleClickButton = (item: any) => {
     console.log(item);
@@ -45,14 +50,22 @@ const PureChart: React.FC<PureChartProp> = props => {
     dispatch(fetchUsers());
   }, [])
 
+  const handleCancle = () => {
+    dispatch(showModalLogin(false))
+    navigation.navigate('HomePage');
+  }
+
   return (
     <View style={styles.container}>
+      <ReactNativeModal isVisible={showModal}>
+        <PopupOnLogin onPress={handleCancle} onLogin={() => navigation.replace('AuthenticationStack')}/>
+      </ReactNativeModal>
       <HeaderComponent navigation={navigation} />
       <ScrollView>
         <View style={styles.charts}>
           <Image
             style={styles.chart_background}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Text style={styles.chart_title}>Bảng xếp hạng </Text>
           <GroupButton buttons={list2} onChangeButton={handleClickButton} />

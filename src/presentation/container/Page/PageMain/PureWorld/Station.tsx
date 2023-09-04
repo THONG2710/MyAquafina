@@ -2,6 +2,7 @@ import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import { colors } from '../../../../resource/values/color';
 import { fonts } from '../../../../resource/values/fonts';
+import { machine, rippleRing, rippleRing2, textRebirthStation } from '../../../../resource/images';
 
 const Station = () => {
   return (
@@ -10,11 +11,11 @@ const Station = () => {
       <View style={styles.body}>
         <Image
             style={styles.body_imgTitle}
-          source={require('../../../../resource/images/textRebirthStation.png')}
+          source={{uri: textRebirthStation}}
         />
-        <Image style={styles.body_imgRipple1} source={require('../../../../resource/images/rippleRing.png')} />
-        <Image style={styles.body_imgRipple2} source={require('../../../../resource/images/rippleRing2.png')} />
-        <Image style={styles.body_imgMachine} source={require('../../../../resource/images/machine.png')} />
+        <Image style={styles.body_imgRipple1} source={{uri:rippleRing}} />
+        <Image style={styles.body_imgRipple2} source={{uri: rippleRing2}} />
+        <Image style={styles.body_imgMachine} source={{uri: machine}} />
       </View>
       {/* content */}
       <View style={styles.content}>

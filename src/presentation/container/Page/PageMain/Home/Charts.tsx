@@ -17,6 +17,7 @@ import ItemMyRank from '../../../../component/Item/ItemMyRank';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import { fetchUsers } from '../../../../shared-state/Redux/Thunks/GetUsersThunks';
 import * as Progress from 'react-native-progress';
+import { bottleAqualeft, bottleOtherRight, map, ripple, strokeAqua } from '../../../../resource/images';
 
 export interface ChartsProp extends TextProps {
   navigation?: any;
@@ -40,7 +41,7 @@ const Charts: React.FC<ChartsProp> = props => {
         {/* Background Header */}
         <Image
           style={styles.header_BackgroundStroke}
-          source={require('../../../../resource/images/strokeAqua.png')}
+          source={{uri: strokeAqua}}
         />
 
         <Text style={styles.header_title}>Tổng số chai nhựa thu được</Text>
@@ -49,12 +50,12 @@ const Charts: React.FC<ChartsProp> = props => {
           {/* Background */}
           <Image
             style={styles.header_BackgroundMap}
-            source={require('../../../../resource/images/map.png')}
+            source={{uri: map}}
           />
           <View style={styles.header_boxInfor}>
             <Image
               style={styles.header_bottleLeft}
-              source={require('../../../../resource/images/bottleAqualeft.png')}
+              source={{uri: bottleAqualeft}}
             />
             <Text style={styles.header_txtQuantity}>200.000</Text>
             <Text style={styles.header_txtBottleName}>Chai AQUAFINA</Text>
@@ -62,7 +63,7 @@ const Charts: React.FC<ChartsProp> = props => {
           <View style={styles.header_boxInfor}>
             <Image
               style={styles.header_bottleRight}
-              source={require('../../../../resource/images/bottleOtherRight.png')}
+              source={{uri: bottleOtherRight}}
             />
             <Text style={styles.header_txtQuantity}>100.000</Text>
             <Text style={styles.header_txtBottleName}>Chai khác</Text>
@@ -73,7 +74,7 @@ const Charts: React.FC<ChartsProp> = props => {
       <View style={styles.charts}>
         <Image
           style={styles.chart_background}
-          source={require('../../../../resource/images/ripple.png')}
+          source={{uri: ripple}}
         />
         <Text style={styles.chart_title}>Bảng xếp hạng </Text>
         <Text style={styles.chart_txtTime}>13/06/2022 - 19/06/2022</Text>

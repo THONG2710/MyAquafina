@@ -14,6 +14,7 @@ import {LoadingProp} from './type';
 import CircleButton from '../../../component/Button/CircleButton';
 import Background from '../../../component/Background/Background';
 import BackgroundWide from '../../../component/Background/BackgroundWide';
+import { bottle, bottleOther, cuttingMask, iconBack, logoAquafina } from '../../../resource/images';
 
 const Loading: React.FC<LoadingProp> = props => {
   const {navigation} = props;
@@ -23,7 +24,7 @@ const Loading: React.FC<LoadingProp> = props => {
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           CHAI NHỰA ĐANG ĐƯỢC XỬ LÝ...
@@ -36,7 +37,7 @@ const Loading: React.FC<LoadingProp> = props => {
           <Pressable onPress={() => navigation.goBack()}>
             <Image
               style={styles.body_btnBack}
-              source={require('../../../resource/images/iconBack.png')}
+              source={{uri: iconBack}}
             />
           </Pressable>
           <View style={styles.body_NameView}>
@@ -49,7 +50,7 @@ const Loading: React.FC<LoadingProp> = props => {
                 top: -10,
                 left: -5,
               }}
-              source={require('../../../resource/images/cuttingMask.png')}
+              source={{uri: cuttingMask}}
             />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
@@ -80,7 +81,7 @@ const Loading: React.FC<LoadingProp> = props => {
               <View style={styles.body_imgDetailContainer}>
                 <Image
                   style={styles.body_imgDetail}
-                  source={require('../../../resource/images/bottle.png')}
+                  source={{uri: bottle}}
                 />
               </View>
               <View style={styles.body_inforContainer}>
@@ -94,7 +95,7 @@ const Loading: React.FC<LoadingProp> = props => {
               <View style={styles.body_imgDetailContainer}>
                 <Image
                   style={styles.body_imgDetail}
-                  source={require('../../../resource/images/bottleOther.png')}
+                  source={{uri: bottleOther}}
                 />
               </View>
               <View style={styles.body_inforContainer}>

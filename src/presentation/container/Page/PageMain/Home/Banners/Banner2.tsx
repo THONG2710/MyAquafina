@@ -11,6 +11,7 @@ import ButtonImg from '../../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../../resource/values/fonts';
 import {colors} from '../../../../../resource/values/color';
 import { BannersProp } from './Banners';
+import { rippleRing3, video, xanh } from '../../../../../resource/images';
 
 const Banner2: React.FC<BannersProp> = props => {
   const {navigation} = props;
@@ -19,15 +20,15 @@ const Banner2: React.FC<BannersProp> = props => {
       <Text style={styles.title}>Lan tỏa phong cách</Text>
       <Image
         style={styles.imgTitle}
-        source={require('../../../../../resource/images/xanh.png')}
+        source={{uri: xanh}}
       />
       <Image
         style={styles.video}
-        source={require('../../../../../resource/images/video.png')}
+        source={{uri: video}}
       />
       <Image
         style={styles.imgBackground}
-        source={require('../../../../../resource/images/rippleRing3.png')}
+        source={{uri: rippleRing3}}
       />
       <Text style={styles.text}>
         CÙNG <Text style={styles.textHighLight}>AQUAFINA</Text>

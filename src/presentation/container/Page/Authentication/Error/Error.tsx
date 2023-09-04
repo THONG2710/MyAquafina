@@ -12,6 +12,7 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
+import { cuttingMask } from '../../../../resource/images';
 
 const Error = () => {
   return (
@@ -22,14 +23,14 @@ const Error = () => {
       {/* background */}
       <ImageBackground
         style={styles.background}
-        source={require('../../../../resource/images/cuttingMask.png')}
+        source={{uri: cuttingMask}}
       />
 
       {/* body */}
       <View style={styles.body}>
         <ImageBackground
           style={styles.body_layer}
-          source={require('../../../../resource/images/cuttingMask.png')}
+          source={{uri: cuttingMask}}
         />
         <Text style={[styles.txt, styles.body_line1]}>
           <Text style={[styles.txt, styles.body_line1, {fontSize: 80}]}>

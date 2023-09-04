@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
+import { life, rippleRing } from '../../../../resource/images';
 
 const LifeCircle = () => {
   return (
@@ -16,7 +17,7 @@ const LifeCircle = () => {
       {/* Background */}
       <Image
         style={styles.imgBackground}
-        source={require('../../../../resource/images/rippleRing.png')}
+        source={{uri: rippleRing}}
       />
       <View style={styles.titleContainer}>
         <Text style={styles.title1}>
@@ -27,7 +28,7 @@ const LifeCircle = () => {
         </Text>
       </View>
       <View style={styles.imgContainer}>
-        <Image style={styles.imgBody} source={require('../../../../resource/images/life.png')} />
+        <Image style={styles.imgBody} source={{uri: life}} />
       </View>
     </View>
   );

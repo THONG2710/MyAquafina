@@ -1,21 +1,12 @@
 import {Dimensions, ScrollView, StyleSheet, Text, TextProps, View} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeaderComponent from '../../../../component/header/HeaderComponent';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import ItemGift from '../../../../component/Item/ItemGift';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import Footer from '../Middle/Footer';
-
-const data = [
-  {_id: 1},
-  {_id: 2},
-  {_id: 3},
-  {_id: 4},
-  {_id: 5},
-  {_id: 6},
-  {_id: 7},
-];
+import { useAppSelector } from '../../../../shared-state/Redux/Hook/Hook';
 
 export interface ProgarmLuresProp extends TextProps {
   navigation: any;
@@ -23,6 +14,12 @@ export interface ProgarmLuresProp extends TextProps {
 
 const ProgarmLures: React.FC<ProgarmLuresProp> = (props) => {
   const { navigation } = props;
+  const listGift = useAppSelector(state => state.ImageReducer.list);
+
+  useEffect(() => {
+    console.log(listGift);
+    
+  }, [])
   return (
     <View style={styles.container}>
       <HeaderComponent navigation={navigation}/>
@@ -194,8 +191,8 @@ const ProgarmLures: React.FC<ProgarmLuresProp> = (props) => {
               alignItems: 'center',
               marginLeft: 16,
             }}>
-            {data.map(item => (
-              <ItemGift key={item._id} />
+            {listGift.map(item => (
+              <ItemGift key={item.id} item={item}/>
             ))}
           </View>
         </View>

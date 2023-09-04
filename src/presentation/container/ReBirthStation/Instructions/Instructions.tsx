@@ -13,6 +13,7 @@ import {fonts} from '../../../resource/values/fonts';
 import Background from '../../../component/Background/Background';
 import CircleButton from '../../../component/Button/CircleButton';
 import {InstructionsProps} from './type';
+import { cuttingMask, frame1, frame2, frame3, iconBack, logoAquafina } from '../../../resource/images';
 
 const Instructions: React.FC<InstructionsProps> = props => {
   const {navigation} = props;
@@ -22,7 +23,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
       <View style={styles.header}>
         <Image
           style={styles.header_imgLogo}
-          source={require('../../../resource/images/logoAquafina.png')}
+          source={{uri: logoAquafina}}
         />
         <Text style={[styles.textStyle, styles.header_title]}>
           HƯỚNG DẪN THAM GIA
@@ -35,7 +36,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
           <Pressable onPress={() => navigation.goBack()}>
             <Image
               style={styles.body_btnBack}
-              source={require('../../../resource/images/iconBack.png')}
+              source={{uri: iconBack}}
             />
           </Pressable>
           <View style={styles.body_NameView}>
@@ -48,7 +49,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
                 top: -7,
                 left: -6,
               }}
-              source={require('../../../resource/images/cuttingMask.png')}
+              source={{uri: cuttingMask}}
             />
             <Text style={[styles.textStyle, styles.body_txtLine2]}>
               TÁI SINH
@@ -63,7 +64,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../../resource/images/frame1.png')}
+              source={{uri: frame1}}
             />
           </View>
           <View style={styles.contentStepContainer}>
@@ -80,7 +81,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../../resource/images/frame2.png')}
+              source={{uri: frame2}}
             />
           </View>
           <View style={styles.contentStepContainer}>
@@ -100,7 +101,7 @@ const Instructions: React.FC<InstructionsProps> = props => {
           <View style={styles.imgStepContainer}>
             <Image
               style={styles.stepImage}
-              source={require('../../../resource/images/frame3.png')}
+              source={{uri: frame3}}
             />
           </View>
           <View style={styles.contentStepContainer}>

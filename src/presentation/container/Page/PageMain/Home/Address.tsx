@@ -15,6 +15,7 @@ import {colors} from '../../../../resource/values/color';
 import {fonts} from '../../../../resource/values/fonts';
 import {forModalPresentationIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 import ButtonImg from '../../../../component/Button/ButtonImg';
+import { marker, message, ripple, textRebirthStation } from '../../../../resource/images';
 
 export interface AddressProps extends TextProps {
   addressStyle?: StyleProp<ViewStyle>;
@@ -33,7 +34,7 @@ const Address: React.FC<AddressProps> = props => {
         </Text>
         <Image
           style={styles.header_img}
-          source={require('../../../../resource/images/textRebirthStation.png')}
+          source={{uri: textRebirthStation}}
         />
       </View>
       {/* body */}
@@ -41,7 +42,7 @@ const Address: React.FC<AddressProps> = props => {
         <View style={styles.body_itemAddress}>
           <ImageBackground
             style={styles.body_imgMess}
-            source={require('../../../../resource/images/message.png')}>
+            source={{uri: message}}>
             <Text style={styles.body_titleAddress}>NHÀ THI ĐẤU QUÂN KHU 7</Text>
             <Text style={styles.body_address}>
               202 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM
@@ -50,11 +51,11 @@ const Address: React.FC<AddressProps> = props => {
           <Image
             style={styles.body_imgRipple}
             tintColor={colors.WHITE}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Image
             style={styles.body_imgMarker}
-            source={require('../../../../resource/images/marker.png')}
+            source={{uri: marker}}
           />
         </View>
 
@@ -62,11 +63,11 @@ const Address: React.FC<AddressProps> = props => {
           <Image
             style={styles.body_imgRipple2}
             tintColor={colors.WHITE}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Image
             style={styles.body_imgMarker2}
-            source={require('../../../../resource/images/marker.png')}
+            source={{uri: marker}}
           />
         </View>
 
@@ -74,11 +75,11 @@ const Address: React.FC<AddressProps> = props => {
           <Image
             style={styles.body_imgRipple3}
             tintColor={colors.WHITE}
-            source={require('../../../../resource/images/ripple.png')}
+            source={{uri: ripple}}
           />
           <Image
             style={styles.body_imgMarker3}
-            source={require('../../../../resource/images/marker.png')}
+            source={{uri: marker}}
           />
         </View>
         <View style={styles.body_btnContainer}>

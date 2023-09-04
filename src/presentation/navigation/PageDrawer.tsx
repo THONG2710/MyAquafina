@@ -21,6 +21,7 @@ import PopupOnLogin from '../component/Popup/PopupOnLogin';
 import ProgarmLures from '../container/Page/PageMain/PureGift/ProgarmLures';
 import ReportError from '../container/Page/Authentication/ReportError/ReportError';
 import { showModalLogin } from '../shared-state/Redux/Actions/AuthenticationActions';
+import { earth, gift, map2, rank, score } from '../resource/images';
 
 const Drawer = createDrawerNavigator<DrawerStoryBoard>();
 
@@ -50,7 +51,7 @@ const PageDrawer: React.FC = props => {
           drawerLabel({focused, color}) {
             return (
               <ItemDrawer
-                icon={require('../resource/images/earth.png')}
+                icon={ earth}
                 isFocused={focused}
                 label="Thế giới xanh"
               />
@@ -65,7 +66,7 @@ const PageDrawer: React.FC = props => {
           drawerLabel({focused, color}) {
             return (
               <ItemDrawer
-                icon={require('../resource/images/gift.png')}
+                icon={ gift}
                 isFocused={focused}
                 label="Quà tặng xanh"
               />
@@ -80,7 +81,7 @@ const PageDrawer: React.FC = props => {
           drawerLabel({focused, color}) {
             return (
               <ItemDrawer
-                icon={require('../resource/images/map2.png')}
+                icon={ map2}
                 isFocused={focused}
                 label="Bản đồ xanh"
               />
@@ -100,7 +101,7 @@ const PageDrawer: React.FC = props => {
           drawerLabel({focused, color}) {
             return (
               <ItemDrawer
-                icon={require('../resource/images/score.png')}
+                icon={ score}
                 isFocused={focused}
                 label="Điểm thưởng xanh"
               />
@@ -110,12 +111,17 @@ const PageDrawer: React.FC = props => {
       />
       <Drawer.Screen
         name="PureChart"
+        listeners={{
+          drawerItemPress: ({}) => {
+            isLogged ? null : dispatch(showModalLogin(true));
+          },
+        }}
         component={PureChart}
         options={{
           drawerLabel({focused, color}) {
             return (
               <ItemDrawer
-                icon={require('../resource/images/rank.png')}
+                icon={ rank}
                 isFocused={focused}
                 label="Bảng xếp hạng"
               />

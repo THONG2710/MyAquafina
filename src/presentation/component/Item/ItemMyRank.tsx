@@ -10,10 +10,11 @@ export interface ItemMyRankProp extends TextProps {
 
 const ItemMyRank:React.FC<ItemMyRankProp> = (props) => { 
   const {user} = props;
+  const myPlace = useAppSelector(state => state.authentication.myPlace)
   return (
     <View style={styles.container}>
       <View style={styles.left_box}>
-        <Text style={[styles.text, {paddingHorizontal: 10, fontSize: 14,}]}>#5</Text>
+        <Text style={[styles.text, {paddingHorizontal: 10, fontSize: 14,}]}>#{myPlace}</Text>
         <View style={styles.infoBox}>
           <Image style={styles.avatar} source={{uri: user.avatar}}/>
           <Text style={styles.text}>{user.name}</Text>

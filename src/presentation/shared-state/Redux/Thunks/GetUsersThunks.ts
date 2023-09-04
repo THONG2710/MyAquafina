@@ -7,7 +7,7 @@ export const fetchUsers = createAsyncThunk(
     GET_USERS,
     async () => {
         try {
-            const collectionRef = firestore().collection('users').orderBy('scores', 'desc').limit(10);
+            const collectionRef = firestore().collection('users').orderBy('scores', 'desc');
             const querySnapshot = await collectionRef.get();
             const listUsers: any[] = [];
             querySnapshot.forEach(data => {
