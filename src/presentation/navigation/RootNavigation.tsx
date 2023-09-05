@@ -7,6 +7,7 @@ import PageDrawer from './PageDrawer';
 import ReportError from '../container/Page/Authentication/ReportError/ReportError';
 import { Provider } from 'react-redux';
 import {store} from '../shared-state/Redux/store';
+import PopupProductGift from '../component/Popup/PopupProductGift';
 
 const Stack = createNativeStackNavigator();
 

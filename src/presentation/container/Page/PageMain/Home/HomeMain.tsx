@@ -38,7 +38,9 @@ const HomeMain: React.FC<HomeMainProp> = props => {
   useEffect(() => {
     dispatch(fetchImages());
     isLogged ? setshowPopup(true) : setshowPopup(false);
-  }, []);
+    console.log(user);
+    
+  }, [user]);
 
   return (
     <View style={styles.container}>
@@ -67,13 +69,13 @@ const HomeMain: React.FC<HomeMainProp> = props => {
               <View style={styles.footer}>
                 <Image style={styles.footer_img} source={{uri: bottle}} />
                 <Text style={styles.footer_txt}>
-                  <Text style={styles.footer_txtBottle}>35</Text> chai Aquafina
+                  <Text style={styles.footer_txtBottle}>{user.bottleAqua}</Text> chai Aquafina
                 </Text>
               </View>
               <View style={styles.footer}>
                 <Image style={styles.footer_img} source={{uri: bottleOther}} />
                 <Text style={styles.footer_txt}>
-                  <Text style={styles.footer_txtBottle}>30</Text> chai khác
+                  <Text style={styles.footer_txtBottle}>{user.bottleOther}</Text> chai khác
                 </Text>
               </View>
               <View

@@ -23,13 +23,14 @@ export interface ItemSlideProps extends TextProps {
   item?: any;
   isActive?: boolean;
   isShowRiple?: 'flex' | 'none';
+  onPress?: () => void;
 }
 
 const ItemSlideGift: React.FC<ItemSlideProps> = props => {
-  const {styleMore, item, textStyle, isActive, isShowRiple} = props;
+  const {styleMore, item, textStyle, isActive, isShowRiple, onPress} = props;
 
   return (
-      <TouchableOpacity style={[styles.container, styleMore]}>
+      <TouchableOpacity style={[styles.container, styleMore]} onPress={onPress}>
         <View
           style={{
             width: '100%',

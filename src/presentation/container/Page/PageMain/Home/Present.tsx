@@ -1,14 +1,29 @@
 import {Dimensions, Image, StyleSheet, TextProps, View} from 'react-native';
-import React, { useState } from 'react';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import React, {useState} from 'react';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Text} from 'react-native';
 import ButtonImg from '../../../../component/Button/ButtonImg';
 import {fonts} from '../../../../resource/values/fonts';
 import {colors} from '../../../../resource/values/color';
 import ItemSlideGift from '../../../../component/Item/ItemSlideGift';
-import { nativeViewGestureHandlerProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
-import { Slide } from '../PureGift/PureGift';
-import { hat, iconHat, iconShirt, iconSock, iconTote, ripple, shirt, sock, tShirt_b, tShirt_w, tote, xanh } from '../../../../resource/images';
+import {nativeViewGestureHandlerProps} from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
+import {Slide} from '../PureGift/PureGift';
+import {
+  hat,
+  iconHat,
+  iconShirt,
+  iconSock,
+  iconTote,
+  ripple,
+  shirt,
+  sock,
+  tShirt_b,
+  tShirt_w,
+  tote,
+  xanh,
+} from '../../../../resource/images';
+import ReactNativeModal from 'react-native-modal';
+import PopupProductGift from '../../../../component/Popup/PopupProductGift';
 
 export interface PresentProp extends TextProps {
   navigation?: any;
@@ -20,7 +35,8 @@ const data = [
     name: 'Áo khoác cape\nAquafina x Headles',
     image: shirt,
     icon: iconShirt,
-    quantity: 108
+    quantity: 108,
+    by: 108,
   },
   {
     id: 2,
@@ -28,6 +44,7 @@ const data = [
     image: hat,
     icon: iconHat,
     quantity: 15,
+    by: 1,
   },
   {
     id: 3,
@@ -35,54 +52,68 @@ const data = [
     image: sock,
     icon: iconSock,
     quantity: 1,
+    by: 1,
   },
   {
     id: 4,
     name: 'Áo thời trang\nAquafina x Repeet',
     image: tShirt_w,
     icon: iconShirt,
-    quantity: 7
+    quantity: 7,
+    by: 7,
   },
   {
     id: 5,
-    name: 'Túi tote\nAquafina = Repeet',
+    name: 'Túi tote\nAquafina x Repeet',
     image: tote,
     icon: iconTote,
-    quantity: 2
+    quantity: 2,
+    by: 2,
   },
 ];
 
-const Present: React.FC<PresentProp> = (props) => {
+const Present: React.FC<PresentProp> = props => {
   const {navigation} = props;
   const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [dataItem, setDataItem] = useState();
 
-  const renderSlide = ({item, index}: {item: Slide, index: number}) => {
+  const renderSlide = ({item, index}: {item: Slide; index: number}) => {
     const isActive: boolean = index === activeItemIndex;
     const itemStyle = isActive ? styles.activeItem : styles.inactiveItem;
     const textActiveStyle = isActive ? colors.WHITE : colors.BLUE;
-    const isItemActive = isActive ? true : false
+    const isItemActive = isActive ? true : false;
 
     return (
-      <ItemSlideGift item={item} styleMore={itemStyle} textStyle={textActiveStyle} isActive={isItemActive} isShowRiple={isActive ? 'flex' : 'none'}/>
+      <ItemSlideGift
+        item={item}
+        styleMore={itemStyle}
+        textStyle={textActiveStyle}
+        isActive={isItemActive}
+        isShowRiple={isActive ? 'flex' : 'none'}
+        onPress={toggleModal}
+      />
     );
   };
-  
+
   const onSnapToItem: any = (index: number) => {
     setActiveItemIndex(index);
   };
 
-
+  const toggleModal = () => {
+    setIsShowModal(!isShowModal);
+  };
 
   return (
     <View style={styles.container}>
+      <ReactNativeModal isVisible={isShowModal}>
+        <PopupProductGift onPress={toggleModal} data={data[activeItemIndex]}/>
+      </ReactNativeModal>
       {/* Header */}
       <View style={styles.header}>
         <Text style={[styles.txt, styles.header_title]}>QUÀ TẶNG XANH</Text>
         <Text style={[styles.txt, styles.header_title2]}>PHỤ KIỆN</Text>
-        <Image
-          style={styles.header_xanh}
-          source={{uri: xanh}}
-        />
+        <Image style={styles.header_xanh} source={{uri: xanh}} />
         <Text style={[styles.txt]}>
           Tự tin{' '}
           <Text style={[styles.txt, styles.header_highLight]}>Sải bước</Text>
@@ -93,27 +124,35 @@ const Present: React.FC<PresentProp> = (props) => {
       </View>
       {/* slides */}
       <View style={styles.slides}>
-        <Image tintColor={colors.LIGHT_11_BLUE} style={styles.slides_imgRipple} source={{uri: ripple}}/>
+        <Image
+          tintColor={colors.LIGHT_11_BLUE}
+          style={styles.slides_imgRipple}
+          source={{uri: ripple}}
+        />
         <Carousel
-            data={data}
-            renderItem={renderSlide}
-            sliderWidth={Dimensions.get('screen').width}
-            itemWidth={190}
-            onSnapToItem={index => onSnapToItem(index)}
-          />
-          <Pagination
-            dotsLength={data.length}
-            activeDotIndex={activeItemIndex}
-            containerStyle={styles.paginationContainer}
-            dotStyle={styles.paginationDot}
-            inactiveDotStyle={styles.paginationInactiveDot}
-            inactiveDotOpacity={0.4}
-            inactiveDotScale={0.6}
-          />
+          data={data}
+          renderItem={renderSlide}
+          sliderWidth={Dimensions.get('screen').width}
+          itemWidth={190}
+          onSnapToItem={index => onSnapToItem(index)}
+        />
+        <Pagination
+          dotsLength={data.length}
+          activeDotIndex={activeItemIndex}
+          containerStyle={styles.paginationContainer}
+          dotStyle={styles.paginationDot}
+          inactiveDotStyle={styles.paginationInactiveDot}
+          inactiveDotOpacity={0.4}
+          inactiveDotScale={0.6}
+        />
       </View>
       {/* footer */}
       <View style={styles.footer}>
-        <ButtonImg btnStyle={styles.footer_btn} text="Khám phá ngay" onPress={() => navigation.navigate('PureGift')}/>
+        <ButtonImg
+          btnStyle={styles.footer_btn}
+          text="Khám phá ngay"
+          onPress={() => navigation.navigate('PureGift')}
+        />
       </View>
     </View>
   );
@@ -124,10 +163,9 @@ export default Present;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height:  Dimensions.get('screen').height/10*7.5,
+    height: (Dimensions.get('screen').height / 10) * 7.5,
     backgroundColor: colors.WHITE,
   },
-
 
   txt: {
     fontFamily: fonts.primaryFont,
@@ -200,7 +238,7 @@ const styles = StyleSheet.create({
   },
 
   footer_btn: {
-    width: Dimensions.get('screen').width/2,
+    width: Dimensions.get('screen').width / 2,
   },
 
   paginationContainer: {
